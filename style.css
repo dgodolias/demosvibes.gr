@@ -51,17 +51,21 @@
 
 * { box-sizing: border-box; }
 
-html, body {
+html {
+  background: var(--bg);
+}
+body {
   margin: 0;
   padding: 0;
   min-height: 100dvh;
-  background: var(--bg);
+  background: transparent; /* allow ::before mesh + ::after vignette to render */
   color: var(--ink-soft);
   font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  position: relative;
 }
 
 /* Animated mesh background — gives glass surfaces something to render over.
