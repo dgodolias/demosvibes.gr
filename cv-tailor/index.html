@@ -2,23 +2,36 @@
 <html lang="el">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>CV Tailoring — prompt</title>
-  <meta name="description" content="ATS-aware CV tailoring prompt for ChatGPT / Claude Projects.">
+  <meta name="description" content="ATS-aware CV tailoring prompt for ChatGPT & Claude Projects.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400;500;700&family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='28' fill='url(%23g)'/><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23f472b6'/><stop offset='100%25' stop-color='%23818cf8'/></linearGradient></defs></svg>">
 </head>
 <body>
-  <div class="wrap">
-    <span class="crumb"><a href="../">← videos</a></span>
-    <header>
+  <main class="wrap">
+    <section class="subhead">
+      <a class="crumb" href="../">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>videos</span>
+      </a>
       <h1>CV Tailoring — prompt</h1>
-      <p>Paste σε ChatGPT/Claude Project (με το CV.docx ως source). Μετά paste και το job description.</p>
-    </header>
+      <p>Paste σε ένα ChatGPT ή Claude project που έχει το CV.docx σου σαν source, μαζί με το job description.</p>
+    </section>
 
     <div class="prompt-card">
       <div class="toolbar">
-        <span>prompt</span>
-        <button id="copy" type="button" aria-live="polite">Copy</button>
+        <span class="label"><span class="pulse" aria-hidden="true"></span>prompt</span>
+        <button id="copy" class="btn-pill" type="button" aria-label="Copy prompt to clipboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span id="copy-label">Copy</span>
+        </button>
       </div>
       <pre id="prompt-text">You are an expert ATS-aware CV tailoring assistant.
 
@@ -126,32 +139,34 @@ Your task:
 Tailor the CV according to all rules above.</pre>
     </div>
 
-    <div class="notes">
-      <p><strong>Πώς να το χρησιμοποιήσεις:</strong></p>
+    <section class="steps" aria-labelledby="how">
+      <h2 id="how">Πώς να το χρησιμοποιήσεις</h2>
       <ol>
-        <li>Φτιάξε <strong>Project</strong> σε ChatGPT ή Claude.</li>
-        <li>Ανέβασε το CV σου (<code>CV.docx</code>) ως project source/file.</li>
-        <li>Στο πρώτο μήνυμα του project paste το prompt πάνω <em>μαζί με</em> το job description (όλο, από LinkedIn / Indeed / kariera.gr).</li>
-        <li>Διάβασε τι θα αλλάξει, πες <em>"Proceed"</em>, παίρνεις το tailored CV.</li>
+        <li>Φτιάξε <em>Project</em> σε ChatGPT ή Claude.</li>
+        <li>Ανέβασε το CV σου (<code>CV.docx</code>) στο project ως source / file.</li>
+        <li>Πάτα <em>Copy</em> εδώ πάνω, paste το prompt στο πρώτο μήνυμα του project μαζί με το <em>job description</em>.</li>
+        <li>Διάβασε τι θα αλλάξει, γράψε <em>Proceed</em>, παίρνεις το tailored CV.</li>
       </ol>
-    </div>
+    </section>
 
     <footer>
-      ← <a href="../">videos</a>
+      <a href="../">← videos</a>
+      <a href="https://github.com/dgodolias/videos" target="_blank" rel="noopener">github · dgodolias/videos</a>
     </footer>
-  </div>
+  </main>
 
   <script>
     const btn = document.getElementById('copy');
+    const label = document.getElementById('copy-label');
     const pre = document.getElementById('prompt-text');
     btn.addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(pre.textContent);
-        btn.textContent = 'Copied ✓';
+        label.textContent = 'Copied';
         btn.classList.add('copied');
-        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+        setTimeout(() => { label.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
       } catch (e) {
-        btn.textContent = 'Press Ctrl+C';
+        label.textContent = 'Press Ctrl+C';
         const range = document.createRange();
         range.selectNodeContents(pre);
         const sel = window.getSelection();

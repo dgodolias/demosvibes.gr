@@ -2,30 +2,55 @@
 <html lang="el">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>videos — prompts & artifacts</title>
-  <meta name="description" content="Prompts and artifacts from short-form videos.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>videos — dgodolias</title>
+  <meta name="description" content="Prompts & artifacts από short-form videos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400;500;700&family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='28' fill='url(%23g)'/><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%23f472b6'/><stop offset='100%25' stop-color='%23818cf8'/></linearGradient></defs></svg>">
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>videos</h1>
-      <p>Prompts & artifacts από τα short-form videos μου. Πάτα ένα video → δες/copy το prompt.</p>
-    </header>
+  <main class="wrap">
+    <section class="hero">
+      <div class="brand-row">
+        <span class="dot" aria-hidden="true"></span>
+        <span>videos · dgodolias</span>
+      </div>
+      <h1>Prompts &amp; artifacts<br>από τα short-form βίντεό μου.</h1>
+      <p class="lede">Πάτα ένα βίντεο. Παίρνεις το prompt που το συνοδεύει με ένα copy.</p>
+    </section>
 
-    <ul class="video-list">
+    <ul class="video-list" role="list">
       <li>
-        <a class="card" href="cv-tailor/">
-          <span class="title">CV Tailoring</span>
-          <span class="meta">ATS-aware CV tailoring με ChatGPT / Claude Projects · 30s</span>
+        <a class="card-link" href="cv-tailor/">
+          <span class="badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="9" y1="13" x2="15" y2="13"/>
+              <line x1="9" y1="17" x2="13" y2="17"/>
+            </svg>
+          </span>
+          <span class="meta">
+            <span class="title">CV Tailoring</span>
+            <span class="sub">ATS-aware tailoring με ChatGPT &amp; Claude Projects · 30s</span>
+          </span>
+          <span class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
         </a>
       </li>
     </ul>
 
     <footer>
-      built with care · github.com/dgodolias/videos
+      <span>built with care</span>
+      <a href="https://github.com/dgodolias/videos" target="_blank" rel="noopener">github · dgodolias/videos</a>
     </footer>
-  </div>
+  </main>
 </body>
 </html>
