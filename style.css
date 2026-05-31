@@ -325,3 +325,84 @@ footer a:hover { color: var(--ink); }
   .prompt-card pre { padding: 16px 16px; font-size: 12.5px; }
   .steps { padding: 18px 18px; }
 }
+
+/* ── Date chip on cards ───────────────────────────────── */
+.card-link .date {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--quiet);
+  letter-spacing: 0.01em;
+}
+
+/* ── Generic section blocks ───────────────────────────── */
+.block { margin-top: 28px; }
+.block > h2 {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 12px;
+}
+.block > h2 .tag {
+  font-size: 11px; font-weight: 500; color: var(--quiet);
+  margin-left: 8px; letter-spacing: 0.02em;
+}
+
+/* Info cards (one per chatbot / tool) */
+.info-grid { display: grid; gap: 10px; }
+.info {
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-card);
+}
+.info h3 {
+  font-size: 15px; font-weight: 500; color: var(--ink);
+  margin-bottom: 4px; display: flex; align-items: center; gap: 8px;
+}
+.info h3 .dot { width: 8px; height: 8px; border-radius: 999px; flex-shrink: 0; }
+.info p { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.6; }
+.info .links { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px; }
+.info .links a {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px; border-radius: var(--r-pill);
+  background: var(--accent-soft); border: 1px solid var(--hairline);
+  color: var(--ink); font-size: 12.5px; font-weight: 500;
+  transition: background 0.15s, border-color 0.15s;
+}
+.info .links a:hover { background: var(--surface-hi); border-color: var(--hairline-strong); }
+
+/* ── Pricing table ────────────────────────────────────── */
+.tbl-wrap {
+  margin-top: 6px;
+  overflow-x: auto;
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-card);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+table.ptable { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 460px; }
+table.ptable th, table.ptable td {
+  text-align: left; padding: 12px 14px; vertical-align: top;
+  border-bottom: 1px solid var(--hairline);
+}
+table.ptable thead th {
+  font-family: var(--font-display); font-weight: 500; color: var(--ink);
+  font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em;
+  background: var(--surface-lo);
+}
+table.ptable tbody tr:last-child td { border-bottom: 0; }
+table.ptable td:first-child, table.ptable th:first-child { font-weight: 500; color: var(--ink); white-space: nowrap; }
+table.ptable .free { color: #2c8a4e; font-weight: 500; }
+table.ptable .price { color: var(--ink); white-space: nowrap; }
+table.ptable .muted { color: var(--muted); }
+
+.note {
+  margin-top: 12px; font-size: 12px; line-height: 1.55; color: var(--muted);
+}
+.note strong { color: var(--ink-soft); font-weight: 500; }
+.srcline { margin-top: 10px; font-size: 11.5px; color: var(--quiet); }
+.srcline a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.srcline a:hover { color: var(--ink); }
