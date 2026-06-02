@@ -9,6 +9,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Display:wght@400;500;700&family=Google+Sans+Text:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* date on top + before/after thumbnails per card */
+    .card-link { align-items: stretch; }
+    .card-link .meta .date { display: block; font-size: 12px; color: #9a948a; letter-spacing: .02em; margin: 0 0 4px; font-weight: 500; }
+    .card-link .sub { display: block; }
+    .card-link .thumbs { display: flex; gap: 8px; margin-top: 12px; }
+    .card-link .thumbs img { flex: 1 1 0; width: 50%; height: 90px; object-fit: cover; border-radius: 10px; border: 1px solid #e7e3da; display: block; }
+    .card-link .chev { align-self: center; }
+  </style>
 </head>
 <body>
   <main class="wrap">
@@ -21,13 +30,14 @@
     <ul class="video-list" role="list">
       <li>
         <a class="card-link" href="estate-ai-furnishing/">
-          <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/><polyline points="9 21 9 14 15 14 15 21"/></svg>
-          </span>
           <span class="meta">
+            <span class="date">31 Μαΐ 2026</span>
             <span class="title">AI staging ακινήτων</span>
             <span class="sub">Επίπλωσε άδειο σπίτι με AI — chatbots &amp; ειδικά εργαλεία</span>
-            <span class="date">31 Μαΐ 2026</span>
+            <span class="thumbs">
+              <img src="thumbs/estate_before.jpg" alt="πριν, άδειο δωμάτιο" loading="lazy">
+              <img src="thumbs/estate_after.jpg" alt="μετά, επιπλωμένο με AI" loading="lazy">
+            </span>
           </span>
           <span class="chev" aria-hidden="true">
             <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
@@ -36,13 +46,14 @@
       </li>
       <li>
         <a class="card-link" href="cv-tailor/">
-          <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></svg>
-          </span>
           <span class="meta">
+            <span class="date">28 Μαΐ 2026</span>
             <span class="title">CV tailoring</span>
             <span class="sub">ATS-aware prompt για ChatGPT &amp; Claude Projects</span>
-            <span class="date">28 Μαΐ 2026</span>
+            <span class="thumbs">
+              <img src="thumbs/cv_before.jpg" alt="το βιογραφικό" loading="lazy">
+              <img src="thumbs/cv_after.jpg" alt="περισσότερες απαντήσεις" loading="lazy">
+            </span>
           </span>
           <span class="chev" aria-hidden="true">
             <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
@@ -51,13 +62,14 @@
       </li>
       <li>
         <a class="card-link" href="graphify/">
-          <span class="icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><line x1="8.1" y1="10.9" x2="15.9" y2="7.1"/><line x1="8.1" y1="13.1" x2="15.9" y2="16.9"/></svg>
-          </span>
           <span class="meta">
+            <span class="date">2 Ιουν 2026</span>
             <span class="title">graphify</span>
             <span class="sub">Κάνε το codebase σου knowledge graph για το AI σου — open source</span>
-            <span class="date">2 Ιουν 2026</span>
+            <span class="thumbs">
+              <img src="thumbs/graphify_before.jpg" alt="πληρώνεις tokens" loading="lazy">
+              <img src="thumbs/graphify_after.jpg" alt="ο knowledge graph" loading="lazy">
+            </span>
           </span>
           <span class="chev" aria-hidden="true">
             <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
