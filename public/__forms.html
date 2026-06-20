@@ -1,0 +1,21 @@
+<!doctype html>
+<!--
+  Static Netlify Forms detection stub. Netlify's build bot parses this HTML at
+  deploy time to register the "email-gate" form. The live React gate POSTs to
+  "/" with a matching form-name (see src/gate/netlifyForms.ts). Field names here
+  MUST match the POST payload. This file is never shown to users.
+-->
+<html lang="el">
+  <head>
+    <meta charset="utf-8" />
+    <title>forms</title>
+  </head>
+  <body>
+    <form name="email-gate" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="email-gate" />
+      <input type="email" name="email" />
+      <input type="checkbox" name="consent" />
+      <input name="bot-field" />
+    </form>
+  </body>
+</html>

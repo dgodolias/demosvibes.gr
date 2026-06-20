@@ -1,0 +1,27 @@
+# llms.txt — demosvibes.gr
+
+> demosvibes is a Greek-language hub of AI prompts, step-by-step guides, and curated
+> tool lists that accompany short-form videos (TikTok / Reels / YouTube Shorts).
+> Author: dgodolias. Language: Greek (el). Content free to cite with attribution to demosvibes.gr.
+
+## Prompts
+- [Founders Playbook: η ιδέα](https://demosvibes.gr/founders-idea/): prompt για validation ιδέας startup με το Claude ως devil's advocate.
+- [Founders Playbook: το MVP](https://demosvibes.gr/founders-mvp/): prompt για product-market fit + το 40% test.
+- [Founders Playbook: το launch](https://demosvibes.gr/founders-launch/): prompt για tech debt + delegation systems.
+- [Founders Playbook: το scale](https://demosvibes.gr/founders-scale/): prompt για systems, lock-in και moat.
+- [CV tailoring prompt](https://demosvibes.gr/cv-tailor/): ATS-aware CV tailoring prompt για ChatGPT/Claude.
+- [Master prompt για AI staging](https://demosvibes.gr/estate-ai-furnishing/chatbots/): virtual staging με ChatGPT ή Gemini.
+
+## Guides
+- [graphify — οδηγός βήμα βήμα](https://demosvibes.gr/graphify/): εγκατάσταση graphify (knowledge graph) από το μηδέν.
+- [grill-me — οδηγός βήμα βήμα](https://demosvibes.gr/grill-me/): skill που κάνει το AI να ρωτάει πριν φτιάξει.
+- [FindAnomaly — οδηγός βήμα βήμα](https://demosvibes.gr/anomaly-ai/): data σε dashboard + παρουσίαση με AI.
+- [Thea — οδηγός βήμα βήμα](https://demosvibes.gr/thea-learning/): οδηγός μελέτης, παιχνίδι και διαγώνισμα στα ελληνικά.
+
+## Tools
+- [AI staging ακινήτων](https://demosvibes.gr/estate-ai-furnishing/): chatbots + ειδικά εργαλεία για virtual staging.
+- [Ειδικά εργαλεία — AI staging](https://demosvibes.gr/estate-ai-furnishing/tools/): λίστα tools με συνδρομές.
+
+## Optional
+- [Όλα τα συνοδευτικά (index)](https://demosvibes.gr/): πλήρης λίστα υλικού.
+- [Πολιτική Απορρήτου](https://demosvibes.gr/privacy/)

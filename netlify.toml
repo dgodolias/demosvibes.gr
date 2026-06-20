@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA fallback: prerendered routes are served as real .html first; anything
+# unmatched falls back to the app shell so client-side routing still resolves.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
