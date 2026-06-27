@@ -21,6 +21,99 @@ const officialThumb = {
 
 export const resources: Resource[] = [
   {
+    slug: 'ai-koskino',
+    pageKind: 'toolList',
+    date: '2026-06-27',
+    card: {
+      title: 'Δωρεάν open source AI μοντέλα',
+      desc: 'Όσο η Αμερική κλειδώνει τα κορυφαία AI, η Κίνα τα βγάζει open source. DeepSeek, Qwen, Kimi και GLM, δωρεάν να τα τρέξεις σήμερα.',
+      metaLine: '27 Ιουν 2026 · Οδηγός',
+      cardTags: ['Open source', 'DeepSeek', 'Δωρεάν AI'],
+      searchTags: [
+        'open source',
+        'opensource',
+        'deepseek',
+        'qwen',
+        'kimi',
+        'glm',
+        'δωρεάν',
+        'free',
+        'ai',
+        'μοντέλα',
+        'china',
+        'κίνα',
+        'chatgpt',
+      ],
+      filters: ['guide', 'tool'],
+      status: 'inactive',
+      thumb: {
+        type: 'solo',
+        src: '/thumbs/ai-koskino_thumb.jpg',
+        alt: 'Headline που δείχνει ότι η αμερικανική κυβέρνηση περιόρισε το GPT-5.6 της OpenAI',
+      },
+    },
+    seoTitle: 'Δωρεάν open source AI μοντέλα να τρέξεις σήμερα',
+    seoDescription:
+      'Όσο η Αμερική κλειδώνει τα κορυφαία AI, η Κίνα τα βγάζει open source. DeepSeek, Qwen, Kimi και GLM, δωρεάν να τα δοκιμάσεις ή να τα τρέξεις τοπικά.',
+    crumb: { label: 'videos', to: '/' },
+    heading: 'Δωρεάν open source AI μοντέλα',
+    introHtml:
+      'Το πιο δυνατό μοντέλο της OpenAI βγήκε αλλά η αμερικανική κυβέρνηση το κλείδωσε σε λίγες εγκεκριμένες εταιρείες, όπως και το Mythos της Anthropic. Όσο η Δύση κλειδώνει τα κορυφαία, η Κίνα τα βγάζει open source. Εδώ είναι τα δωρεάν μοντέλα που μπορείς να χρησιμοποιήσεις σήμερα.',
+    citation:
+      'https://techcrunch.com/2026/06/26/openai-limits-gpt-5-6-rollout-after-government-request-says-restrictions-shouldnt-be-the-norm/',
+    blocks: [
+      {
+        kind: 'cardLinks',
+        items: [
+          {
+            icon: 'chat',
+            title: 'DeepSeek',
+            sub: 'Δωρεάν chat, open weights (MIT)',
+            to: 'https://chat.deepseek.com',
+          },
+          {
+            icon: 'chat',
+            title: 'Qwen (Alibaba)',
+            sub: 'Δωρεάν chat με τα open μοντέλα Qwen',
+            to: 'https://chat.qwen.ai',
+          },
+          {
+            icon: 'chat',
+            title: 'Kimi (Moonshot)',
+            sub: 'Δωρεάν chat, open weights',
+            to: 'https://www.kimi.com',
+          },
+          {
+            icon: 'chat',
+            title: 'GLM (Z.ai)',
+            sub: 'Δωρεάν chat με τα μοντέλα GLM',
+            to: 'https://chat.z.ai',
+          },
+        ],
+      },
+      {
+        kind: 'steps',
+        title: 'Πού να τα τρέξεις δωρεάν',
+        items: [
+          'Πιο εύκολο: μπες στα επίσημα chat sites από πάνω και δοκίμασέ τα δωρεάν, χωρίς εγκατάσταση.',
+          'Για προγραμματιστές: στο OpenRouter βρίσκεις πολλά open μοντέλα μαζεμένα, αρκετά και με δωρεάν tier.',
+          'Τοπικά στον υπολογιστή σου: κατέβασε Ollama ή LM Studio και τρέξε τα open weights offline.',
+        ],
+      },
+      {
+        kind: 'prose',
+        title: 'Προσοχή στα δεδομένα',
+        html: '<p>Τα hosted chat όπως το DeepSeek τρέχουν σε servers στην Κίνα, οπότε ό,τι γράφεις φεύγει εκεί. Για κάτι ευαίσθητο, κατέβασε τα open weights και τρέξε τα τοπικά με Ollama ή LM Studio, ή χρησιμοποίησε δυτικό host.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Πηγή',
+        html: '<p>Το GPT-5.6 της OpenAI και το Claude Mythos της Anthropic βγήκαν αλλά η αμερικανική κυβέρνηση τα περιόρισε σε λίγες εγκεκριμένες εταιρείες, λόγω κινδύνου σε κυβερνοεπιθέσεις. Τα μοντέλα παραπάνω είναι open source και τα τρέχεις δωρεάν.</p>',
+      },
+    ],
+  },
+
+  {
     slug: 'say-my-name',
     pageKind: 'prompt',
     date: '2026-06-25',
