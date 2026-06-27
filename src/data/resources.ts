@@ -102,11 +102,6 @@ export const resources: Resource[] = [
       },
       {
         kind: 'prose',
-        title: 'Προσοχή στα δεδομένα',
-        html: '<p>Τα hosted chat όπως το DeepSeek τρέχουν σε servers στην Κίνα, οπότε ό,τι γράφεις φεύγει εκεί. Για κάτι ευαίσθητο, κατέβασε τα open weights και τρέξε τα τοπικά με Ollama ή LM Studio, ή χρησιμοποίησε δυτικό host.</p>',
-      },
-      {
-        kind: 'prose',
         title: 'Πηγή',
         html: '<p>Το GPT-5.6 της OpenAI και το Claude Mythos της Anthropic βγήκαν αλλά η αμερικανική κυβέρνηση τα περιόρισε σε λίγες εγκεκριμένες εταιρείες, λόγω κινδύνου σε κυβερνοεπιθέσεις. Τα μοντέλα παραπάνω είναι open source και τα τρέχεις δωρεάν.</p>',
       },
