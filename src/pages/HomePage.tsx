@@ -4,7 +4,7 @@ import SearchFilter from '../components/SearchFilter';
 import Seo from '../components/Seo';
 import SiteFooter from '../components/SiteFooter';
 import Topbar from '../components/Topbar';
-import { featuredResource, gridResources } from '../data/resources';
+import { gridResources } from '../data/resources';
 import { site } from '../data/site';
 import { isReleasedOnHomepage } from '../lib/release';
 import { websiteLd } from '../lib/seo';
@@ -22,6 +22,9 @@ export default function HomePage() {
     () => gridResources.filter((resource) => isReleasedOnHomepage(resource, now)),
     [now],
   );
+
+  /** The "Τελευταίο" card = the actual newest released video (gridResources is newest-first). */
+  const featured = homepageResources[0];
 
   /** Derived hero stats (replaces the old hardcoded, stale numbers). */
   const total = homepageResources.length;
@@ -62,7 +65,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          {featuredResource && <FeaturedResource resource={featuredResource} />}
+          {featured && <FeaturedResource resource={featured} />}
         </section>
 
         <SearchFilter resources={homepageResources} />

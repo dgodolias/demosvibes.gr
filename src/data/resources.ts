@@ -479,7 +479,6 @@ tasks, μηνύματα, support, κώδικας, ό,τι θυμάσαι]
       searchTags: ['founders', 'prompt', 'validation', 'startup', 'idea', 'claude'],
       filters: ['founders', 'prompt'],
       thumb: officialThumb,
-      featured: true,
     },
     seoTitle: 'Founders Playbook: η ιδέα',
     seoDescription:
@@ -1262,7 +1261,5 @@ improved lighting only, if needed.`,
 export const gridResources = resources
   .filter((r) => r.card)
   .sort((a, b) => (a.date < b.date ? 1 : -1));
-
-export const featuredResource = resources.find((r) => r.card?.featured);
 
 export const bySlug = (slug: string) => resources.find((r) => r.slug === slug);
