@@ -21,6 +21,110 @@ const officialThumb = {
 
 export const resources: Resource[] = [
   {
+    slug: 'optimized-prompts',
+    pageKind: 'guide',
+    date: '2026-07-12',
+    card: {
+      title: '18 prompts που αλλάζουν το ChatGPT',
+      desc: 'Η ίδια ερώτηση, λίγο πιο συγκεκριμένη, βγάζει τελείως άλλη απάντηση. 18 μικρές αλλαγές στη διατύπωση για να παίρνεις κάτι που πραγματικά χρησιμοποιείς.',
+      metaLine: '12 Ιουλ 2026 · Prompts',
+      cardTags: ['ChatGPT', 'Prompts', 'Δωρεάν'],
+      searchTags: [
+        'prompt',
+        'prompts',
+        'chatgpt',
+        'ai',
+        'optimized',
+        'βελτιωμένα',
+        'διατύπωση',
+        'productivity',
+        'claude',
+        'gemini',
+        'περιεχόμενο',
+        'δωρεάν',
+        'free',
+      ],
+      filters: ['prompt', 'guide'],
+      status: 'active',
+      thumb: {
+        type: 'solo',
+        src: '/thumbs/optimized-prompts_thumb.jpg',
+        alt: 'Λίστα με πρόχειρα prompts δίπλα στις βελτιωμένες εκδοχές τους για το ChatGPT',
+      },
+    },
+    seoTitle: '18 optimized prompts για το ChatGPT',
+    seoDescription:
+      'Η ίδια ερώτηση, πιο συγκεκριμένη, αλλάζει τελείως το αποτέλεσμα. 18 μικρές αλλαγές στη διατύπωση των prompts για να βγάζει το ChatGPT κάτι που πραγματικά χρησιμοποιείς.',
+    crumb: { label: 'videos', to: '/' },
+    heading: '18 prompts που αλλάζουν το ChatGPT',
+    introHtml:
+      'Οι περισσότεροι δεν παίρνουν χάλια απαντήσεις από το AI επειδή είναι χαζό, αλλά επειδή του ζητάνε χαλαρά. Η ίδια ερώτηση, λίγο πιο συγκεκριμένη, βγάζει τελείως άλλο αποτέλεσμα. Παρακάτω είναι 18 μικρές αλλαγές στη διατύπωση: στα αριστερά αυτό που λέμε συνήθως, στα δεξιά αυτό που δουλεύει καλύτερα. Δουλεύουν σε ChatGPT, Claude και Gemini.',
+    blocks: [
+      {
+        kind: 'html',
+        html: `<style>
+.opt-swaps table.ptable { min-width: 0; }
+.opt-swaps table.ptable td, .opt-swaps table.ptable th { padding: 11px 12px; }
+.opt-swaps table.ptable td:first-child, .opt-swaps table.ptable th:first-child { width: 42%; }
+.opt-swaps table.ptable td:first-child { color: var(--muted); font-weight: 500; white-space: normal; }
+.opt-swaps table.ptable td:last-child { color: var(--ink); }
+.opt-swaps .bad { color: var(--accent-2); font-weight: 700; }
+.opt-swaps .good { color: var(--accent); font-weight: 700; }
+.opt-swaps h3 { margin: 22px 0 10px; font-family: var(--font-display); font-size: 15px; }
+.opt-swaps h3:first-child { margin-top: 0; }
+</style>
+<div class="opt-swaps">
+  <h3>Γενικά, για κάθε μέρα</h3>
+  <table class="ptable">
+    <thead>
+      <tr><th><span class="bad">✕</span> Αντί να λες</th><th><span class="good">✓</span> Πες καλύτερα</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Κάνε σύνοψη</td><td>Κάνε σύνοψη σε 3 bullets που μπορώ να εφαρμόσω σήμερα</td></tr>
+      <tr><td>Εξήγησέ μου το Χ</td><td>Εξήγησέ μου το Χ, θεωρώντας ότι ξέρω ήδη τα βασικά</td></tr>
+      <tr><td>Δώσε μου ιδέες</td><td>Δώσε μου 5 οπτικές, από την πιο προφανή στην πιο απρόσμενη</td></tr>
+      <tr><td>Κάν' το καλύτερο</td><td>Βελτίωσε τη σαφήνεια και τη ροή, κράτα το ύφος μου</td></tr>
+      <tr><td>Τι είναι αυτό;</td><td>Σπάσ' το μου σαν να μου το μαθαίνεις από την αρχή</td></tr>
+      <tr><td>Δώσε μου tips για το Χ</td><td>Δώσε μου μόνο τα 3 που πραγματικά κάνουν τη διαφορά</td></tr>
+      <tr><td>Κάν' το πιο σύντομο</td><td>Κόψε 30% χωρίς να χαθεί το βασικό νόημα</td></tr>
+      <tr><td>Τι να κάνω;</td><td>Δώσε μου 3 επιλογές με το trade-off της καθεμιάς</td></tr>
+      <tr><td>Διόρθωσέ το</td><td>Διόρθωσε μόνο γραμματική και ρυθμό, μην αγγίξεις τη δομή μου</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Για περιεχόμενο και δουλειά</h3>
+  <table class="ptable">
+    <thead>
+      <tr><th><span class="bad">✕</span> Αντί να λες</th><th><span class="good">✓</span> Πες καλύτερα</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Γράψε ένα post για το Χ</td><td>Γράψε ένα post για το Χ, για [κοινό], μία ιδέα μόνο</td></tr>
+      <tr><td>Κάν' το πιο επαγγελματικό</td><td>Κάνε ώστε ένας βιαστικός πελάτης να το πιάνει σε 5 δευτερόλεπτα</td></tr>
+      <tr><td>Θέλω ιδέες για περιεχόμενο</td><td>Δώσε μου 5 hooks που μπορώ να γυρίσω σήμερα</td></tr>
+      <tr><td>Κάν' το πιο πειστικό</td><td>Κάν' το πειστικό απέναντι σε αυτή την πραγματική αντίρρηση: [Χ]</td></tr>
+      <tr><td>Κάν' το να ακούγεται φυσικό</td><td>Γράψ' το όπως θα το έλεγα με το στόμα μου, χωρίς ορολογία</td></tr>
+      <tr><td>Γράψε μου μια λεζάντα</td><td>Δώσε μου 3 λεζάντες και πες μου ποια θα διάλεγες</td></tr>
+      <tr><td>Βελτίωσέ το</td><td>Βελτίωσέ το σε σαφήνεια, ρυθμό και στο CTA</td></tr>
+      <tr><td>Κάν' το πιο σύντομο</td><td>Πες το σε 3 προτάσεις χωρίς να χαθεί το νόημα</td></tr>
+      <tr><td>Διόρθωσέ το</td><td>Διόρθωσε ορθογραφία και ροή, κράτα το στυλ μου</td></tr>
+    </tbody>
+  </table>
+</div>`,
+      },
+      {
+        kind: 'prose',
+        title: 'Το μοτίβο πίσω από όλα',
+        html: '<p>Δες τι έχουν κοινό τα δεξιά: λένε <strong>για ποιον</strong> είναι, <strong>πόσο</strong> θες, <strong>τι να κρατήσει</strong> και <strong>τι να μην αγγίξει</strong>. Δεν χρειάζεται να τα μάθεις απέξω. Κάθε φορά που γράφεις ένα χαλαρό prompt, πρόσθεσε ένα από αυτά: έναν αριθμό, ένα κοινό, ή ένα όριο. Μόνο αυτό ανεβάζει κατακόρυφα την απάντηση.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Πηγή',
+        html: '<p>Οι διατυπώσεις είναι βασισμένες σε λίστα prompt-patterns που κυκλοφορεί από το <a href="https://www.instagram.com/evolving.ai" target="_blank" rel="noopener">EVOLVING AI</a>, προσαρμοσμένες στα ελληνικά. Δουλεύουν σε ChatGPT, Claude ή Gemini.</p>',
+      },
+    ],
+  },
+
+  {
     slug: 'suno-ai',
     pageKind: 'guide',
     date: '2026-07-03',
