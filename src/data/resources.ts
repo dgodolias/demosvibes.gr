@@ -21,6 +21,149 @@ const officialThumb = {
 
 export const resources: Resource[] = [
   {
+    slug: 'false-sense-security',
+    pageKind: 'prompt',
+    date: '2026-07-15',
+    card: {
+      title: 'Κάνε το ChatGPT να σου λέει την αλήθεια',
+      desc: 'Οι κουβέντες με το ChatGPT δίνουν ψεύτικη αίσθηση προόδου, και τις περισσότερες φορές συμφωνεί μαζί σου. Μια οδηγία στη μνήμη του κόβει την κολακεία και κλείνει κάθε απάντηση με ένα βήμα για σήμερα.',
+      metaLine: '15 Ιουλ 2026 · Prompt',
+      cardTags: ['ChatGPT', 'Ειλικρίνεια', 'Prompt'],
+      searchTags: [
+        'chatgpt',
+        'prompt',
+        'ai',
+        'κολακεια',
+        'ειλικρινεια',
+        'sycophancy',
+        'glaze',
+        'memory',
+        'custom instructions',
+        'μνημη',
+        'false sense of security',
+        'ψευτικη αισθηση',
+        'παραγωγικοτητα',
+        'συνηθειες',
+        'selfimprovement',
+      ],
+      filters: ['prompt', 'guide'],
+      status: 'active',
+      thumb: {
+        type: 'solo',
+        src: '/thumbs/false-sense-security_thumb.jpg',
+        alt: 'Στιγμιότυπο από το βίντεο: ο δημιουργός δίπλα στο viral Reddit post «διέγραψε το ChatGPT»',
+      },
+    },
+    seoTitle: 'Κάνε το ChatGPT να σου λέει την αλήθεια (anti-glaze οδηγία)',
+    seoDescription:
+      'Οι κουβέντες με το ChatGPT μπορεί να δίνουν ψεύτικη αίσθηση προόδου και το ChatGPT τείνει να συμφωνεί μαζί σου. Βάλε αυτή την οδηγία στη μνήμη του για να σου λέει την αλήθεια και να κλείνει κάθε απάντηση με ένα βήμα για σήμερα.',
+    crumb: { label: 'videos', to: '/' },
+    heading: 'Κάνε το ChatGPT να σου λέει την αλήθεια',
+    introHtml:
+      'Ρωτάς κάθε μέρα το ChatGPT και νιώθεις ότι προχωράς, αλλά συχνά απλώς μιλάς για το πρόβλημα χωρίς να το λύνεις. Και επειδή τις περισσότερες φορές θα συμφωνήσει μαζί σου, η αίσθηση προόδου μεγαλώνει χωρίς λόγο. Δεν χρειάζεται να το διαγράψεις. Βάλε μία μόνιμη οδηγία στη μνήμη του ώστε να σταματήσει τα χάδια, να σου λέει την αλήθεια, και να κλείνει κάθε απάντηση με ένα συγκεκριμένο βήμα για σήμερα.',
+    citation: 'https://chatgpt.com',
+    blocks: [
+      {
+        kind: 'prompt',
+        label: 'anti-glaze.txt',
+        text: `Μη μου λες αυτό που θέλω να ακούσω. Να είσαι τελείως ειλικρινής μαζί μου. Αν κάτι στο σχέδιο ή στη σκέψη μου έχει πρόβλημα, ξεκίνα από αυτό, χωρίς κολακείες. Κάθε φορά που σου ζητάω συμβουλή, κλείσε την απάντηση με ένα συγκεκριμένο βήμα που μπορώ να κάνω σήμερα. Αν σου ξαναζητήσω συμβουλή χωρίς να έχω κάνει το προηγούμενο βήμα, ρώτα με πρώτα τι έγινε με εκείνο.`,
+      },
+      {
+        kind: 'steps',
+        title: 'Πού το βάζεις (βήμα-βήμα)',
+        items: [
+          'Στο ChatGPT κάνε κλικ στο όνομά σου κάτω αριστερά και άνοιξε το Settings.',
+          'Από το μενού αριστερά διάλεξε το Εξατομίκευση (Personalization).',
+          'Κατέβα κάτω στις «Προσαρμοσμένες οδηγίες» (Custom Instructions) και κάνε paste την οδηγία από πάνω.',
+          'Αποθήκευσε. Τώρα ισχύει σε κάθε νέα συνομιλία, χωρίς να την ξαναγράφεις.',
+        ],
+      },
+      {
+        kind: 'html',
+        html:
+          '<div style="display:flex;flex-direction:column;gap:22px;align-items:center;margin-top:2px">' +
+          '<figure style="margin:0;text-align:center;max-width:230px"><img src="/guide/false-sense-security/cgpt1_open_settings.png" alt="Άνοιξε το Settings από το προφίλ σου" loading="lazy" style="width:100%;border-radius:12px;border:1px solid rgba(255,255,255,0.12);display:block"><figcaption style="font-size:0.86rem;opacity:0.72;margin-top:8px">1. Κλικ στο προφίλ σου (κάτω αριστερά) και άνοιξε το Settings</figcaption></figure>' +
+          '<figure style="margin:0;text-align:center;max-width:540px;width:100%"><img src="/guide/false-sense-security/cgpt2_personalization.png" alt="Διάλεξε το Εξατομίκευση" loading="lazy" style="width:100%;border-radius:12px;border:1px solid rgba(255,255,255,0.12);display:block"><figcaption style="font-size:0.86rem;opacity:0.72;margin-top:8px">2. Διάλεξε το Εξατομίκευση</figcaption></figure>' +
+          '<figure style="margin:0;text-align:center;max-width:540px;width:100%"><img src="/guide/false-sense-security/cgpt3_custom_instructions.png" alt="Κάνε paste στις Προσαρμοσμένες οδηγίες" loading="lazy" style="width:100%;border-radius:12px;border:1px solid rgba(255,255,255,0.12);display:block"><figcaption style="font-size:0.86rem;opacity:0.72;margin-top:8px">3. Κάνε paste στις «Προσαρμοσμένες οδηγίες»</figcaption></figure>' +
+          '</div>',
+      },
+      {
+        kind: 'prose',
+        title: 'Γιατί δουλεύει',
+        html: '<p>Όταν συζητάς ένα πρόβλημα, ο εγκέφαλος νιώθει σαν να έκανες κάτι, ακόμα κι αν απλώς μίλησες γι\' αυτό. Αυτό είναι το false sense of security. Και τα περισσότερα AI το ενισχύουν, γιατί τείνουν να συμφωνούν μαζί σου. Η οδηγία κόβει την κολακεία και σε γυρνάει σε πράξη, με ένα βήμα κάθε φορά.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Πηγή',
+        html: '<p>Αφορμή ήταν ένα post στο r/selfimprovement (4.1k upvotes) όπου κάποιος διέγραψε το ChatGPT γιατί του έδινε ψεύτικη αίσθηση προόδου. Η οδηγία δουλεύει σε ChatGPT, Gemini και Claude.</p>',
+      },
+    ],
+  },
+  {
+    slug: 'pic-a-pet-name',
+    pageKind: 'guide',
+    date: '2026-07-13',
+    card: {
+      title: 'Βγάλε όνομα στο ζώο σου από μια φώτο',
+      desc: 'Ανεβάζεις τη φώτο του κατοικιδίου στο PicAPetName και σου προτείνει όνομα με βάση το πώς δείχνει, με λόγο από πίσω. Σου φτιάχνει και πιστοποιητικό, δωρεάν.',
+      metaLine: '13 Ιουλ 2026 · Εργαλείο',
+      cardTags: ['PicAPetName', 'Κατοικίδια', 'Δωρεάν'],
+      searchTags: [
+        'picapetname',
+        'pet',
+        'κατοικιδιο',
+        'γατα',
+        'σκυλος',
+        'ονομα',
+        'name',
+        'αδεσποτα',
+        'ai',
+        'δωρεαν',
+        'free',
+        'avatar',
+        'πιστοποιητικο',
+      ],
+      filters: ['tool', 'guide'],
+      status: 'inactive',
+      thumb: {
+        type: 'solo',
+        src: '/thumbs/pic-a-pet-name_thumb.jpg',
+        alt: 'Πορτοκαλί με άσπρο γάτα σε δρόμο, η φώτο που ανέβηκε στο PicAPetName',
+      },
+    },
+    seoTitle: 'Βγάλε όνομα στο κατοικίδιό σου από μια φώτο με το PicAPetName',
+    seoDescription:
+      'Ανεβάζεις τη φώτο του ζώου στο PicAPetName και σου προτείνει όνομα με βάση την εμφάνισή του, με εξήγηση. Έχει και πιστοποιητικό ονόματος, δωρεάν.',
+    crumb: { label: 'videos', to: '/' },
+    heading: 'Βγάλε όνομα στο ζώο σου από μια φώτο',
+    introHtml:
+      'Κόλλησες στο όνομα ενός ζώου; Ανεβάζεις μόνο τη φώτο του στο PicAPetName και σου βγάζει προτάσεις με βάση το πώς δείχνει, μαζί με έναν λόγο για την κάθε μία. Καλό για αδέσποτα της γειτονιάς ή για νέο κατοικίδιο. Δεν είναι κάτι σοβαρό, είναι ένα ωραίο μικρό παιχνίδι.',
+    citation: 'https://picapetname.com',
+    blocks: [
+      {
+        kind: 'steps',
+        title: 'Οδηγίες',
+        items: [
+          'Μπες στο picapetname.com, δεν χρειάζεται λογαριασμός για να ξεκινήσεις.',
+          'Ανέβασε μια καθαρή φώτο του ζώου, σκύλο, γάτα και άλλα.',
+          'Πάτησε Name it και θα σου βγάλει όνομα με μια σύντομη εξήγηση.',
+          'Αν δεν σου κάτσει, ξαναπάτα το δυο-τρεις φορές μέχρι να κολλήσει ένα.',
+        ],
+      },
+      {
+        kind: 'prose',
+        title: 'Τι κάνει και τι να προσέχεις',
+        html: '<p>Διαβάζει την εμφάνιση από τη φώτο, χρώμα και φάτσα, και προτείνει όνομα με λόγο. Έχει και δημιουργία avatar και πιστοποιητικό ονόματος. Ανεβάζεις φώτο του ζώου, όχι δικιά σου. Καμιά φορά βγάζει γενικά ονόματα, οπότε μια-δυο προσπάθειες βοηθάνε.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Πηγή',
+        html: '<p>Επίσημο site: <a href="https://picapetname.com" target="_blank" rel="noopener">picapetname.com</a>.</p>',
+      },
+    ],
+  },
+
+  {
     slug: 'optimized-prompts',
     pageKind: 'guide',
     date: '2026-07-12',
