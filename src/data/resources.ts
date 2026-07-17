@@ -21,6 +21,215 @@ const officialThumb = {
 
 export const resources: Resource[] = [
   {
+    slug: 'sol-vs-fable',
+    pageKind: 'guide',
+    date: '2026-07-17',
+    card: {
+      title: 'Claude Fable 5 vs GPT-5.6 Sol — ο πίνακας',
+      desc: '21 γραμμές με νούμερα και πηγή στην καθεμία: κόστος, ταχύτητα, ποιότητα, όρια, συνδρομή. Ποιο κερδίζει πού, και τι δεν ξέρουμε ακόμα.',
+      metaLine: '17 Ιουλ 2026 · Σύγκριση',
+      cardTags: ['ChatGPT', 'Claude', 'Σύγκριση'],
+      searchTags: [
+        'claude',
+        'chatgpt',
+        'fable',
+        'sol',
+        'gpt-5.6',
+        'fable 5',
+        'anthropic',
+        'openai',
+        'σύγκριση',
+        'comparison',
+        'κόστος',
+        'τιμές',
+        'συνδρομή',
+        'όρια',
+        'limits',
+        'ai vs ai',
+        'solfable',
+      ],
+      filters: ['guide'],
+      status: 'active',
+      thumb: {
+        type: 'solo',
+        src: '/thumbs/sol-vs-fable_thumb.jpg',
+        alt: 'Πίνακας σύγκρισης Claude Fable 5 και GPT-5.6 Sol με κόστος, ταχύτητα και πηγές ανά γραμμή',
+      },
+    },
+    seoTitle: 'Claude Fable 5 vs GPT-5.6 Sol — αναλυτικός πίνακας σύγκρισης',
+    seoDescription:
+      'Κόστος, ταχύτητα, ποιότητα, όρια και συνδρομή για Claude Fable 5 και GPT-5.6 Sol. 21 γραμμές με πραγματικά νούμερα και την πηγή της καθεμιάς, μαζί με το τι δεν ξέρουμε ακόμα.',
+    crumb: { label: 'videos', to: '/' },
+    heading: 'Claude Fable 5 vs GPT-5.6 Sol — ο αναλυτικός πίνακας',
+    introHtml:
+      'Αυτός είναι ο πίνακας του βίντεο, ολόκληρος. Κάθε γραμμή είναι ένα τεστ όπου και τα δύο μοντέλα πήραν την ίδια δουλειά, και δίπλα βρίσκεις ποιος το μέτρησε. Δεν είναι sponsored και δεν είναι δικές μου μετρήσεις. Είναι δημόσια τεστ άλλων, μαζεμένα σε ένα μέρος, με τα νούμερα όπως τα έδωσαν. Στο τέλος υπάρχει και η ενότητα με αυτά που δεν ξέρουμε, γιατί χωρίς αυτήν ο πίνακας θα ήταν πιο σίγουρος από όσο δικαιούται να είναι.',
+    blocks: [
+      {
+        kind: 'html',
+        html: `<style>
+.aivs { margin-top: 6px; }
+.aivs .legend {
+  display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+  margin: 0 0 12px; font-size: 12.5px; color: var(--muted);
+}
+.aivs .k { display: inline-flex; align-items: center; gap: 7px; }
+.aivs .k i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.aivs .k.fable i { background: #D97757; }
+.aivs .k.sol i { background: #10131a; }
+.aivs .k b { color: var(--ink-soft); font-weight: 700; }
+/* The table is the whole point of this page, and the 5th column (Πηγή) is what
+   makes it credible — so on wide screens let it break out of the 760px prose
+   column and center on the viewport instead of clipping the sources away. */
+@media (min-width: 1000px) {
+  .aivs .tbl-wrap {
+    width: min(1160px, 94vw);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.aivs table.ptable { min-width: 880px; font-size: 12.5px; }
+.aivs table.ptable th, .aivs table.ptable td { padding: 9px 11px; vertical-align: top; }
+.aivs table.ptable th:first-child, .aivs table.ptable td:first-child {
+  width: 18%; white-space: normal; color: var(--ink); font-weight: 600;
+}
+.aivs .c-fable, .aivs .c-sol { width: 26%; }
+.aivs .c-win { width: 11%; }
+.aivs .c-src { width: 19%; }
+.aivs td.c-src { color: var(--quiet); font-size: 11.5px; line-height: 1.5; }
+.aivs td.c-src a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.aivs td.c-src a:hover { color: var(--ink); }
+.aivs thead th.h-fable { color: #D97757; }
+.aivs thead th.h-sol { color: #10131a; }
+.aivs .w-fable { color: #D97757; font-weight: 700; white-space: nowrap; }
+.aivs .w-sol { color: #10131a; font-weight: 700; white-space: nowrap; }
+.aivs .w-tie { color: var(--muted); font-weight: 600; white-space: nowrap; }
+.aivs td b { color: var(--ink); font-weight: 700; }
+.aivs .fn { color: var(--accent-2); font-weight: 700; }
+.aivs .tnote {
+  margin: 12px 0 0; color: var(--muted);
+  font-size: 12px; line-height: 1.6;
+}
+.aivs .tnote b { color: var(--ink-soft); font-weight: 700; }
+.aivs .verdict {
+  margin-top: 18px; padding: 18px 20px;
+  background: #10131a; color: #eef1f4;
+  border-radius: var(--r-card); border-left: 4px solid #B9FF66;
+  box-shadow: var(--shadow-soft);
+}
+.aivs .verdict h3 {
+  margin: 0 0 10px; font-family: var(--font-display);
+  font-size: 12px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: #B9FF66;
+}
+.aivs .verdict p { margin: 0; font-size: 15px; line-height: 1.62; }
+.aivs .verdict p + p { margin-top: 10px; }
+.aivs .verdict b { color: #ffffff; font-weight: 700; }
+@media (max-width: 640px) {
+  .aivs .verdict { padding: 15px 16px; }
+  .aivs .verdict p { font-size: 14px; }
+}
+/* Shared .steps styles a numbered <ol> only, so scope the bulleted prose here
+   instead of touching the global sheet every other page depends on. */
+.steps .aivs-notes p { margin: 0 0 12px; color: var(--muted); font-size: 14px; line-height: 1.65; }
+.steps .aivs-notes p:last-child { margin-bottom: 0; }
+.steps .aivs-notes ul { display: grid; gap: 11px; margin: 0 0 12px; padding: 0; list-style: none; }
+.steps .aivs-notes li {
+  position: relative; padding-left: 19px;
+  color: var(--ink-soft); font-size: 14px; line-height: 1.65;
+}
+.steps .aivs-notes li::before {
+  content: ""; position: absolute; left: 0; top: 8px;
+  width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+}
+.steps .aivs-notes strong { color: var(--ink); font-weight: 700; }
+.steps .aivs-notes a { color: var(--accent); text-underline-offset: 2px; }
+</style>
+<div class="aivs">
+  <p class="legend">
+    <span class="k fable"><i></i><b>Claude Fable 5</b> · Anthropic</span>
+    <span class="k sol"><i></i><b>GPT-5.6 Sol</b> · OpenAI</span>
+    <span>21 γραμμές · κάθε γραμμή έχει πηγή</span>
+  </p>
+  <div class="tbl-wrap">
+    <table class="ptable">
+      <thead>
+        <tr>
+          <th>Κατηγορία</th>
+          <th class="c-fable h-fable">Claude Fable 5</th>
+          <th class="c-sol h-sol">GPT-5.6 Sol</th>
+          <th class="c-win">Νικητής</th>
+          <th class="c-src">Πηγή</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Τιμή / 1M tokens</td><td>$10 input / $50 output</td><td><b>$5 / $30</b></td><td class="w-sol">Sol</td><td class="c-src">επίσημες σελίδες</td></tr>
+        <tr><td>Κόστος/task (τυφλό τεστ A)</td><td>$118.01 · 2ω20</td><td><b>$29.22</b> · 2ω01</td><td class="w-sol">Sol</td><td class="c-src"><a href="https://www.reddit.com/r/ClaudeCode/comments/1utmkt1/" target="_blank" rel="noopener">r/ClaudeCode 1utmkt1</a></td></tr>
+        <tr><td>Κόστος/task (τυφλό τεστ B)</td><td>$283.95 · 5ω01</td><td><b>$65.35</b> · 5ω48</td><td class="w-sol">Sol</td><td class="c-src"><a href="https://www.reddit.com/r/ClaudeCode/comments/1utmkt1/" target="_blank" rel="noopener">r/ClaudeCode 1utmkt1</a></td></tr>
+        <tr><td>Κόστος 3D παιχνίδια</td><td>~$756 (3 runs)</td><td><b>~$108</b></td><td class="w-sol">Sol</td><td class="c-src"><a href="https://www.reddit.com/r/ClaudeAI/comments/1uwe2id/" target="_blank" rel="noopener">WorldBuild Bench 194↑</a></td></tr>
+        <tr><td>Ποιότητα 3D παιχνιδιών</td><td><b>«σαφώς καλύτερα»</b></td><td>«δεν τα πήγε καλά»</td><td class="w-fable">Fable</td><td class="c-src"><a href="https://www.reddit.com/r/ClaudeAI/comments/1uwe2id/" target="_blank" rel="noopener">WorldBuild Bench</a></td></tr>
+        <tr><td>Προσομοίωση υγρού</td><td><b>μοιάζει με νερό</b></td><td>ορατές χάντρες</td><td class="w-fable">Fable</td><td class="c-src"><a href="https://www.makeuseof.com/ran-the-same-one-shot-coding-simulator-task-through-gpt-56-and-fable-5/" target="_blank" rel="noopener">MakeUseOf 12/7</a></td></tr>
+        <tr><td>Αξιοπιστία (47 δουλειές)</td><td><b>47/47</b> (100%)</td><td>45/47 (95.7%)</td><td class="w-fable">Fable</td><td class="c-src"><a href="https://composio.dev/content/gpt-vs-fable" target="_blank" rel="noopener">Composio Golden Eval</a></td></tr>
+        <tr><td>Tool calls / δουλειά</td><td><b>5.1</b></td><td>6.5</td><td class="w-fable">Fable</td><td class="c-src"><a href="https://composio.dev/content/gpt-vs-fable" target="_blank" rel="noopener">Composio</a></td></tr>
+        <tr><td>Ταχύτητα (ίδιο prompt)</td><td><b>126.7s</b></td><td>175.9s</td><td class="w-fable">Fable</td><td class="c-src"><a href="https://www.merge.dev/blog/gpt-5-6-sol-vs-claude-fable-5" target="_blank" rel="noopener">Merge.dev</a></td></tr>
+        <tr><td>Ταχύτητα (3 πλάνα, ίδιο harness)</td><td><b>15λ 27δ</b></td><td>52λ 53δ</td><td class="w-fable">Fable</td><td class="c-src">Kilo Code</td></tr>
+        <tr><td>Ταχύτητα (47 δουλειές)</td><td>84.4s</td><td><b>79.6s</b></td><td class="w-sol">Sol</td><td class="c-src"><a href="https://composio.dev/content/gpt-vs-fable" target="_blank" rel="noopener">Composio</a></td></tr>
+        <tr><td>Codeforces 2237H</td><td>Wrong Answer μετά από 2×5ωρα</td><td><b>13 λεπτά, one-shot</b></td><td class="w-sol">Sol</td><td class="c-src"><a href="https://www.reddit.com/r/OpenAI/comments/1usq806/" target="_blank" rel="noopener">r/OpenAI 1usq806</a></td></tr>
+        <tr><td>UI / design (τυφλή ψηφοφορία) <sup class="fn">*</sup></td><td>3ος (Elo ~1345)</td><td><b>1ος</b> (Elo 1353)</td><td class="w-sol">Sol (+8 Elo)</td><td class="c-src"><a href="https://x.com/Designarena/status/2076391367446860249" target="_blank" rel="noopener">@Designarena 12/7</a></td></tr>
+        <tr><td>UI — hands-on τεστ</td><td>καλύτερο φινίρισμα</td><td>τολμηρότερο layout</td><td class="w-tie">2-2 ισοπαλία</td><td class="c-src">5 reviewers</td></tr>
+        <tr><td>SWE-bench Pro</td><td><b>80.3%</b></td><td>64.6%</td><td class="w-fable">Fable</td><td class="c-src">system cards</td></tr>
+        <tr><td>Terminal-Bench 2.1</td><td>84.3%</td><td><b>88.8%</b></td><td class="w-sol">Sol</td><td class="c-src">Anthropic system card</td></tr>
+        <tr><td>AA Intelligence Index</td><td><b>60</b></td><td>59</td><td class="w-tie">ισοπαλία</td><td class="c-src">Artificial Analysis</td></tr>
+        <tr><td>Χρόνος 1ης απάντησης (max)</td><td>148.11s</td><td>145.61s</td><td class="w-tie">ισοπαλία (2.5δ)</td><td class="c-src">Artificial Analysis</td></tr>
+        <tr><td>Συνδρομή $20</td><td>Fable μέχρι 19/7· μετά με usage credits</td><td><b>Sol σε Medium &amp; High</b></td><td class="w-sol">Sol</td><td class="c-src"><a href="https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access" target="_blank" rel="noopener">support.claude.com 15424964</a> · help.openai.com 20001354</td></tr>
+        <tr><td>Δωρεάν πλάνο</td><td>χωρίς Fable (ποτέ δεν το είχε)</td><td>χωρίς Sol στο chat</td><td class="w-tie">κανένα</td><td class="c-src">επίσημοι πίνακες</td></tr>
+        <tr><td>Όρια χρήσης (σήμερα)</td><td>5ωρο ενεργό (διπλασιάστηκε 6/5)</td><td><b>5ωρο ήρθη 12/7 (προσωρινά)</b></td><td class="w-sol">Sol</td><td class="c-src">OpenAI · Anthropic</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote">
+    <sup class="fn">*</sup> <b>Design Arena:</b> ανάμεσα στα δύο κάθεται το <b>GLM 5.2</b> (open weights) στο #2 με Elo 1351. Ο Sol προηγείται του Fable κατά <b>8 Elo</b>, δηλαδή ίδια μπάντα απόδοσης, όχι διαφορά κατηγορίας. Το άλμα «+18 θέσεις, +61 Elo» που κυκλοφορεί είναι του Sol απέναντι <b>στον προκάτοχό του GPT-5.5</b> (από #19 και Elo 1292), όχι απέναντι στο Fable. Είναι live leaderboard και κουνιέται.
+  </p>
+  <div class="verdict">
+    <h3>Το συμπέρασμα</h3>
+    <p>Το <b>Fable</b> κερδίζει στην ποιότητα και στην αξιοπιστία. Ο <b>Sol</b> κερδίζει στην αξία και στα όρια.</p>
+    <p>Αν σε πληρώνει κάποιος άλλος, πάρε <b>Fable</b>. Αν πληρώνεις εσύ, ο <b>Sol</b> σε πάει στο ίδιο σημείο με το ένα τρίτο.</p>
+  </div>
+</div>`,
+      },
+      {
+        kind: 'prose',
+        title: 'Τι ΔΕΝ ξέρουμε',
+        html: `<div class="aivs-notes">
+<p>Αυτή η ενότητα υπάρχει επειδή ο πίνακας από πάνω δείχνει πιο σίγουρος από όσο είναι. Τέσσερα πράγματα που πρέπει να ξέρεις πριν τον πάρεις τοις μετρητοίς:</p>
+<ul>
+  <li><strong>Ο χρόνος αλλάζει ανά harness και τα τεστ αλληλοαναιρούνται.</strong> Δες τις τρεις γραμμές ταχύτητας: αλλού το Fable βγαίνει τριπλάσια γρήγορο, αλλού ο Sol βγαίνει 6% γρηγορότερος, και σε πρόβλημα διαγωνισμού ο Sol έλυσε σε 13 λεπτά κάτι που το Fable δεν έλυσε καθόλου. Δεν διαφωνούν επειδή κάποιος μετράει λάθος, αλλά επειδή μετράνε με διαφορετικό εργαλείο. Το κόστος είναι το μόνο μέγεθος που συμφωνεί παντού.</li>
+  <li><strong>Τα περισσότερα τεστ είναι n=1 από έναν reviewer.</strong> Μία εκτέλεση, ένα άτομο, μέρες μετά το launch του Sol στις 9 Ιουλίου. Αυτό είναι το παράθυρο των βιαστικών συμπερασμάτων, όχι της στατιστικής. Ένα δεύτερο run θα μπορούσε να βγάλει άλλο νούμερο.</li>
+  <li><strong>Τα όρια είναι πολιτική, όχι μηχανική.</strong> Αλλάζουν όποτε το αποφασίσει η εταιρεία, προς τα πάνω ή προς τα κάτω. Τον Μάιο η OpenAI έκοψε στο μισό τα όρια του Codex και η Anthropic τα διπλασίασε. Τώρα συμβαίνει το αντίστροφο. Η άρση του 5ώρου στο ChatGPT είναι ρητά προσωρινή, χωρίς ημερομηνία λήξης.</li>
+  <li><strong>Η ημερομηνία 19/7 έχει ήδη μετακινηθεί δύο φορές</strong> (7 → 12 → 19 Ιουλίου). Μπορεί να ξαναμετακινηθεί. Αν διαβάζεις αυτή τη σελίδα αργότερα, τσέκαρε το <a href="https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access" target="_blank" rel="noopener">επίσημο support article</a>, γιατί εκεί ενημερώνεται πρώτα.</li>
+</ul>
+<p>Γι' αυτό ο πίνακας λέει γνώμη τεκμηριωμένη, όχι απόδειξη. Τα νούμερα είναι αληθινά. Το τι σημαίνουν συνολικά, το κρίνεις εσύ.</p>
+</div>`,
+      },
+      {
+        kind: 'prose',
+        title: 'Πηγές',
+        html: `<div class="aivs-notes">
+<p>Κάθε γραμμή του πίνακα δείχνει την πηγή της. Οι βασικές, μαζεμένες:</p>
+<ul>
+  <li><strong>Κόστος:</strong> <a href="https://www.reddit.com/r/ClaudeCode/comments/1utmkt1/" target="_blank" rel="noopener">r/ClaudeCode, «I ran two blind long-horizon tests»</a> (11 Ιουλ). Είναι <strong>ενός ανθρώπου</strong> το τεστ, όχι κάποιο επίσημο benchmark, και μάλιστα το post ψηφίστηκε αρνητικά στο Reddit. Το κρατάμε επειδή η μεθοδολογία στέκει: ίδιο task, μετρημένο κόστος με εργαλείο, και blind scoring με τα ονόματα κλειδωμένα μέχρι το τέλος. Δεν το κρατάμε επειδή το χειροκρότησε το κοινό. Αυτό που το κάνει αξιόπιστο είναι ότι <strong>συμφωνεί ανεξάρτητα</strong> με το <a href="https://www.reddit.com/r/ClaudeAI/comments/1uwe2id/" target="_blank" rel="noopener">WorldBuild Bench</a> (~$756 vs ~$108): δύο ξένα μεταξύ τους τεστ, ίδια τάξη μεγέθους διαφοράς.</li>
+  <li><strong>Ποιότητα και αξιοπιστία:</strong> <a href="https://composio.dev/content/gpt-vs-fable" target="_blank" rel="noopener">Composio Golden Eval</a> (47 use cases) · <a href="https://www.makeuseof.com/ran-the-same-one-shot-coding-simulator-task-through-gpt-56-and-fable-5/" target="_blank" rel="noopener">MakeUseOf</a> (12 Ιουλ, ίδιο prompt σε fluid simulator, με τρίτο μοντέλο και το Grok 4.5). Μια χρήσιμη λεπτομέρεια που δεν βολεύει τον πίνακα: ο ίδιος ο reviewer, ενώ <strong>συμφωνεί ότι το υγρό του Fable δείχνει καλύτερο</strong>, τελικά προτίμησε τον Sol συνολικά, επειδή ήταν το μόνο που τον εντυπωσίασε ως ολοκληρωμένο one-shot. Το ότι κερδίζει το Fable τη γραμμή δεν σημαίνει ότι κέρδισε τον reviewer.</li>
+  <li><strong>Ταχύτητα:</strong> <a href="https://www.merge.dev/blog/gpt-5-6-sol-vs-claude-fable-5" target="_blank" rel="noopener">Merge.dev</a> · Kilo Code · Composio · <a href="https://www.reddit.com/r/OpenAI/comments/1usq806/" target="_blank" rel="noopener">r/OpenAI 1usq806</a> (Codeforces 2237H). Διαφωνούν μεταξύ τους, δες το «Τι ΔΕΝ ξέρουμε».</li>
+  <li><strong>UI:</strong> <a href="https://x.com/Designarena/status/2076391367446860249" target="_blank" rel="noopener">ο επίσημος λογαριασμός του Design Arena</a> (12 Ιουλ). Ο Sol βγήκε 1ος, αλλά με 8 Elo πάνω από το Fable και με το <strong>GLM 5.2 ανάμεσά τους</strong> στο #2. Δες τη σημείωση κάτω από τον πίνακα, γιατί το «+18 θέσεις» που κυκλοφορεί αφορά άλλο πράγμα.</li>
+  <li><strong>Συνδρομή και όρια:</strong> <a href="https://support.claude.com/en/articles/15424964-claude-fable-5-promotional-access" target="_blank" rel="noopener">support.claude.com — Claude Fable 5 promotional access</a> · help.openai.com (article 20001354) · επίσημες σελίδες τιμολόγησης platform.claude.com και developers.openai.com.</li>
+</ul>
+<p>Δεν είναι sponsored, και καμία μέτρηση δεν είναι δική μου. Είναι δημόσια τεστ άλλων, με τα νούμερα όπως τα δημοσίευσαν.</p>
+</div>`,
+      },
+    ],
+    citation: 'https://www.reddit.com/r/ClaudeCode/comments/1utmkt1/',
+  },
+
+  {
     slug: 'false-sense-security',
     pageKind: 'prompt',
     date: '2026-07-15',
