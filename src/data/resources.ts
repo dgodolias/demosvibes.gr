@@ -21,6 +21,86 @@ const officialThumb = {
 
 export const resources: Resource[] = [
   {
+    slug: 'shared-chats-leak',
+    pageKind: 'prompt',
+    date: '2026-07-27',
+    card: {
+      title: 'Οι συνομιλίες σου με το Claude ίσως είναι δημόσιες στη Google',
+      desc: 'Το κουμπί share φτιάχνει δημόσιο link, και το Σαββατοκύριακο εκατοντάδες συνομιλίες βρέθηκαν ανοιχτές στη Google. Σβήσε τα παλιά σου links και στείλε σύνοψη σε PDF αντί για link.',
+      metaLine: '27 Ιουλ 2026 · Prompt',
+      cardTags: ['Claude', 'Privacy', 'Prompt'],
+      searchTags: [
+        'claude',
+        'chatgpt',
+        'grok',
+        'privacy',
+        'ιδιωτικοτητα',
+        'προστασια δεδομενων',
+        'shared chats',
+        'share link',
+        'δημοσιες συνομιλιες',
+        'google',
+        'noindex',
+        'api keys',
+        'διαρροη',
+        'leak',
+        'anthropic',
+        'pdf',
+        'συνοψη',
+        'prompt',
+        'ασφαλεια',
+      ],
+      filters: ['prompt', 'guide'],
+      status: 'active',
+      thumb: {
+        type: 'solo',
+        src: '/thumbs/shared-chats-leak_thumb.jpg',
+        alt: 'Δημοσίευμα του BeInCrypto: βρέθηκαν crypto wallet data σε συνομιλίες Claude που είχε δεικτοδοτήσει η Google',
+      },
+    },
+    seoTitle: 'Δημόσιες συνομιλίες Claude στη Google — τι κάνεις (+ prompt σύνοψη σε PDF)',
+    seoDescription:
+      'Εκατοντάδες shared συνομιλίες με το Claude βρέθηκαν στη Google, με βιογραφικά, API keys και crypto wallets. Δες γιατί έγινε, πώς σβήνεις τα παλιά σου share links από Settings → Privacy, και πάρε δωρεάν το prompt που μετατρέπει μια συνομιλία σε σύνοψη PDF για ασφαλές στείλιμο.',
+    crumb: { label: 'videos', to: '/' },
+    heading: 'Οι συνομιλίες σου με το Claude ίσως είναι δημόσιες στη Google',
+    introHtml:
+      'Στις 25 Ιουλίου 2026 ένα post στο r/ClaudeAI έδειξε ότι εκατοντάδες shared συνομιλίες με το Claude ήταν ορατές μέσα από μια απλή αναζήτηση στη Google. Μέσα τους βιογραφικά με τηλέφωνα, API keys, ακόμα και στοιχεία από crypto wallets. Ο μηχανισμός είναι βαρετός, και γι\' αυτό ακριβώς έχει σημασία: το κουμπί share φτιάχνει ένα <strong>δημόσιο link</strong>, και στις σελίδες αυτές έλειπε το noindex που θα εμπόδιζε τις μηχανές αναζήτησης. Η Anthropic το διόρθωσε μέσα σε λιγότερο από 48 ώρες, αλλά ό,τι πρόλαβε να αποθηκευτεί εξακολουθεί να κυκλοφορεί. Δεν είναι μεμονωμένο: το ίδιο είχε γίνει με το ChatGPT και το Grok μέσα στο 2025.',
+    citation: 'https://www.reddit.com/r/ClaudeAI/comments/1v6fiyj/',
+    blocks: [
+      {
+        kind: 'prompt',
+        label: 'synopsi-se-pdf.txt',
+        text: `Κάνε σύνοψη αυτής της συνομιλίας σε ένα καθαρό, δομημένο έγγραφο: στόχος, βασικά σημεία, αποφάσεις, εκκρεμότητες. Μη συμπεριλάβεις κωδικούς, API keys ή προσωπικά στοιχεία, αντικατέστησέ τα με [ΑΠΟΡΡΗΤΟ]. Δώσε μου το αποτέλεσμα ως αρχείο PDF, έτοιμο να το στείλω.`,
+      },
+      {
+        kind: 'steps',
+        title: 'Σβήσε τα παλιά σου share links (Claude)',
+        items: [
+          'Άνοιξε το Claude και πήγαινε στο Settings από το προφίλ σου.',
+          'Διάλεξε το Privacy. Εκεί υπάρχει η λίστα με όλες τις συνομιλίες που έχεις μοιραστεί.',
+          'Δες ποιες είναι σημειωμένες ως Public. Αυτές έχουν ζωντανό δημόσιο link.',
+          'Γύρνα τες σε Private (unshare). Το link παύει να δουλεύει αμέσως.',
+          'Στο ChatGPT η αντίστοιχη λίστα είναι στο Settings → Data controls → Shared links.',
+        ],
+      },
+      {
+        kind: 'prose',
+        title: 'Οι τρεις κανόνες',
+        html: '<ul><li><strong>Ποτέ μυστικά σε chat.</strong> API keys, κωδικοί και ευαίσθητα στοιχεία πελατών δεν μπαίνουν σε συνομιλία, ούτε καν σε ιδιωτική. Ό,τι δεν γράφεις, δεν διαρρέει.</li><li><strong>Έλεγξε τα παλιά.</strong> Τα share links που έφτιαξες πέρσι είναι ακόμα ζωντανά αν δεν τα έσβησες. Κάνε το μία φορά, σήμερα.</li><li><strong>Στείλε σύνοψη, όχι link.</strong> Όταν θέλεις να δείξεις μια συνομιλία σε κάποιον, στείλε ένα PDF με τα ουσιώδη αντί να ανοίξεις δημόσια πόρτα. Αυτό κάνει το prompt από πάνω.</li></ul>',
+      },
+      {
+        kind: 'prose',
+        title: 'Τι ακριβώς έγινε',
+        html: '<p>Ο χρήστης u/-void1 δημοσίευσε στις 25 Ιουλίου 2026 στο r/ClaudeAI ότι μια απλή αναζήτηση τύπου <code>site:claude.ai/share</code> επέστρεφε πλήθος συνομιλιών. Το post έφτασε τα 7.3k upvotes και πάνω από 1.100 σχόλια. Οι σελίδες share υποτίθεται ότι έφεραν ετικέτα noindex, αλλά πολλές δεν την είχαν, οπότε η Google τις κατέγραψε κανονικά. Έως την Κυριακή είχαν αφαιρεθεί από τον δείκτη.</p><p>Το μοτίβο επαναλαμβάνεται: τον Αύγουστο του 2025 το OpenAI απέσυρε τη λειτουργία που έκανε τις συνομιλίες ChatGPT «discoverable» μετά από αντίστοιχη αντίδραση, ενώ περίπου 370.000 συνομιλίες με το Grok βρέθηκαν δεικτοδοτημένες χωρίς προειδοποίηση προς τους χρήστες.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Πηγές',
+        html: '<ul><li><a href="https://www.reddit.com/r/ClaudeAI/comments/1v6fiyj/" target="_blank" rel="noopener">r/ClaudeAI — «You can view a lot of shared conversations via Google.»</a> (u/-void1, 25 Ιουλ 2026, 7.3k upvotes)</li><li><a href="https://www.tweaktown.com/news/112858/" target="_blank" rel="noopener">TweakTown</a> — οι σελίδες share έπρεπε να έχουν noindex· αφαιρέθηκαν από τον δείκτη ως την Κυριακή.</li><li><a href="https://privacy.claude.com/en/articles/10593882" target="_blank" rel="noopener">Anthropic — Share and unshare chats</a> (τα επίσημα βήματα για το unshare)</li><li><a href="https://www.engadget.com/ai/openai-is-removing-chatgpt-conversations-from-google-search-results-120044484.html" target="_blank" rel="noopener">Engadget</a> — το OpenAI αφαιρεί συνομιλίες ChatGPT από τη Google (Αύγ 2025)</li><li><a href="https://www.forbes.com/sites/iainmartin/2025/08/20/" target="_blank" rel="noopener">Forbes</a> — περίπου 370.000 συνομιλίες Grok δεικτοδοτημένες χωρίς προειδοποίηση</li></ul>',
+      },
+    ],
+  },
+  {
     slug: 'menu-explain',
     pageKind: 'prompt',
     date: '2026-07-19',
