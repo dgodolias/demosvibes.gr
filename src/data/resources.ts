@@ -21,6 +21,188 @@ const officialThumb = {
 
 export const resources: Resource[] = [
   {
+    slug: 'which-ai',
+    pageKind: 'guide',
+    date: '2026-07-28',
+    card: {
+      title: 'Ποιο AI για τι: ο πλήρης πίνακας (Ιούλιος 2026)',
+      desc: '6 AI, ένα δυνατό σημείο το καθένα, και τι δίνει δωρεάν, με πηγή σε κάθε γραμμή. ChatGPT, Claude, Gemini, Perplexity, NotebookLM, Grok.',
+      metaLine: '28 Ιουλ 2026 · Πίνακας',
+      cardTags: ['ChatGPT', 'Gemini', 'NotebookLM'],
+      searchTags: [
+        'chatgpt',
+        'claude',
+        'gemini',
+        'perplexity',
+        'notebooklm',
+        'grok',
+        'ποιο ai',
+        'ποιο να διαλεξω',
+        'δωρεαν ai',
+        'free ai',
+        'ai tools',
+        'εργαλεια',
+        'πινακας',
+        'συγκριση',
+        'ai vs ai',
+        'ai6',
+        'εικονες',
+        'φωτογραφιες',
+        'pdf',
+        'podcast',
+        'ψαξιμο',
+      ],
+      filters: ['guide', 'tool'],
+      status: 'active',
+      thumb: {
+        type: 'solo',
+        src: '/thumbs/which-ai_thumb.jpg',
+        alt: 'Ο χάρτης «ποιο AI για τι» από το βίντεο: 6 κάρτες με ChatGPT, Claude, Gemini, Perplexity, NotebookLM, Grok και το task του καθενός',
+      },
+    },
+    seoTitle: 'Ποιο AI για τι: ChatGPT, Claude, Gemini, Perplexity, NotebookLM, Grok (Ιούλιος 2026)',
+    seoDescription:
+      'Ο πλήρης πίνακας του βίντεο: σε τι είναι δυνατό το καθένα από τα 6 AI, τι παίρνεις δωρεάν, ποια είναι τα όρια του free πλάνου και η πηγή για κάθε γραμμή. Έλεγχος 27/7/2026.',
+    crumb: { label: 'videos', to: '/' },
+    heading: 'Ποιο AI για τι — ο πλήρης πίνακας',
+    introHtml:
+      'Αυτός είναι ο χάρτης του βίντεο, ολόκληρος. Έξι εργαλεία, ένα ξεκάθαρο δυνατό σημείο το καθένα, και δίπλα τι ακριβώς παίρνεις δωρεάν σήμερα, με τα όρια γραμμένα καθαρά και την πηγή της κάθε γραμμής. Τα free πλάνα αλλάζουν χωρίς προειδοποίηση, γι’ αυτό ο πίνακας έχει ημερομηνία ελέγχου: <b>27/7/2026</b>. Αν κάτι έχει αλλάξει όταν το διαβάζεις, ισχύει η επίσημη σελίδα της στήλης «Πηγή».',
+    blocks: [
+      {
+        kind: 'html',
+        html: `<style>
+.wai { margin-top: 6px; }
+.wai .legend {
+  display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+  margin: 0 0 12px; font-size: 12.5px; color: var(--muted);
+}
+.wai .legend b { color: var(--ink-soft); font-weight: 700; }
+@media (min-width: 1000px) {
+  .wai .tbl-wrap {
+    width: min(1160px, 94vw);
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+.wai table.ptable { min-width: 880px; font-size: 12.5px; }
+.wai table.ptable th, .wai table.ptable td { padding: 9px 11px; vertical-align: top; }
+.wai .c-ai { width: 12%; white-space: nowrap; font-weight: 800; font-size: 13.5px; }
+.wai .c-task { width: 20%; color: var(--ink); font-weight: 600; }
+.wai .c-free { width: 30%; }
+.wai .c-lim { width: 22%; color: var(--muted); }
+.wai .c-src { width: 16%; }
+.wai td.c-src { color: var(--quiet); font-size: 11.5px; line-height: 1.5; }
+.wai td.c-src a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+.wai td.c-src a:hover { color: var(--ink); }
+.wai td b { color: var(--ink); font-weight: 700; }
+.wai .b-chatgpt { color: #10131a; }
+.wai .b-claude { color: #D97757; }
+.wai .b-gemini { color: #3d7bd9; }
+.wai .b-pplx { color: #1799a8; }
+.wai .b-nblm { color: #5f6ce0; }
+.wai .b-grok { color: #10131a; }
+.wai .verdict {
+  margin-top: 18px; padding: 18px 20px;
+  background: #10131a; color: #eef1f4;
+  border-radius: var(--r-card); border-left: 4px solid #B9FF66;
+  box-shadow: var(--shadow-soft);
+}
+.wai .verdict h3 {
+  margin: 0 0 10px; font-family: var(--font-display);
+  font-size: 12px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: #B9FF66;
+}
+.wai .verdict p { margin: 0; font-size: 15px; line-height: 1.62; }
+.wai .verdict p + p { margin-top: 10px; }
+.wai .verdict b { color: #ffffff; font-weight: 700; }
+@media (max-width: 640px) {
+  .wai .verdict { padding: 15px 16px; }
+  .wai .verdict p { font-size: 14px; }
+}
+</style>
+<div class="wai">
+  <p class="legend">
+    <span><b>6 AI · ένα task το καθένα</b></span>
+    <span>έλεγχος 27/7/2026 · κάθε γραμμή έχει πηγή</span>
+  </p>
+  <div class="tbl-wrap">
+    <table class="ptable">
+      <thead>
+        <tr>
+          <th class="c-ai">AI</th>
+          <th class="c-task">Δυνατό σε</th>
+          <th class="c-free">Τι παίρνεις δωρεάν</th>
+          <th class="c-lim">Όρια free</th>
+          <th class="c-src">Πηγή</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="c-ai b-chatgpt">ChatGPT</td>
+          <td class="c-task">hyperrealistic photos + designs (και καθημερινά: emails, ιδέες)</td>
+          <td class="c-free"><b>GPT-5.5 Instant</b> στο chat (default από 5/5/2026) · δημιουργία εικόνων</td>
+          <td class="c-lim">λίγες εικόνες/μέρα στο free · τα GPT-5.6 μοντέλα δεν είναι στο free chat</td>
+          <td class="c-src"><a href="https://chatgpt.com/pricing/" target="_blank" rel="noopener">chatgpt.com/pricing</a></td>
+        </tr>
+        <tr>
+          <td class="c-ai b-claude">Claude</td>
+          <td class="c-task">σοβαρό κείμενο, μεγάλα PDF</td>
+          <td class="c-free"><b>Sonnet 5</b> default (από ~1/7/2026) · 200K context · uploads ολόκληρων αρχείων</td>
+          <td class="c-lim">λίγα μηνύματα ανά 5ωρο · το όριο είναι μηνύματα, όχι μέγεθος αρχείου</td>
+          <td class="c-src"><a href="https://claude.com/" target="_blank" rel="noopener">claude.com</a></td>
+        </tr>
+        <tr>
+          <td class="c-ai b-gemini">Gemini</td>
+          <td class="c-task">επεξεργασία δικών σου φωτογραφιών (+ δημιουργία)</td>
+          <td class="c-free"><b>Gemini 3.6 Flash</b> + εικόνες με <b>Nano Banana 2</b>, δωρεάν με Google λογαριασμό</td>
+          <td class="c-lim">ημερήσια caps · χωρίς video generation στο free · personalized εικόνες μόνο ΗΠΑ</td>
+          <td class="c-src"><a href="https://gemini.google/" target="_blank" rel="noopener">gemini.google</a></td>
+        </tr>
+        <tr>
+          <td class="c-ai b-pplx">Perplexity</td>
+          <td class="c-task">ψάξιμο με πηγές, αντί για Google</td>
+          <td class="c-free"><b>Unlimited basic searches</b> με citations σε κάθε απάντηση</td>
+          <td class="c-lim">~3-5 Pro searches/μέρα (το ακριβές νούμερο διαφέρει ανά πηγή)</td>
+          <td class="c-src"><a href="https://www.perplexity.ai/" target="_blank" rel="noopener">perplexity.ai</a></td>
+        </tr>
+        <tr>
+          <td class="c-ai b-nblm">NotebookLM</td>
+          <td class="c-task">διάβασμα από δικές σου σημειώσεις/πηγές</td>
+          <td class="c-free">δωρεάν με Google λογαριασμό · <b>Audio/Video Overviews σε 80+ γλώσσες, τα ελληνικά full-length</b> · μιλάει μόνο πάνω στα αρχεία σου</td>
+          <td class="c-lim">όρια σε notebooks και πηγές ανά notebook στο free</td>
+          <td class="c-src"><a href="https://blog.google/technology/google-labs/notebook-lm-audio-video-overviews-more-languages-longer-content/" target="_blank" rel="noopener">blog.google</a></td>
+        </tr>
+        <tr>
+          <td class="c-ai b-grok">Grok</td>
+          <td class="c-task">τι γίνεται ΤΩΡΑ (live posts στο X)</td>
+          <td class="c-free">περιορισμένη χρήση μέσα στο X χωρίς συνδρομή</td>
+          <td class="c-lim">τα όρια αλλάζουν συχνά · μην υπολογίζεις σε «δωρεάν» για σταθερή χρήση</td>
+          <td class="c-src"><a href="https://help.x.com/en/using-x/about-grok" target="_blank" rel="noopener">help.x.com</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdict">
+    <h3>Τι ΔΕΝ λέει ο χάρτης</h3>
+    <p>Όλα τα 6 κάνουν σχεδόν τα πάντα αξιοπρεπώς. Ο πίνακας δείχνει πού <b>ξεχωρίζει</b> το καθένα, όχι ότι τα υπόλοιπα αποτυγχάνουν εκεί.</p>
+    <p>Τα free όρια είναι πολιτική εταιρειών και αλλάζουν χωρίς προειδοποίηση, γι’ αυτό υπάρχει ημερομηνία ελέγχου. Και ο «νικητής» ανά task μπορεί να αλλάξει με το επόμενο release: ο πίνακας ενημερώνεται, το βίντεο όχι.</p>
+    <p>Αν λείπει το αγαπημένο σου (DeepSeek, Copilot, Mistral), γράψε το στα σχόλια του βίντεο. Αν μαζευτούν, βγαίνει χάρτης νούμερο δύο.</p>
+  </div>
+</div>`,
+      },
+      {
+        kind: 'steps',
+        title: 'Πώς να τον χρησιμοποιήσεις',
+        items: [
+          'Βρες το task σου στη στήλη «Δυνατό σε», όχι το brand. Το λάθος που κάνει ο περισσότερος κόσμος είναι ότι ανοίγει πάντα το ίδιο chatbot για όλα.',
+          'Άνοιξε το αντίστοιχο εργαλείο από τη στήλη «Πηγή». Τα 5 από τα 6 δίνουν το δυνατό τους σημείο χωρίς να πληρώσεις.',
+          'Πριν βασιστείς σε ένα free όριο, ξανακοίτα την επίσημη σελίδα. Ό,τι γράφει εκεί σήμερα νικάει τον πίνακα.',
+        ],
+      },
+    ],
+    citation: 'https://blog.google/technology/google-labs/notebook-lm-audio-video-overviews-more-languages-longer-content/',
+  },
+  {
     slug: 'shared-chats-leak',
     pageKind: 'prompt',
     date: '2026-07-27',
