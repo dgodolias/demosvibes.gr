@@ -6,7 +6,7 @@ export const site = {
   locale: 'el_GR',
   lang: 'el',
   author: 'dgodolias',
-  email: 'imopsch@gmail.com',
+  email: 'demosgodvibes@gmail.com',
   description:
     'Συμπληρωματικό υλικό για τα short-form βίντεο του dgodolias: prompts, εργαλεία, οδηγοί και links.',
   ogImage: 'https://demosvibes.gr/og/default.jpg',
