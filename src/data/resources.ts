@@ -26,7 +26,7 @@ export const resources: Resource[] = [
     date: '2026-09-05',
     card: {
       title: 'Harvard CS50 SQL: δωρεάν μάθημα και certificate',
-      desc: 'Μάθε SQL με ασκήσεις και δική σου βάση δεδομένων. Πώς ξεκινάς δωρεάν και τι χρειάζεται για το CS50 Certificate, είτε είσαι φοιτητής είτε όχι.',
+      desc: 'Πού βρίσκεις τα 7 μαθήματα, τις εργασίες και το Gradebook. Αναλυτικά βήματα για το δωρεάν CS50 Certificate, χωρίς ξεχωριστή εξέταση.',
       metaLine: '5 Σεπ 2026 · Οδηγός',
       cardTags: ['Harvard', 'SQL', 'Δωρεάν certificate'],
       searchTags: ['harvard', 'cs50', 'sql', 'certificate', 'πιστοποιητικό', 'πιστοποιητικο', 'δωρεάν', 'δωρεαν', 'φοιτητές', 'φοιτητες', 'βιογραφικό', 'cv', 'edx', 'βάσεις δεδομένων', 'data', 'course'],
@@ -43,7 +43,7 @@ export const resources: Resource[] = [
     seoDescription: 'Δωρεάν SQL από το CS50 του Harvard, για φοιτητές και μη. Οδηγίες εγγραφής, ασκήσεις, τελικό project και απαιτήσεις για το δωρεάν CS50 Certificate.',
     crumb: { label: 'videos', to: '/' },
     heading: 'Harvard CS50 SQL: μάθε SQL και πάρε δωρεάν certificate',
-    introHtml: 'Θέλεις να προσθέσεις μια συγκεκριμένη δεξιότητα στο βιογραφικό σου; Στο <strong>CS50’s Introduction to Databases with SQL</strong> μαθαίνεις να δουλεύεις με δεδομένα, λύνεις ασκήσεις και σχεδιάζεις δική σου βάση. Η παρακολούθηση και το <strong>CS50 Certificate είναι δωρεάν</strong>, για φοιτητές και μη φοιτητές.',
+    introHtml: 'Στο <strong>CS50’s Introduction to Databases with SQL</strong> μαθαίνεις SQL, λύνεις εργασίες και σχεδιάζεις δική σου βάση δεδομένων. Η παρακολούθηση και το <strong>CS50 Certificate είναι δωρεάν</strong>, για φοιτητές και μη φοιτητές. Παρακάτω θα βρεις ακριβώς ποιο μάθημα ανοίγεις πρώτο και τι πατάς σε κάθε βήμα.',
     blocks: [
       {
         kind: 'cardLinks',
@@ -56,8 +56,18 @@ export const resources: Resource[] = [
       },
       {
         kind: 'prose',
+        title: 'Πρώτα αυτό: δεν υπάρχει εξέταση',
+        html: '<p>Το CS50 SQL <strong>δεν έχει ξεχωριστό final exam</strong>. Για να ολοκληρώσεις το μάθημα κάνεις τις <strong>7 ενότητες</strong>, υποβάλλεις όλες τις απαιτούμενες εργασίες τους και στο τέλος παραδίδεις το <strong>Final Project</strong>.</p><p>Η διαδρομή είναι: <strong>Lecture → Problem Set → επόμενο μάθημα → Final Project → Certificate</strong>.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Πού βρίσκονται τα 7 μαθήματα',
+        html: '<p>Πάτησε τα παρακάτω με τη σειρά. Μέσα σε κάθε σελίδα θα βρεις τη διάλεξη στην ενότητα <strong>Lecture</strong> και την εργασία στο κάτω μέρος ως <strong>Problem Set</strong>. Από κινητό, αν δεν βλέπεις τις ενότητες, πάτησε πρώτα <strong>Menu</strong> επάνω στη σελίδα.</p><ul><li><a href="https://cs50.harvard.edu/sql/weeks/0/" target="_blank" rel="noopener noreferrer">Μάθημα 0: Querying + Problem Set 0</a></li><li><a href="https://cs50.harvard.edu/sql/weeks/1/" target="_blank" rel="noopener noreferrer">Μάθημα 1: Relating + Problem Set 1</a></li><li><a href="https://cs50.harvard.edu/sql/weeks/2/" target="_blank" rel="noopener noreferrer">Μάθημα 2: Designing + Problem Set 2</a></li><li><a href="https://cs50.harvard.edu/sql/weeks/3/" target="_blank" rel="noopener noreferrer">Μάθημα 3: Writing + Problem Set 3</a></li><li><a href="https://cs50.harvard.edu/sql/weeks/4/" target="_blank" rel="noopener noreferrer">Μάθημα 4: Viewing + Problem Set 4</a></li><li><a href="https://cs50.harvard.edu/sql/weeks/5/" target="_blank" rel="noopener noreferrer">Μάθημα 5: Optimizing + Problem Set 5</a></li><li><a href="https://cs50.harvard.edu/sql/weeks/6/" target="_blank" rel="noopener noreferrer">Μάθημα 6: Scaling + Problem Set 6</a></li><li><a href="https://cs50.harvard.edu/sql/project/" target="_blank" rel="noopener noreferrer">Τελικό βήμα: Final Project</a></li></ul>',
+      },
+      {
+        kind: 'prose',
         title: 'Τι θα μάθεις',
-        html: '<p>Να οργανώνεις δεδομένα σε πίνακες, να αναζητάς πληροφορίες με SQL, να συνδυάζεις πίνακες και να προσθέτεις ή να ενημερώνεις εγγραφές. Για παράδειγμα, να βρίσκεις ποια προϊόντα έχουν τις περισσότερες παραγγελίες.</p><p>Το μάθημα έχει <strong>7 ενότητες και ένα τελικό project</strong>. Ξεκινά με SQLite και καταλήγει σε εισαγωγή σε PostgreSQL και MySQL. Το υλικό είναι στα αγγλικά και προχωράς με τον δικό σου ρυθμό. Μπορείς να το πάρεις πριν από το CS50x.</p>',
+        html: '<p>Θα μάθεις να οργανώνεις δεδομένα σε πίνακες, να αναζητάς πληροφορίες με SQL, να συνδυάζεις πίνακες και να προσθέτεις, να ενημερώνεις ή να διαγράφεις εγγραφές. Για παράδειγμα, να βρίσκεις ποια προϊόντα έχουν τις περισσότερες παραγγελίες.</p><p>Το μάθημα ξεκινά με SQLite και καταλήγει σε εισαγωγή σε PostgreSQL και MySQL. Το υλικό είναι στα αγγλικά, προχωράς με τον δικό σου ρυθμό και μπορείς να το πάρεις πριν από το γενικό CS50x.</p>',
       },
       {
         kind: 'prose',
@@ -66,14 +76,18 @@ export const resources: Resource[] = [
       },
       {
         kind: 'steps',
-        title: 'Πώς ξεκινάς και φτάνεις στο certificate',
+        title: 'Αναλυτικά: τι πατάς από την αρχή μέχρι το certificate',
         items: [
-          'Άνοιξε την επίσημη σελίδα του CS50 SQL και ακολούθησε το <strong>How to Take this Course</strong>. Δεν χρειάζεται να είσαι φοιτητής του Harvard.',
-          'Κάνε εγγραφή στο edX με τη δωρεάν επιλογή <strong>free / audit</strong>. Ακολούθησε τις οδηγίες για τον λογαριασμό GitHub και το περιβάλλον εργασίας του μαθήματος.',
-          'Άνοιξε το <a href="https://cs50.me/cs50sql" target="_blank" rel="noopener noreferrer">CS50 Gradebook</a> και ολοκλήρωσε τη σύνδεση με το edX. Εκεί βλέπεις την πραγματική πρόοδό σου.',
-          'Σε κάθε ενότητα, παρακολούθησε τη διάλεξη και υπόβαλε όλες τις απαιτούμενες ασκήσεις. Χρειάζεσαι <strong>τουλάχιστον 70% σε κάθε πρόβλημα</strong>. Αν δεν περάσεις, μπορείς να διορθώσεις και να υποβάλεις ξανά· μετρά η τελευταία υποβολή.',
-          'Ολοκλήρωσε το τελικό project με <strong>τουλάχιστον 70%</strong>. Δεν υπάρχει ξεχωριστή τελική εξέταση: η αξιολόγηση γίνεται με εργασίες και project.',
-          'Όταν το Gradebook δείξει ολοκλήρωση, ακολούθησε τον σύνδεσμο για να αποκτήσεις το δωρεάν CS50 Certificate.',
+          'Άνοιξε το <a href="https://cs50.harvard.edu/sql/weeks/0/" target="_blank" rel="noopener noreferrer"><strong>Μάθημα 0: Querying</strong></a>. Αυτό είναι το πρώτο κανονικό μάθημα· δεν χρειάζεται να ψάξεις άλλη αρχική ενότητα στο edX.',
+          'Στη σελίδα του μαθήματος βρες το <strong>Lecture</strong>. Για να δεις το βίντεο πάτησε <strong>Video → CS50 Video Player</strong>. Υπάρχουν επίσης <strong>Notes</strong>, slides, transcript και subtitles. Το βίντεο και οι σημειώσεις είναι το εκπαιδευτικό υλικό της ενότητας.',
+          'Αφού τελειώσεις τη διάλεξη, κατέβα στο τέλος της ίδιας σελίδας και πάτησε <strong>Problem Set 0</strong>. Εκεί θα εμφανιστούν οι εργασίες που πρέπει να λύσεις για αυτή την ενότητα. Δεν είναι δοκιμαστικό quiz: είναι οι εργασίες που μετρούν για την ολοκλήρωση.',
+          'Πριν από την πρώτη υποβολή θα σου ζητηθεί λογαριασμός <strong>edX</strong> και <strong>GitHub</strong>. Στο edX διάλεξε τη δωρεάν επιλογή <strong>free / audit</strong>. Δεν χρειάζεται να αγοράσεις το verified certificate για να πάρεις το δωρεάν CS50 Certificate.',
+          'Κάθε σελίδα εργασίας δίνει συγκεκριμένες εντολές για το <a href="https://cs50.dev/" target="_blank" rel="noopener noreferrer">cs50.dev</a>. Άνοιξέ το με τον ίδιο λογαριασμό GitHub. Γράψε τη λύση στα αρχεία που ζητά η εκφώνηση και χρησιμοποίησε τις εντολές <strong>check50</strong> και <strong>submit50</strong> που αναγράφονται στη συγκεκριμένη εργασία. Μην χρησιμοποιήσεις εντολή από διαφορετικό Problem Set.',
+          'Άνοιξε το <a href="https://cs50.me/cs50sql" target="_blank" rel="noopener noreferrer"><strong>CS50 Gradebook</strong></a> και σύνδεσέ το με το edX όταν σου ζητηθεί. Αυτό είναι το σωστό σημείο για την πρόοδό σου. Αν το edX δείχνει βαθμό 0%, μην πανικοβληθείς: το CS50 SQL χρησιμοποιεί το δικό του Gradebook.',
+          'Χρειάζεσαι <strong>τουλάχιστον 70% σε κάθε απαιτούμενη εργασία</strong>. Δεν αρκεί συνολικός μέσος όρος 70%. Αν κάποια εργασία δεν περάσει, διόρθωσέ τη και υπέβαλέ τη ξανά· μετρά η πιο πρόσφατη υποβολή.',
+          'Όταν περάσει το Problem Set 0, συνέχισε με τα Μαθήματα <strong>1 έως 6</strong> από τα κουμπιά παραπάνω. Σε κάθε μάθημα επαναλαμβάνεις την ίδια σειρά: <strong>Lecture → Problem Set → έλεγχος στο Gradebook</strong>.',
+          'Μετά το Problem Set 6 άνοιξε το <a href="https://cs50.harvard.edu/sql/project/" target="_blank" rel="noopener noreferrer"><strong>Final Project</strong></a>. Φτιάξε τη δική σου βάση δεδομένων και ακολούθησε και τα τρία βήματα υποβολής της επίσημης σελίδας. Χρειάζεσαι τουλάχιστον 70% και στο project.',
+          'Όταν όλες οι απαιτήσεις γίνουν πράσινες στο Gradebook, θα εμφανιστεί σύνδεσμος για το <strong>δωρεάν CS50 Certificate</strong>. Σύμφωνα με τα FAQs, ο σύνδεσμος μπορεί να χρειαστεί περίπου τέσσερις ώρες μετά τη βαθμολόγηση της τελευταίας εργασίας.',
         ],
       },
       {
