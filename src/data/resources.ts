@@ -21,6 +21,75 @@ const officialThumb = {
 
 export const resources: Resource[] = [
   {
+    slug: 'harvard-sql',
+    pageKind: 'guide',
+    date: '2026-09-05',
+    card: {
+      title: 'Harvard CS50 SQL: δωρεάν μάθημα και certificate',
+      desc: 'Μάθε SQL με ασκήσεις και δική σου βάση δεδομένων. Πώς ξεκινάς δωρεάν και τι χρειάζεται για το CS50 Certificate, είτε είσαι φοιτητής είτε όχι.',
+      metaLine: '5 Σεπ 2026 · Οδηγός',
+      cardTags: ['Harvard', 'SQL', 'Δωρεάν certificate'],
+      searchTags: ['harvard', 'cs50', 'sql', 'certificate', 'πιστοποιητικό', 'πιστοποιητικο', 'δωρεάν', 'δωρεαν', 'φοιτητές', 'φοιτητες', 'βιογραφικό', 'cv', 'edx', 'βάσεις δεδομένων', 'data', 'course'],
+      filters: ['guide'],
+      status: 'active',
+      thumb: {
+        type: 'solo',
+        src: '/thumbs/harvard-sql_thumb.jpg',
+        alt: 'Επίσημο δείγμα CS50 SQL Certificate με το όνομα John Harvard',
+        official: true,
+      },
+    },
+    seoTitle: 'Harvard CS50 SQL: δωρεάν μάθημα και πιστοποιητικό ολοκλήρωσης',
+    seoDescription: 'Δωρεάν SQL από το CS50 του Harvard, για φοιτητές και μη. Οδηγίες εγγραφής, ασκήσεις, τελικό project και απαιτήσεις για το δωρεάν CS50 Certificate.',
+    crumb: { label: 'videos', to: '/' },
+    heading: 'Harvard CS50 SQL: μάθε SQL και πάρε δωρεάν certificate',
+    introHtml: 'Θέλεις να προσθέσεις μια συγκεκριμένη δεξιότητα στο βιογραφικό σου; Στο <strong>CS50’s Introduction to Databases with SQL</strong> μαθαίνεις να δουλεύεις με δεδομένα, λύνεις ασκήσεις και σχεδιάζεις δική σου βάση. Η παρακολούθηση και το <strong>CS50 Certificate είναι δωρεάν</strong>, για φοιτητές και μη φοιτητές.',
+    blocks: [
+      {
+        kind: 'cardLinks',
+        items: [{
+          icon: 'tool',
+          title: 'Άνοιξε το CS50 SQL',
+          sub: 'Επίσημο μάθημα · διαλέξεις, ασκήσεις και οδηγίες εγγραφής',
+          to: 'https://cs50.harvard.edu/sql/',
+        }],
+      },
+      {
+        kind: 'prose',
+        title: 'Τι θα μάθεις',
+        html: '<p>Να οργανώνεις δεδομένα σε πίνακες, να αναζητάς πληροφορίες με SQL, να συνδυάζεις πίνακες και να προσθέτεις ή να ενημερώνεις εγγραφές. Για παράδειγμα, να βρίσκεις ποια προϊόντα έχουν τις περισσότερες παραγγελίες.</p><p>Το μάθημα έχει <strong>7 ενότητες και ένα τελικό project</strong>. Ξεκινά με SQLite και καταλήγει σε εισαγωγή σε PostgreSQL και MySQL. Το υλικό είναι στα αγγλικά και προχωράς με τον δικό σου ρυθμό. Μπορείς να το πάρεις πριν από το CS50x.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Ποιο πιστοποιητικό είναι δωρεάν;',
+        html: '<p>Το <strong>CS50 Certificate</strong> δίνεται δωρεάν από το ίδιο το CS50 μετά την επιτυχή ολοκλήρωση. Το <strong>verified certificate του edX</strong> είναι ξεχωριστή, επί πληρωμή επιλογή. Για τη δωρεάν διαδρομή επιλέγεις <strong>free / audit</strong> στην εγγραφή.</p><p>Πρόκειται για πιστοποιητικό ολοκλήρωσης μαθήματος, όχι για πτυχίο Harvard ή διαπιστευμένο ακαδημαϊκό τίτλο.</p><p><a href="https://cs50.harvard.edu/certificates/e21fa782-b285-4054-b335-c658fe2448d1" target="_blank" rel="noopener noreferrer">Δες το επίσημο δείγμα πιστοποιητικού</a> που εμφανίζεται στο thumbnail, με το ενδεικτικό όνομα «John Harvard».</p>',
+      },
+      {
+        kind: 'steps',
+        title: 'Πώς ξεκινάς και φτάνεις στο certificate',
+        items: [
+          'Άνοιξε την επίσημη σελίδα του CS50 SQL και ακολούθησε το <strong>How to Take this Course</strong>. Δεν χρειάζεται να είσαι φοιτητής του Harvard.',
+          'Κάνε εγγραφή στο edX με τη δωρεάν επιλογή <strong>free / audit</strong>. Ακολούθησε τις οδηγίες για τον λογαριασμό GitHub και το περιβάλλον εργασίας του μαθήματος.',
+          'Άνοιξε το <a href="https://cs50.me/cs50sql" target="_blank" rel="noopener noreferrer">CS50 Gradebook</a> και ολοκλήρωσε τη σύνδεση με το edX. Εκεί βλέπεις την πραγματική πρόοδό σου.',
+          'Σε κάθε ενότητα, παρακολούθησε τη διάλεξη και υπόβαλε όλες τις απαιτούμενες ασκήσεις. Χρειάζεσαι <strong>τουλάχιστον 70% σε κάθε πρόβλημα</strong>. Αν δεν περάσεις, μπορείς να διορθώσεις και να υποβάλεις ξανά· μετρά η τελευταία υποβολή.',
+          'Ολοκλήρωσε το τελικό project με <strong>τουλάχιστον 70%</strong>. Δεν υπάρχει ξεχωριστή τελική εξέταση: η αξιολόγηση γίνεται με εργασίες και project.',
+          'Όταν το Gradebook δείξει ολοκλήρωση, ακολούθησε τον σύνδεσμο για να αποκτήσεις το δωρεάν CS50 Certificate.',
+        ],
+      },
+      {
+        kind: 'prose',
+        title: 'Το project που θα μπορείς να παρουσιάσεις',
+        html: '<p>Σχεδιάζεις μια δική σου βάση δεδομένων σε θέμα που σε ενδιαφέρει, όπως μια μουσική βιβλιοθήκη με τραγούδια, καλλιτέχνες και playlists.</p><p>Παραδίδεις <strong>schema.sql</strong> με τη δομή της βάσης, <strong>queries.sql</strong> με ενδεικτικές εντολές και <strong>DESIGN.md</strong> με τεκμηρίωση του σχεδιασμού. Περιλαμβάνεις διάγραμμα των σχέσεων και <strong>βίντεο παρουσίασης έως 3 λεπτά</strong>. Έτσι, μαζί με το certificate έχεις και συγκεκριμένη δουλειά να εξηγήσεις.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Προθεσμία και επίσημες πηγές',
+        html: '<p>Έλεγχος: <strong>5 Σεπτεμβρίου 2026</strong>. Η τρέχουσα συνολική προθεσμία είναι <strong>31 Δεκεμβρίου 2026, 23:59 UTC</strong>. Δεν υπάρχουν ξεχωριστές προθεσμίες ανά εργασία. Έλεγξε τα FAQs για τυχόν παράταση και απόκτησε το certificate πριν από την προθεσμία.</p><ul><li><a href="https://cs50.harvard.edu/sql/" target="_blank" rel="noopener noreferrer">CS50 SQL: μάθημα και εγγραφή</a></li><li><a href="https://cs50.harvard.edu/sql/certificate/" target="_blank" rel="noopener noreferrer">Απαιτήσεις δωρεάν CS50 Certificate</a></li><li><a href="https://cs50.harvard.edu/sql/faqs/" target="_blank" rel="noopener noreferrer">FAQs: κόστος, αξιολόγηση και προθεσμίες</a></li><li><a href="https://cs50.harvard.edu/sql/project/" target="_blank" rel="noopener noreferrer">Προδιαγραφές τελικού project</a></li><li><a href="https://pll.harvard.edu/course/cs50s-introduction-databases-sql" target="_blank" rel="noopener noreferrer">Κατάλογος Harvard: περιεχόμενο και γλώσσα</a></li></ul>',
+      },
+    ],
+    citation: 'https://cs50.harvard.edu/sql/certificate/',
+  },
+  {
     slug: 'which-ai',
     pageKind: 'guide',
     date: '2026-07-28',
