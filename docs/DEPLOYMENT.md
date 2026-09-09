@@ -7,8 +7,10 @@ passed (34 tests, TypeScript and production build), followed by 8 focused API te
 and a real emitted-Node-ESM check after the runtime import fix. Live saves, duplicates,
 concurrent retries, rejected requests and browser reload persistence were verified.
 Netlify builds are stopped; its hosting stays on while the old **900-second DNS TTL**
-expires. Final deployed-commit reconciliation and Netlify hosting shutdown remain
-pending. See [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md) for evidence and remaining steps.
+expires. Migration commit `041242d` automatically deployed successfully from `main`;
+all 28 public pages and 52 referenced assets passed anonymous checks, and actual
+custom-domain subscriptions were independently confirmed in Neon. Only Netlify hosting
+shutdown remains pending. See [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md) for evidence.
 
 ## Project identity
 
@@ -79,6 +81,16 @@ different hostname.
 
 This project stores subscriptions. It does not provision a newsletter-sending service.
 The public policy explains how to request access or deletion by contacting the owner.
+
+### Compatibility for pages opened before migration
+
+Old Netlify pages submit URL-encoded `email-gate` data to `POST /`. Keep the
+method-specific root route and `api/legacy-subscribe.ts` so an already open tab can
+still save after DNS switches to Vercel. The adapter requires the exact old form name,
+explicit `consent=yes`, an empty honeypot, an approved origin and a bounded request body,
+then uses the same validated subscriber handler and Neon deduplication as the new gate.
+It returns success only after confirmed persistence. Ordinary GET requests keep serving
+the prerendered homepage. See Vercel's [method-specific routes documentation](https://vercel.com/docs/project-configuration/vercel-json#routes).
 
 ## Environment and database maintenance
 
@@ -185,11 +197,11 @@ Build success alone is not DNS-cutover evidence.
 - [x] Vercel verified apex/www DNS at 14:01 UTC: apex A records `216.198.79.1` and
   `64.29.17.1`; www CNAME `fc0a6dc095e1bb26.vercel-dns-017.com`. www redirects to apex
   with HTTP 308. Netlify builds are stopped.
-- [ ] Reconcile the final committed migration revision with a matching ready
-  production deployment; record both identifiers.
-- [ ] Record final anonymous HTTPS checks on the custom domain at `/`, `/tools/`,
-  `/about/`, an existing resource, `/privacy/` and `/tools/contego/privacy/`. Confirm
-  both policies are ungated and the subscription API works on the custom domain.
+- [x] Migration commit `041242dbabe6e1488eb01faa7ec0cba110550a9c` produced ready production
+  deployment `dpl_FTPZjSGMam8NLRhYfRRCVGfqdoP1` automatically from GitHub `main`.
+- [x] Anonymous HTTPS checks passed on all 28 public pages and 52 assets, with both
+  policies ungated. Actual matching-origin subscriptions on the custom domain and
+  stable alias persisted one shared row, with duplicate preservation and exact cleanup.
 - [ ] After the previous 900-second DNS TTL has expired and public routing is verified,
   disable Netlify hosting and record its final state. Hosting currently remains on.
 - [ ] Complete the remaining evidence in [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md)

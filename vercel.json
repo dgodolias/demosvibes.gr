@@ -6,7 +6,11 @@
   "outputDirectory": "dist",
   "trailingSlash": true,
   "regions": ["fra1"],
+  "routes": [
+    { "src": "^/$", "methods": ["POST"], "dest": "/api/legacy-subscribe" }
+  ],
   "functions": {
-    "api/subscribe.ts": { "maxDuration": 15 }
+    "api/subscribe.ts": { "maxDuration": 15 },
+    "api/legacy-subscribe.ts": { "maxDuration": 15 }
   }
 }

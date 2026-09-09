@@ -2,8 +2,11 @@
 
 Recorded on **9 September 2026**. Vercel serves the new deployment, the subscription
 backend writes to Neon, and apex/www DNS was verified at **14:01 UTC**. The GitHub
-repository is linked to Vercel. Final deployed-commit reconciliation and disabling
-the previous Netlify hosting remain pending; this report does not close those steps.
+repository is linked to Vercel. Migration commit `041242dbabe6e1488eb01faa7ec0cba110550a9c`
+on `main` automatically produced ready production deployment
+`dpl_FTPZjSGMam8NLRhYfRRCVGfqdoP1` (`demosvibes-pvc0qqlfi-dgodolias-projects.vercel.app`),
+in the intended project and `fra1` function region. Disabling the previous Netlify
+hosting remains pending while the previous DNS TTL expires.
 
 ## Verified behavior
 
@@ -17,6 +20,10 @@ the previous Netlify hosting remain pending; this report does not close those st
 | Request rejection | Foreign/missing origin: 403; unsupported content type: 415; invalid consent, honeypot, email or JSON: 400; oversized body: 413; GET: 405 with `Allow: POST`. Rejected requests created no row. |
 | Browser persistence | A real browser submission closed the gate; reloading kept it closed. Independent inspection confirmed its single consenting database row with source `website` and source path `/`. |
 | Test-data cleanup | After browser reload confirmation, its exact synthetic row was deleted. The two independently generated API test rows were also deleted by exact address. Follow-up queries confirmed zero matching test rows. No real subscriber rows were deleted. |
+| Public domain and stable alias | At 14:05:15–14:05:17 UTC, matching-origin POSTs on `demosvibes.gr` and `demosvibes.vercel.app` both returned confirmed JSON success for one synthetic address. Independent inspection confirmed one row and unchanged original metadata. The exact test row was deleted and its absence verified. |
+| Published pages and assets | Anonymous audits of the apex and stable alias verified all 28 sitemap routes against local titles, canonical URLs, H1 headings and JSON-LD, plus all 52 referenced assets. Contego article text matches the source and its hosting note says Vercel. The old form stub returns 404. |
+| Browser preference across migration | The existing accepted-entry preference on `demosvibes.gr` remained effective after the provider change. Tools navigation and the actual QRCodeStyleGen iframe were verified in the browser. |
+| Credential isolation | Independent review verified restricted runtime privileges, hidden Vercel Production secret, and ignored private configuration. Scans of Git candidates, build files and public HTML/JS/CSS found no credential patterns. |
 
 The live API uses the restricted `demosvibes_api` role. During these live tests,
 owner access was used only for independent verification and exact synthetic-row cleanup. Tests used no real
@@ -67,8 +74,8 @@ hostname variable points to the custom domain.
 
 Root operator to complete:
 
-- [ ] Record the final committed migration revision and matching ready production deployment.
-- [ ] Record final anonymous checks on the custom domain, including both public policies and subscription behavior.
+- [x] Record the final committed migration revision and matching ready production deployment.
+- [x] Record final anonymous checks on the custom domain, including both public policies and subscription behavior.
 - [ ] After the previous DNS TTL has elapsed and routing is verified, disable Netlify hosting and record the time.
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for configuration and maintenance commands.
