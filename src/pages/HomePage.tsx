@@ -1,76 +1,39 @@
-import { useEffect, useMemo, useState } from 'react';
-import FeaturedResource from '../components/FeaturedResource';
-import SearchFilter from '../components/SearchFilter';
+import { useMemo } from 'react';
+import LocalSearch from '../components/LocalSearch';
+import ResourceCard from '../components/ResourceCard';
 import Seo from '../components/Seo';
-import SiteFooter from '../components/SiteFooter';
-import Topbar from '../components/Topbar';
 import { gridResources } from '../data/resources';
 import { site } from '../data/site';
 import { isReleasedOnHomepage } from '../lib/release';
 import { websiteLd } from '../lib/seo';
+import { useCatalogSearch } from '../lib/useCatalogSearch';
 
 export default function HomePage() {
-  const [now, setNow] = useState(0);
-
-  useEffect(() => {
-    setNow(Date.now());
-    const id = window.setInterval(() => setNow(Date.now()), 60_000);
-    return () => window.clearInterval(id);
-  }, []);
-
-  const homepageResources = useMemo(
-    () => gridResources.filter((resource) => isReleasedOnHomepage(resource, now)),
-    [now],
-  );
-
-  /** The "Τελευταίο" card = the actual newest released video (gridResources is newest-first). */
-  const featured = homepageResources[0];
-
-  /** Derived hero stats (replaces the old hardcoded, stale numbers). */
-  const total = homepageResources.length;
-  const prompts = homepageResources.filter((resource) => resource.card!.filters.includes('prompt')).length;
-  const latest =
-    homepageResources[0]?.card!.metaLine.split('·')[0].trim().split(' ').slice(0, 2).join(' ') ?? '';
-
+  const { query, setQuery, now, results } = useCatalogSearch('videos');
+  const released = useMemo(() => gridResources.filter(resource => isReleasedOnHomepage(resource, now)), [now]);
+  const visible = query.trim()
+    ? results.flatMap(({ document }) => {
+        const resource = released.find(item => item.slug === document.id);
+        if (resource) return [resource];
+        const parent = released.find(item => document.id.startsWith(item.slug + '/'));
+        return parent ? [parent] : [];
+      }).filter((resource, index, all) => all.findIndex(item => item.slug === resource.slug) === index)
+    : released;
   return (
     <>
-      <Seo
-        title="videos · dgodolias"
-        description={site.description}
-        path="/"
-        ogType="website"
-        jsonLd={websiteLd()}
-      />
-      <main className="site-shell">
-        <Topbar />
-
-        <section className="landing-hero" aria-labelledby="page-title">
-          <div className="hero-copy">
-            <p className="eyebrow">Social companion hub</p>
-            <h1 id="page-title">Βρες το υλικό πίσω από το βίντεο.</h1>
-            <p className="hero-lede">
-              Έρχεσαι από TikTok, Instagram ή Shorts; Διάλεξε το βίντεο και πάρε το prompt, το link,
-              τον οδηγό ή το αρχείο που αναφέρω.
-            </p>
-            <div className="hero-stats" aria-label="Σύνοψη υλικού">
-              <span>
-                <strong>{total}</strong> resources
-              </span>
-              <span>
-                <strong>{prompts}</strong> prompts
-              </span>
-              <span>
-                <strong>{latest}</strong> latest
-              </span>
-            </div>
+      <Seo title="Videos · Demos Vibes" description={site.description} path="/" ogType="website" jsonLd={websiteLd()} />
+      <main id="main-content" className="hub-container hub-main">
+        <section aria-labelledby="videos-title">
+          <div className="hub-intro">
+            <div><p className="hub-eyebrow">Το υλικό των videos</p><h1 id="videos-title">Είδες το βίντεο.<br /><span>Πάρε και το υλικό.</span></h1><p className="hub-lead">Prompts, links και οδηγοί από τα videos μου.<br />Βρες αυτό που είδες και δοκίμασέ το στην πράξη.</p></div>
+            <LocalSearch id="video-search" label="Αναζήτηση στα Videos" placeholder="Τίτλος, εργαλείο ή θέμα…" value={query} onChange={setQuery} />
           </div>
-
-          {featured && <FeaturedResource resource={featured} />}
+          <div className="hub-collection"><h2>Η βιβλιοθήκη των videos <span role="status" aria-live="polite">{visible.length}</span></h2><span>{query.trim() ? 'Πιο σχετικά πρώτα' : 'Πιο πρόσφατα πρώτα ↓'}</span></div>
+          <ol className="hub-video-grid">
+            {visible.map((resource, index) => <ResourceCard key={resource.slug} resource={resource} newest={resource.slug === released[0]?.slug} priority={index < 3} />)}
+          </ol>
+          {visible.length === 0 && <div className="hub-empty"><h2>Δεν βρέθηκε κάποιο video.</h2><p>Δοκίμασε έναν άλλο τίτλο, εργαλείο ή θέμα.</p><button type="button" onClick={() => setQuery('')}>Εμφάνιση όλων</button></div>}
         </section>
-
-        <SearchFilter resources={homepageResources} />
-
-        <SiteFooter />
       </main>
     </>
   );

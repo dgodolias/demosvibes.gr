@@ -1,15 +1,17 @@
 import { defineConfig } from '@playwright/test';
 
+const port = Number(process.env.PREVIEW_PORT || 4173);
+
 export default defineConfig({
   testDir: './tests',
   timeout: 30_000,
   use: {
-    baseURL: 'http://localhost:4173',
+    baseURL: `http://localhost:${port}`,
   },
   webServer: {
-    command: 'npm run preview -- --port 4173 --strictPort',
-    port: 4173,
-    reuseExistingServer: true,
+    command: `node node_modules/vite/bin/vite.js preview --port ${port} --strictPort`,
+    port,
+    reuseExistingServer: false,
     timeout: 60_000,
   },
 });

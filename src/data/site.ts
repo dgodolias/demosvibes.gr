@@ -8,7 +8,7 @@ export const site = {
   author: 'dgodolias',
   email: 'demosgodvibes@gmail.com',
   description:
-    'Συμπληρωματικό υλικό για τα short-form βίντεο του dgodolias: prompts, εργαλεία, οδηγοί και links.',
+    'Videos, εργαλεία και projects από τον Δήμο: prompts, links και οδηγοί για όσα βλέπεις στο Demos Vibes, μαζί με δικά μου εργαλεία και το portfolio μου.',
   ogImage: 'https://demosvibes.gr/og/default.jpg',
   logo: 'https://demosvibes.gr/assets/logo_v2_180.png',
   github: 'https://github.com/dgodolias/demosvibes.gr',

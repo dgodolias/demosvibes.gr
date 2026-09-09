@@ -1,17 +1,6 @@
 import { Link } from 'react-router-dom';
 import { site } from '../data/site';
 
-/** Landing-page footer. */
 export default function SiteFooter() {
-  return (
-    <footer className="site-footer">
-      <span>{site.domain}</span>
-      <span style={{ display: 'flex', gap: '14px' }}>
-        <Link to="/privacy">Πολιτική Απορρήτου</Link>
-        <a href={site.github} target="_blank" rel="noopener">
-          source
-        </a>
-      </span>
-    </footer>
-  );
+  return <footer className="hub-footer"><div className="hub-container hub-footer-inner"><div><strong>{site.domain}</strong><span>Λιγότερο ψάξιμο. Περισσότερη πράξη.</span></div><div className="hub-footer-links"><a href="https://www.instagram.com/demos.vibes/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.tiktok.com/@demos.vibes" target="_blank" rel="noopener noreferrer">TikTok ↗</a><Link to="/privacy">Πολιτική απορρήτου</Link></div></div></footer>;
 }

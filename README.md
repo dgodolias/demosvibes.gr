@@ -1,7 +1,7 @@
 # demosvibes.gr
 
-Greek hub of AI prompts, step-by-step guides and curated tool lists that accompany
-short-form videos. **React + TypeScript + Tailwind**, prerendered to static HTML with
+Greek creator hub with Videos (supplementary prompts and guides), Tools (own projects)
+and About me (portfolio). **React + TypeScript + Tailwind**, prerendered to static HTML with
 [`vite-react-ssg`](https://github.com/Daydreamer-riri/vite-react-ssg), hosted on Netlify.
 
 **Live:** https://demosvibes.gr
@@ -14,10 +14,25 @@ npm run dev        # local dev server (Vite)
 npm run build      # prerender all pages to dist/ + generate sitemap.xml
 npm run preview    # serve the built dist/ locally
 npm run typecheck  # tsc --noEmit
-npm run test:e2e   # Playwright gate tests (builds-aware: runs against preview)
+npm run test:e2e   # search, navigation, accessibility, privacy and email-gate checks
 ```
 
 ## How it works
+
+The homepage `/` is Videos; `/tools/` and `/about/` share persistent navigation
+and global search. Each section has its own local search. Ctrl/Cmd+K opens global
+search, with Greeklish, accents, bounded typo matching and curated task synonyms.
+The index uses published content and respects inactive/scheduled cards and parents.
+Search runs in the browser; no remote search service or model is involved.
+
+The public Contego policy is `/tools/contego/privacy/` and bypasses the email gate.
+Its reviewed article snapshot lives in `src/data/contegoPrivacy.ts`; update it from
+`General/contego/privacy-site/app/policy-body.ts` when the extension policy changes.
+Keep the full canonical article, current version and publisher/support details.
+
+Approved layout and delivery requirements: [design brief](docs/FRONTEND_DESIGN_BRIEF.md).
+Set `PREVIEW_PORT` when the default test port 4173 is occupied. Tests start their own
+preview server to ensure they verify this checkout's built `dist/`.
 
 Every page is **data-driven**. The single source of truth is
 [`src/data/resources.ts`](src/data/resources.ts): an array of typed `Resource` objects.

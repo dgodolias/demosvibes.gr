@@ -21,7 +21,7 @@ export default function ResourcePage({ resource }: { resource: Resource }) {
         image={ogImageFor(resource)}
         jsonLd={articleLd(resource)}
       />
-      <main className="wrap">
+      <main id="main-content" className="wrap">
         <section className="subhead">
           <Crumb label={resource.crumb.label} to={resource.crumb.to} />
           <h1>{resource.heading}</h1>

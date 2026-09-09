@@ -6,7 +6,7 @@ export default function NotFound() {
   return (
     <>
       <Seo title="Δεν βρέθηκε · demosvibes" description="Η σελίδα δεν βρέθηκε." path="/404" ogType="website" />
-      <main className="wrap">
+      <main id="main-content" className="wrap">
         <section className="subhead">
           <Crumb label="videos" to="/" />
           <h1>Δεν βρέθηκε</h1>

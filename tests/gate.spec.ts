@@ -21,7 +21,7 @@ test('gate appears on first visit and "Μπαίνω στο site" works with an E
   expect(stored).toBe('1');
 
   // The page content is visible underneath.
-  await expect(page.getByRole('heading', { name: 'Βρες το υλικό πίσω από το βίντεο.' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Είδες το βίντεο. Πάρε και το υλικό.' })).toBeVisible();
 
   // Reload → gate does NOT reappear.
   await page.reload();
@@ -35,13 +35,13 @@ test('returning visitor (localStorage set) is not gated', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Founders Playbook: η ιδέα' })).toBeVisible();
 });
 
-test('a valid email POSTs the right payload to Netlify Forms (implicit consent)', async ({ page }) => {
+test('a valid email POSTs the right payload to Netlify Forms (implicit consent)', async ({ page, baseURL }) => {
   await page.goto('/');
   await expect(page.getByRole('dialog')).toBeVisible();
 
   // Intercept the form POST (only POST to "/" is the submission).
   let posted: string | null = null;
-  await page.route('http://localhost:4173/', async (route, request) => {
+  await page.route(`${baseURL}/`, async (route, request) => {
     if (request.method() === 'POST') {
       posted = request.postData();
       await route.fulfill({ status: 200, contentType: 'text/html', body: 'OK' });

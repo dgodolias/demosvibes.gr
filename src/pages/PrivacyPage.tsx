@@ -13,7 +13,7 @@ export default function PrivacyPage() {
         path="/privacy"
         ogType="website"
       />
-      <main className="wrap">
+      <main id="main-content" className="wrap">
         <section className="subhead">
           <Crumb label="videos" to="/" />
           <h1>Πολιτική Απορρήτου</h1>
