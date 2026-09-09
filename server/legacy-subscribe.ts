@@ -71,9 +71,12 @@ export function createLegacySubscriptionHandler(dependencies: Parameters<typeof 
     } catch (error) {
       return failure(error instanceof InvalidLegacyRequest ? error.status : 400);
     }
+    const headers = new Headers(request.headers);
+    headers.set('Content-Type', 'application/json');
+    headers.delete('Content-Length');
     return subscribe(new Request(request.url, {
       method: 'POST',
-      headers: { Origin: origin, 'Content-Type': 'application/json' },
+      headers,
       body: JSON.stringify({ email: form.get('email'), consent: true, honeypot: form.get('bot-field') }),
     }));
   };

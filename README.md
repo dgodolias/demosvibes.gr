@@ -12,6 +12,14 @@ subscribers are imported, and Netlify hosting is disabled. Both current and alre
 legacy forms save to Neon. All 37 tests and public route checks passed. See the
 [deployment runbook](docs/DEPLOYMENT.md) and [migration evidence](docs/MIGRATION_AUDIT.md).
 
+**Submission metadata update:** the metadata columns and historical backfill are complete.
+All 94 archived subscriber events have verified metadata; the repeated import changed
+zero rows. The target table contains only `email`, `consent`, `created_at`, `ip`,
+`user_agent` and `referrer`. The revised six-field implementation passed **43 tests**
+and built **28 routes**. Deployment of the revised six-field API,
+removal of the two superseded database columns, and live verification remain pending.
+See [subscriber metadata evidence](docs/SUBSCRIBER_METADATA_AUDIT.md).
+
 ## Commands
 
 ```bash
@@ -78,7 +86,7 @@ src/
   routes.tsx    flat routes generated from resources
 api/            subscribe.ts (Vercel Node function)
 server/         subscription validation, allowed origins and Neon persistence
-db/migrations/  001_subscribers.sql
+db/migrations/  subscriber schema and metadata migrations
 public/         assets/, thumbs/, og/, robots.txt, llms.txt
 scripts/        SEO/images/screenshots, import-subscribers.mjs (private input on stdin)
 vercel.json     static build, canonical trailing slashes and API runtime configuration
@@ -88,8 +96,8 @@ vercel.json     static build, canonical trailing slashes and API runtime configu
 
 A first-visit interstitial ([`src/gate/`](src/gate/)) accepts an optional email.
 An empty submission enters immediately without an API request. A nonempty submission
-sends JSON to `POST /api/subscribe` with email, consent, the actual honeypot value and
-the page path. The gate remembers entry only after the API confirms a saved or already
+sends JSON to `POST /api/subscribe` with email, consent and the actual honeypot value.
+The gate remembers entry only after the API confirms a saved or already
 existing subscription with `{ "ok": true }`, or after the visitor explicitly skips.
 
 Failures retain the email and show retry/continue controls. A successful save stores
@@ -99,7 +107,18 @@ migration when the visitor continues using the same domain. Clearing browser sto
 or using another browser/device can show the gate again.
 
 The API normalizes emails and uses the database's email primary key to prevent
-duplicates. Existing subscribers keep their original timestamp and provenance.
+duplicates. Existing subscribers keep their original timestamp and
+submission metadata. The server obtains IP from platform request metadata and
+user-agent/referrer from request headers, rather than taking these fields from the
+browser's JSON payload. They can be absent; user-agent and referrer are supplied by
+the client and do not establish identity.
+
+These fields are captured only with a consenting submission. Visiting a page or
+entering with an empty email does not create a subscriber metadata record. No new
+cookies, analytics or device fingerprinting are added. The `referrer` can retain query parameters from a valid
+HTTP(S) URL; URLs containing credentials or invalid URLs are omitted, and fragments
+are removed from accepted URLs.
+
 The initial legacy import contained **97 rows / 93 unique emails / 4 duplicate rows**;
 the final Netlify export contained **99 rows / 94 unique emails / 5 duplicate rows**.
 All 94 consenting addresses were verified in Neon. This migration provides subscription

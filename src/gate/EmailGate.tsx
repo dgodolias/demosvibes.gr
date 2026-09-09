@@ -1,7 +1,7 @@
 import type { FormEvent } from 'react';
 
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { useGate } from './GateContext';
 import { isValidEmail, subscribeEmail } from './subscribe';
@@ -14,7 +14,6 @@ import { isValidEmail, subscribeEmail } from './subscribe';
  */
 export default function EmailGate() {
   const { accept } = useGate();
-  const { pathname } = useLocation();
   const [email, setEmail] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -49,7 +48,6 @@ export default function EmailGate() {
         email: trimmedEmail,
         consent: true,
         honeypot: typeof honeypot === 'string' ? honeypot : '',
-        sourcePath: pathname,
       });
       accept();
     } catch {

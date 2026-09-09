@@ -25,7 +25,7 @@ test('the original Netlify form becomes a normalized subscription only after per
   const response = await handler(request());
   expect(response.status).toBe(200);
   expect(await response.json()).toEqual({ ok: true });
-  expect(captured).toEqual([{ email: 'reader+legacy@example.test', consent: true, sourcePath: null }]);
+  expect(captured).toEqual([{ email: 'reader+legacy@example.test', consent: true, ip: null, userAgent: null, referrer: null }]);
   expect(response.headers.get('cache-control')).toBe('no-store');
 
   for (const persist of [async () => false, async () => { throw new Error('private_database_error'); }]) {

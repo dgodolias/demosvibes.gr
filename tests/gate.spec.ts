@@ -47,7 +47,7 @@ test('JSON subscription waits for durable acknowledgement and does not ask or PO
     await expect.poll(() => requests.length).toBe(1);
     expect(requests[0]).toEqual({
       method: 'POST', contentType: 'application/json',
-      body: { email: EMAIL, consent: true, honeypot: '', sourcePath: '/graphify/' },
+      body: { email: EMAIL, consent: true, honeypot: '' },
     });
     expect(await page.evaluate((key) => localStorage.getItem(key), KEY)).toBeNull();
   } finally {
@@ -123,7 +123,7 @@ test('the actual honeypot value is included in the subscription request', async 
   await dialog.locator('input[name="bot-field"]').evaluate((input: HTMLInputElement) => { input.value = 'bot-value'; });
   await dialog.getByRole('button', { name: 'Μπαίνω στο site', exact: true }).click();
   await expect(dialog.getByRole('alert')).toBeVisible();
-  expect(body).toEqual({ email: EMAIL, consent: true, honeypot: 'bot-value', sourcePath: '/' });
+  expect(body).toEqual({ email: EMAIL, consent: true, honeypot: 'bot-value' });
   expect(await page.evaluate((key) => localStorage.getItem(key), KEY)).toBeNull();
 });
 

@@ -4,7 +4,6 @@ export interface SubscriptionRequest {
   email: string;
   consent: true;
   honeypot: string;
-  sourcePath?: string;
 }
 
 /** Only the API's explicit acknowledgement confirms a durably saved subscription. */

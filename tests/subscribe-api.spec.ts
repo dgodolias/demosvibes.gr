@@ -5,7 +5,7 @@ import { expect, test } from '@playwright/test';
 import { createSubscriptionHandler, normalizeSubscriberEmail, subscriptionOrigins } from '../server/subscribe';
 import { persistSubscriber, persistSubscriberInNeon } from '../server/subscribers';
 
-const VALID_PAYLOAD = { email: 'reader@example.com', consent: true, honeypot: '', sourcePath: '/tools/' };
+const VALID_PAYLOAD = { email: 'reader@example.com', consent: true, honeypot: '' };
 const ALLOWED_ORIGINS = subscriptionOrigins({ NODE_ENV: 'production' });
 
 function request(payload: unknown = VALID_PAYLOAD, headers: Record<string, string> = {}): Request {
@@ -35,11 +35,11 @@ test('successful subscription waits for persistence and normalizes only stored f
     },
   });
   let settled = false;
-  const pending = handler(request({ ...VALID_PAYLOAD, email: ' Reader+News@Example.COM ', sourcePath: '/tools/?email=private#token' }))
+  const pending = handler(request({ ...VALID_PAYLOAD, email: ' Reader+News@Example.COM ', source: 'ignored', sourcePath: '/ignored', source_path: '/ignored' }))
     .then((response) => { settled = true; return response; });
   await started.promise;
   expect(settled).toBe(false);
-  expect(stored).toEqual([{ email: 'reader+news@example.com', consent: true, sourcePath: '/tools/' }]);
+  expect(stored).toEqual([{ email: 'reader+news@example.com', consent: true, ip: null, userAgent: null, referrer: null }]);
   committed.resolve(true);
   const response = await pending;
   expect(response.status).toBe(200);
@@ -48,7 +48,7 @@ test('successful subscription waits for persistence and normalizes only stored f
   expect(response.headers.get('access-control-allow-origin')).toBeNull();
 });
 
-test('invalid addresses, consent, honeypots and source paths never reach persistence', async () => {
+test('invalid addresses, consent and honeypots never reach persistence', async () => {
   let writes = 0;
   const handler = createSubscriptionHandler({ allowedOrigins: ALLOWED_ORIGINS, persist: async () => { writes += 1; return true; } });
   const invalid = [
@@ -66,11 +66,6 @@ test('invalid addresses, consent, honeypots and source paths never reach persist
     { ...VALID_PAYLOAD, consent: 'true' },
     { ...VALID_PAYLOAD, honeypot: 'bot' },
     { ...VALID_PAYLOAD, honeypot: undefined },
-    { ...VALID_PAYLOAD, sourcePath: 'https://example.com/' },
-    { ...VALID_PAYLOAD, sourcePath: '//example.com/' },
-    { ...VALID_PAYLOAD, sourcePath: '/\\example.com/' },
-    { ...VALID_PAYLOAD, sourcePath: `/x${'x'.repeat(500)}` },
-    { ...VALID_PAYLOAD, sourcePath: '/bad\u0000path' },
   ];
   for (const payload of invalid) {
     const response = await handler(request(payload));
@@ -143,12 +138,12 @@ test('database rejection or unconfirmed persistence never produces a success or 
     expect(await response.json()).toEqual({ ok: false, error: 'subscription_failed' });
   }
   expect(reports).toBe(2);
-  await expect(persistSubscriberInNeon({ email: VALID_PAYLOAD.email, consent: true, sourcePath: '/' }, undefined))
+  await expect(persistSubscriberInNeon({ email: VALID_PAYLOAD.email, consent: true }, undefined))
     .rejects.toThrow('subscription_database_unavailable');
 });
 
 test('new inserts use bound parameters and require the database to return the persisted subscriber', async () => {
-  const subscriber: Subscriber = { email: 'reader+news@example.com', consent: true, sourcePath: '/tools/' };
+  const subscriber: Subscriber = { email: 'reader+news@example.com', consent: true };
   const calls: { statement: string; values: (string | null)[] }[] = [];
   const saved = await persistSubscriber(subscriber, async (statement, values) => {
     calls.push({ statement, values });
@@ -158,11 +153,11 @@ test('new inserts use bound parameters and require the database to return the pe
   expect(calls).toHaveLength(1);
   expect(calls[0].statement).toContain('ON CONFLICT (email) DO NOTHING');
   expect(calls[0].statement).not.toContain(subscriber.email);
-  expect(calls[0].values).toEqual([subscriber.email, '/tools/']);
+  expect(calls[0].values).toEqual([subscriber.email, null, null, null]);
 });
 
 test('conflicting subscriptions confirm the committed row without updating original consent or import metadata', async () => {
-  const subscriber: Subscriber = { email: VALID_PAYLOAD.email, consent: true, sourcePath: '/about/' };
+  const subscriber: Subscriber = { email: VALID_PAYLOAD.email, consent: true };
   for (const [existingRows, expected] of [
     [[{ email: subscriber.email, consent: true }], true],
     [[], false],

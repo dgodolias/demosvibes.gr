@@ -1,8 +1,9 @@
 import type { Subscriber } from './subscribers.js';
 
+import { subscriberMetadata } from './subscriber-metadata.js';
+
 const MAX_BODY_BYTES = 2_048;
 const MAX_EMAIL_LENGTH = 254;
-const MAX_SOURCE_PATH_LENGTH = 500;
 const SITE_ORIGIN = 'https://demosvibes.gr';
 const PRODUCTION_ORIGINS = [SITE_ORIGIN, 'https://www.demosvibes.gr', 'https://demosvibes.vercel.app'];
 
@@ -17,6 +18,7 @@ interface SubscriptionEnvironment {
 interface SubscriptionDependencies {
   persist: (subscriber: Subscriber) => Promise<boolean>;
   allowedOrigins: ReadonlySet<string>;
+  trustVercelHeaders?: boolean;
   reportPersistenceFailure?: () => void;
 }
 
@@ -69,16 +71,7 @@ function parseSubscriber(value: unknown): Subscriber {
   const payload = value as Record<string, unknown>;
   const email = normalizeSubscriberEmail(payload.email);
   if (!email || payload.consent !== true || payload.honeypot !== '') throw new InvalidRequest(400);
-  let sourcePath: string | null = null;
-  if (payload.sourcePath !== undefined) {
-    if (typeof payload.sourcePath !== 'string' || payload.sourcePath.length > MAX_SOURCE_PATH_LENGTH
-      || !payload.sourcePath.startsWith('/') || payload.sourcePath.startsWith('//')
-      || /[\\\u0000-\u001f\u007f]/.test(payload.sourcePath)) throw new InvalidRequest(400);
-    // Store only the page path, never search parameters or URL fragments.
-    sourcePath = new URL(payload.sourcePath, SITE_ORIGIN).pathname;
-    if (sourcePath.length > MAX_SOURCE_PATH_LENGTH) throw new InvalidRequest(400);
-  }
-  return { email, consent: true, sourcePath };
+  return { email, consent: true };
 }
 
 async function readPayload(request: Request): Promise<unknown> {
@@ -123,7 +116,7 @@ function jsonResponse(status: number, ok: boolean): Response {
 }
 
 /** Validation is independent of Neon so failure and browser contracts stay testable. */
-export function createSubscriptionHandler({ persist, allowedOrigins, reportPersistenceFailure }: SubscriptionDependencies) {
+export function createSubscriptionHandler({ persist, allowedOrigins, trustVercelHeaders = false, reportPersistenceFailure }: SubscriptionDependencies) {
   return async (request: Request): Promise<Response> => {
     if (request.method !== 'POST') return jsonResponse(405, false);
     const origin = request.headers.get('origin');
@@ -138,7 +131,7 @@ export function createSubscriptionHandler({ persist, allowedOrigins, reportPersi
       return jsonResponse(error instanceof InvalidRequest ? error.status : 400, false);
     }
     try {
-      if (await persist(subscriber)) return jsonResponse(200, true);
+      if (await persist({ ...subscriber, ...subscriberMetadata(request.headers, trustVercelHeaders) })) return jsonResponse(200, true);
     } catch {
       // Driver errors may contain connection details or email values: never log them.
     }

@@ -7,6 +7,7 @@ import { persistSubscriberInNeon } from '../server/subscribers.js';
 export default {
   fetch: createSubscriptionHandler({
     allowedOrigins: subscriptionOrigins(env),
+    trustVercelHeaders: env.VERCEL === '1',
     persist: (subscriber) => persistSubscriberInNeon(subscriber, env.DATABASE_URL),
     reportPersistenceFailure: () => console.error('subscribe_persistence_failed'),
   }),

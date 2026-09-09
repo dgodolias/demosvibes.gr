@@ -12,6 +12,14 @@ all 28 public pages and 52 referenced assets passed anonymous checks, and actual
 custom-domain subscriptions were independently confirmed in Neon. The migration is
 complete. See [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md) for evidence.
 
+**Follow-up metadata update:** the metadata columns and backfill for the 94 archived
+subscriber events are complete. A repeated import changed zero rows. The revised
+six-field implementation passed **43 tests**, TypeScript and a production build with
+**28 routes**. The final requested table has only six fields, listed below. Deployment
+of this revised API, removal of the two superseded columns, and live
+verification remain pending; the earlier checks do not establish their completion.
+See [SUBSCRIBER_METADATA_AUDIT.md](SUBSCRIBER_METADATA_AUDIT.md) for schema/import evidence.
+
 ## Project identity
 
 | Item | Configured target |
@@ -46,31 +54,47 @@ appear in command arguments, committed files, screenshots or logs.
 1. `npm run build` uses `vite-react-ssg` to produce static pages in `dist/` and generates
    the sitemap. Vercel serves these pages and applies canonical trailing slashes.
 2. The optional email gate sends `POST /api/subscribe` as JSON:
-   `{ "email": "…", "consent": true, "honeypot": "", "sourcePath": "/…/" }`.
+   `{ "email": "…", "consent": true, "honeypot": "" }`.
 3. `api/subscribe.ts` delegates to `server/subscribe.ts`. The handler validates method,
    exact allowed origin, JSON content type, body size, email, consent and honeypot.
-   The page path is stored without query parameters or fragments.
+   For a validated consenting submission, IP comes from platform-supplied request metadata;
+   user-agent and referrer come from request headers. These fields are not accepted
+   from the browser's JSON payload.
 4. `server/subscribers.ts` writes through Neon using the server's restricted
    `DATABASE_URL`. An email is trimmed/lowercased, inserted once, and verified before
    success is returned. A duplicate returns the same success response after verifying
-   the existing consenting row; its original timestamp/source are retained.
+   the existing consenting row; its original timestamp and submission
+   metadata are retained.
 5. The client accepts only a successful JSON `{ "ok": true }` acknowledgement. A
    failed request leaves the email available for retry and offers explicit continuation
    without another submission. An empty email makes no API request.
 
-The database table is `public.subscribers`:
+The final `public.subscribers` table contains only these six fields; migration 003
+removes the superseded columns after deployment of the compatible API:
 
 | Column | Meaning |
 | --- | --- |
 | `email` | Normalized address; primary key prevents duplicates |
 | `consent` | Must be `true` |
 | `created_at` | Stored timestamp; legacy imports retain their recorded date |
-| `source` | Application writes `website`; legacy importer writes `netlify-import` |
-| `source_path` | Optional page pathname, excluding query parameters/fragments |
+| `ip` | Optional PostgreSQL `inet`; IP supplied by the hosting platform for the submission |
+| `user_agent` | Optional browser information from the User-Agent header; text limited to 2,048 characters |
+| `referrer` | Optional provided HTTP(S) Referer URL; text limited to 4,096 characters; query parameters may remain, credential-bearing URLs are omitted and fragments removed |
 
-The subscription application does not collect or store IP addresses or user-agent
-strings in this table. Error logging uses generic identifiers, excluding email values
-and database connection details. This does not describe providers' separate hosting logs.
+Subscriber metadata is recorded only after a valid consenting submission. Ordinary
+page visits, empty-email entry, and rejected/nonconsenting requests do not create
+these subscriber records. The metadata capture adds no cookies, analytics service or
+device fingerprinting. Missing or invalid metadata remains absent; user-agent and
+referrer are client-provided headers and are not verified identity information.
+
+The `referrer` preserves the actual valid HTTP(S) URL supplied by the browser and can
+include its query. URLs containing user information are omitted; fragments are removed
+from accepted URLs. Invalid or unsupported URLs are omitted. The browser may omit or shorten its referrer.
+Duplicate submissions leave the initially saved IP, user-agent and referrer unchanged.
+
+Error logging uses generic identifiers, excluding email values, request metadata and
+database connection details. This describes the subscription application, separately
+from providers' hosting logs.
 
 The browser stores only the accepted-entry preference `dv_gate_accepted_v1`, not the
 email. It is kept after confirmed saving, explicit skipping or empty-email entry.
@@ -98,8 +122,13 @@ The production API already has a `DATABASE_URL` for the restricted `demosvibes_a
 role. It must remain server-only: no `VITE_` prefix, browser bundle, public config file
 or client database connection. `.env.example` documents the variable name only.
 
-Schema: [`db/migrations/001_subscribers.sql`](../db/migrations/001_subscribers.sql).
-The initial table is already provisioned. Schema changes, imports, exports and deletion
+Schema: [`001_subscribers.sql`](../db/migrations/001_subscribers.sql),
+[`002_subscriber_metadata.sql`](../db/migrations/002_subscriber_metadata.sql), and
+[`003_remove_subscriber_source.sql`](../db/migrations/003_remove_subscriber_source.sql).
+The initial schema and metadata addition are applied. Migration 003 is pending and
+must run only after the revised API is deployed; it removes the two obsolete columns
+without adding replacements. Runtime INSERT access includes the three metadata
+columns; runtime UPDATE and DELETE remain unavailable. Schema changes, imports, exports and deletion
 requests use authorized maintenance access; runtime API credentials are separate from
 owner credentials. Keep owner connection strings in the owner's private environment,
 outside the checkout. Review role privileges when changing the persistence queries.
@@ -122,12 +151,36 @@ addresses, 4 duplicate rows**. The final cutover export contained **99 input row
 address**. Preserve both exports privately. Subsequent website subscriptions can
 increase the database total beyond these import counts.
 
+The archived-metadata backfill is complete: **99 input rows / 94 unique addresses**,
+**0 inserted / 94 updated / 94 metadata verified**, with **0 conflicts** and **0 events
+skipped for a timestamp mismatch**. Repeating the import produced **0 inserted / 0
+updated / 94 verified**, with all 94 metadata records still present.
+
+An independent comparison confirmed **94 rows before / 94 after**, with email, consent
+and original date unchanged for every row. All 94 first-event
+dates, consent values, IPs, user-agents and referrers exactly match the selected
+archived events; all three metadata fields are populated on all 94 rows.
+
+For maintenance, match each normalized email to its original archived submission using
+the retained first-submission `created_at` timestamp. Import that submission's IP,
+user-agent and referrer together; preserve the original timestamp.
+The importer fills only missing metadata on the same historical event, retaining
+existing values and reporting conflicts or different events. Keep row-level evidence
+private. Aggregate results are recorded in the subscriber metadata audit.
+
 [`scripts/import-subscribers.mjs`](../scripts/import-subscribers.mjs) is a maintenance
 tool. Its input is a JSON array on stdin, converted from the private export:
 
 ```json
 [
-  { "email": "person@example.com", "consent": true, "created_at": "2026-09-09T10:00:00Z" }
+  {
+    "email": "person@example.com",
+    "consent": true,
+    "created_at": "2026-09-09T10:00:00Z",
+    "ip": "192.0.2.10",
+    "user_agent": "Example browser",
+    "referrer": "https://demosvibes.gr/?campaign=example"
+  }
 ]
 ```
 
@@ -139,11 +192,14 @@ environment already prepared, the invocation is:
 Get-Content -Raw -LiteralPath 'C:\path\outside-the-repository\subscribers.json' | node scripts/import-subscribers.mjs
 ```
 
-The script validates rows, normalizes addresses, retains the earliest timestamp among
-duplicates in that input, and inserts with `ON CONFLICT DO NOTHING`. Existing database
-rows are preserved. It then verifies that all unique input addresses have consenting
-rows and prints aggregate counts only. Repeated runs are idempotent. Imports are
-separate from normal deployments; subscriber data never belongs in the build output.
+The script validates rows, normalizes addresses and selects one complete earliest
+event per address. Equal timestamps retain the first complete row in the supplied
+export. It inserts with `ON CONFLICT DO NOTHING`, then fills missing metadata only
+where the existing row has the same timestamp. These operations and
+verification run in a transaction. Existing populated metadata is preserved; reported
+conflicts or skipped events need review. It prints aggregate counts only. Repeated
+runs are idempotent. Imports are separate from normal deployments; subscriber data
+never belongs in the build output.
 
 ## Build, test and deploy
 

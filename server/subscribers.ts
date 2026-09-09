@@ -3,21 +3,23 @@ import { neon } from '@neondatabase/serverless';
 export interface Subscriber {
   email: string;
   consent: true;
-  sourcePath: string | null;
+  ip?: string | null;
+  userAgent?: string | null;
+  referrer?: string | null;
 }
 
 export type SubscriberQuery = (statement: string, values: (string | null)[]) => Promise<Record<string, unknown>[]>;
 
 const DATABASE_TIMEOUT_MS = 8_000;
 
-/** Successful duplicates never modify the original consent date or provenance. */
+/** Successful duplicates never modify the original consent date or request metadata. */
 export async function persistSubscriber(subscriber: Subscriber, query: SubscriberQuery): Promise<boolean> {
   const inserted = await query(
-    `INSERT INTO public.subscribers (email, consent, source, source_path)
-     VALUES ($1, true, 'website', $2)
+    `INSERT INTO public.subscribers (email, consent, ip, user_agent, referrer)
+     VALUES ($1, true, $2::inet, $3, $4)
      ON CONFLICT (email) DO NOTHING
      RETURNING email, consent`,
-    [subscriber.email, subscriber.sourcePath],
+    [subscriber.email, subscriber.ip ?? null, subscriber.userAgent ?? null, subscriber.referrer ?? null],
   );
   if (inserted.length > 0) {
     return inserted.length === 1 && inserted[0].email === subscriber.email && inserted[0].consent === true;
