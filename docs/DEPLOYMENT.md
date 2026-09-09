@@ -3,14 +3,14 @@
 Status recorded on **9 September 2026**: the Vercel backend is deployed and verified
 against Neon; GitHub is linked, and both apex/www DNS were verified at **14:01 UTC**.
 The final legacy export contains **94 unique consenting addresses**. Local checks
-passed (34 tests, TypeScript and production build), followed by 8 focused API tests
-and a real emitted-Node-ESM check after the runtime import fix. Live saves, duplicates,
-concurrent retries, rejected requests and browser reload persistence were verified.
-Netlify builds are stopped; its hosting stays on while the old **900-second DNS TTL**
-expires. Migration commit `041242d` automatically deployed successfully from `main`;
+passed (37 tests, TypeScript and production build), including real emitted-Node-ESM
+checks for both APIs. Live saves, duplicates, concurrent retries, rejected requests,
+browser reload persistence and already-open legacy forms were verified.
+Netlify builds and hosting are disabled as of **14:18:31 UTC**, after the old
+**900-second DNS TTL** expired. Application revision `5656ab7` deployed successfully from `main`;
 all 28 public pages and 52 referenced assets passed anonymous checks, and actual
-custom-domain subscriptions were independently confirmed in Neon. Only Netlify hosting
-shutdown remains pending. See [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md) for evidence.
+custom-domain subscriptions were independently confirmed in Neon. The migration is
+complete. See [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md) for evidence.
 
 ## Project identity
 
@@ -186,7 +186,7 @@ production branch when changing project settings. Record the final deployed comm
 and deployment URL; migration CLI deployments preceded the final source commit.
 Build success alone is not DNS-cutover evidence.
 
-## Cutover status and remaining verification
+## Completed cutover verification
 
 - [x] Ready Vercel backend writes using the restricted runtime role. Independent live
   checks confirmed committed inserts, duplicate metadata preservation, six concurrent
@@ -202,10 +202,19 @@ Build success alone is not DNS-cutover evidence.
 - [x] Anonymous HTTPS checks passed on all 28 public pages and 52 assets, with both
   policies ungated. Actual matching-origin subscriptions on the custom domain and
   stable alias persisted one shared row, with duplicate preservation and exact cleanup.
-- [ ] After the previous 900-second DNS TTL has expired and public routing is verified,
-  disable Netlify hosting and record its final state. Hosting currently remains on.
-- [ ] Complete the remaining evidence in [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md)
-  before marking the migration complete.
+- [x] After the previous 900-second DNS TTL expired, Google, Cloudflare and local DNS
+  all resolved to Vercel. Netlify disable returned 204 at 14:18:31 UTC; readback confirmed
+  `disabled=true` and `stop_builds=true`. Vercel homepage/privacy remained HTTPS 200 and
+  the API returned the expected GET 405 after shutdown.
+- [x] Final export/import confirmed 99 legacy submissions and 94 unique consenting
+  emails, with zero further inserts. Private exports are preserved outside Git.
+- [x] Migration evidence is recorded in [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md).
+
+The disabled Netlify project's site-level forms listing returns 404. Its direct
+form-submissions API was verified readable after shutdown, with all 99 archived
+submissions intact. Prefer Neon and the private exported backup for subscriber
+maintenance. Re-enabling Netlify is a separate rollback action; normal publishing
+continues through Vercel.
 
 The historical [redesign audit](COMPLETION_AUDIT.md) and
 [design brief](FRONTEND_DESIGN_BRIEF.md) retain their original Netlify-era statements.

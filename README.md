@@ -2,14 +2,15 @@
 
 Greek creator hub with Videos (supplementary prompts and guides), Tools (own projects)
 and About me (portfolio). **React + TypeScript + Tailwind**, prerendered to static HTML with
-[`vite-react-ssg`](https://github.com/Daydreamer-riri/vite-react-ssg). The current migration
-moves hosting to **Vercel** and subscriber storage to **Neon PostgreSQL**.
+[`vite-react-ssg`](https://github.com/Daydreamer-riri/vite-react-ssg). Hosted on **Vercel**
+with subscriber storage in **Neon PostgreSQL**.
 
 **Live:** https://demosvibes.gr
 
-**Migration status, 9 September 2026:** infrastructure and the initial subscriber import
-are prepared; production deployment and DNS cutover are in progress. See the
-[deployment runbook](docs/DEPLOYMENT.md) for the correct account, configuration and remaining verification.
+**Migration completed, 9 September 2026:** Vercel serves the public domain, existing
+subscribers are imported, and Netlify hosting is disabled. Both current and already-open
+legacy forms save to Neon. All 37 tests and public route checks passed. See the
+[deployment runbook](docs/DEPLOYMENT.md) and [migration evidence](docs/MIGRATION_AUDIT.md).
 
 ## Commands
 
@@ -100,8 +101,9 @@ or using another browser/device can show the gate again.
 The API normalizes emails and uses the database's email primary key to prevent
 duplicates. Existing subscribers keep their original timestamp and provenance.
 The initial legacy import contained **97 rows / 93 unique emails / 4 duplicate rows**;
-the 93 unique consenting subscribers are already imported. This migration provides
-subscription storage; newsletter delivery is a separate operation.
+the final Netlify export contained **99 rows / 94 unique emails / 5 duplicate rows**.
+All 94 consenting addresses were verified in Neon. This migration provides subscription
+storage; newsletter delivery is a separate operation.
 
 ## Deploy
 
