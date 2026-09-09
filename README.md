@@ -12,12 +12,15 @@ subscribers are imported, and Netlify hosting is disabled. Both current and alre
 legacy forms save to Neon. All 37 tests and public route checks passed. See the
 [deployment runbook](docs/DEPLOYMENT.md) and [migration evidence](docs/MIGRATION_AUDIT.md).
 
-**Submission metadata update:** the metadata columns and historical backfill are complete.
+**Submission metadata update completed, 9 September 2026:** the six-field API, live
+schema and historical backfill are deployed and verified.
 All 94 archived subscriber events have verified metadata; the repeated import changed
-zero rows. The target table contains only `email`, `consent`, `created_at`, `ip`,
+zero rows. The live table contains only `email`, `consent`, `created_at`, `ip`,
 `user_agent` and `referrer`. The revised six-field implementation passed **43 tests**
-and built **28 routes**. Deployment of the revised six-field API,
-removal of the two superseded database columns, and live verification remain pending.
+and built **28 routes**. Revision `06d5d23` is in production; migration 003 removed
+the two superseded columns after the compatible API was ready. Live checks at
+**14:44:25–14:44:28 UTC** verified current/legacy saves, preserved duplicates and
+metadata handling. All 94 real records remained unchanged after exact test cleanup.
 See [subscriber metadata evidence](docs/SUBSCRIBER_METADATA_AUDIT.md).
 
 ## Commands

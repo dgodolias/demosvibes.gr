@@ -12,12 +12,15 @@ all 28 public pages and 52 referenced assets passed anonymous checks, and actual
 custom-domain subscriptions were independently confirmed in Neon. The migration is
 complete. See [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md) for evidence.
 
-**Follow-up metadata update:** the metadata columns and backfill for the 94 archived
-subscriber events are complete. A repeated import changed zero rows. The revised
+**Follow-up metadata update completed, 9 September 2026:** the six-field API and schema are deployed, and the
+backfill for all 94 archived subscriber events is complete. A repeated import changed
+zero rows. Production revision `06d5d237449131d9c85c49799ec5ec4b4ded0d75` is ready in
+deployment `dpl_5vcGs8fhgaNcGWzFwJLX4YY5FPVs`. Migration 003 ran after the compatible
+API was ready; all 94 rows and their six retained fields were unchanged. The revised
 six-field implementation passed **43 tests**, TypeScript and a production build with
-**28 routes**. The final requested table has only six fields, listed below. Deployment
-of this revised API, removal of the two superseded columns, and live
-verification remain pending; the earlier checks do not establish their completion.
+**28 routes**. Live checks at **14:44:25–14:44:28 UTC** verified durable current and
+legacy submissions, duplicate preservation, platform IP handling, optional headers
+and exact test cleanup. All 94 real records retained all six fields unchanged.
 See [SUBSCRIBER_METADATA_AUDIT.md](SUBSCRIBER_METADATA_AUDIT.md) for schema/import evidence.
 
 ## Project identity
@@ -69,8 +72,7 @@ appear in command arguments, committed files, screenshots or logs.
    failed request leaves the email available for retry and offers explicit continuation
    without another submission. An empty email makes no API request.
 
-The final `public.subscribers` table contains only these six fields; migration 003
-removes the superseded columns after deployment of the compatible API:
+The live `public.subscribers` table was verified to contain exactly these six fields:
 
 | Column | Meaning |
 | --- | --- |
@@ -125,9 +127,9 @@ or client database connection. `.env.example` documents the variable name only.
 Schema: [`001_subscribers.sql`](../db/migrations/001_subscribers.sql),
 [`002_subscriber_metadata.sql`](../db/migrations/002_subscriber_metadata.sql), and
 [`003_remove_subscriber_source.sql`](../db/migrations/003_remove_subscriber_source.sql).
-The initial schema and metadata addition are applied. Migration 003 is pending and
-must run only after the revised API is deployed; it removes the two obsolete columns
-without adding replacements. Runtime INSERT access includes the three metadata
+All three migrations are applied. Migration 003 ran after the revised API was ready
+and removed the two obsolete columns without adding replacements. For future
+restoration, preserve that deployment-before-removal order. Runtime INSERT access includes the three metadata
 columns; runtime UPDATE and DELETE remain unavailable. Schema changes, imports, exports and deletion
 requests use authorized maintenance access; runtime API credentials are separate from
 owner credentials. Keep owner connection strings in the owner's private environment,
@@ -155,6 +157,10 @@ The archived-metadata backfill is complete: **99 input rows / 94 unique addresse
 **0 inserted / 94 updated / 94 metadata verified**, with **0 conflicts** and **0 events
 skipped for a timestamp mismatch**. Repeating the import produced **0 inserted / 0
 updated / 94 verified**, with all 94 metadata records still present.
+
+After migration 003, the revised importer was run again against the final six-column
+table: **99 input rows / 94 unique addresses / 0 inserted / 0 updated / 94 verified /
+94 metadata verified**, with **0 conflicts** and **0 different-event skips**.
 
 An independent comparison confirmed **94 rows before / 94 after**, with email, consent
 and original date unchanged for every row. All 94 first-event
@@ -271,6 +277,26 @@ form-submissions API was verified readable after shutdown, with all 99 archived
 submissions intact. Prefer Neon and the private exported backup for subscriber
 maintenance. Re-enabling Netlify is a separate rollback action; normal publishing
 continues through Vercel.
+
+## Completed metadata verification
+
+The ready six-field application and migration 003 were checked together on
+**9 September 2026, 14:44:25–14:44:28 UTC**:
+
+- Modern JSON and legacy four-field form submissions returned durable `{ "ok": true }`
+  responses, independently confirmed in Neon.
+- Valid platform-derived IP was saved; spoofed forwarded headers and metadata supplied
+  in JSON were ignored. User-agent matched the submitted header. Referrer query
+  parameters were retained and its fragment removed.
+- Email case/spacing variations and duplicates across both APIs preserved the initial
+  timestamp and all metadata. Missing or invalid optional headers remained null;
+  user-agent truncation behaved as expected.
+- Exactly four generated test records were deleted, with zero remaining. All **94**
+  real records and all six retained fields were unchanged.
+
+Detailed aggregate evidence is in
+[SUBSCRIBER_METADATA_AUDIT.md](SUBSCRIBER_METADATA_AUDIT.md); row-level evidence and
+private QA artifacts remain outside the repository.
 
 The historical [redesign audit](COMPLETION_AUDIT.md) and
 [design brief](FRONTEND_DESIGN_BRIEF.md) retain their original Netlify-era statements.
