@@ -34,7 +34,7 @@ export const routes: RouteRecord[] = [
     path: '/' + r.slug,
     element: withShell(<ResourcePage resource={r} />),
   })),
-  { path: '/privacy', element: withShell(<PrivacyPage />) },
+  { path: '/privacy', element: withShell(<PrivacyPage />, { gated: false }) },
   { path: '*', element: withShell(<NotFound />) },
 ];
 

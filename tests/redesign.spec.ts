@@ -166,7 +166,7 @@ test('Contego privacy is public on a first visit and ships the real policy in pr
   await expect(page.locator('article#en h2')).toHaveCount(7);
   await expect(page.getByRole('link', { name: 'dgodolias18@gmail.com', exact: true }))
     .toHaveAttribute('href', 'mailto:dgodolias18@gmail.com');
-  await expect(page.getByText('This policy page is hosted on Netlify.', { exact: true })).toBeVisible();
+  await expect(page.getByText('This policy page is hosted on Vercel.', { exact: true })).toBeVisible();
   await page.reload();
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect(page.locator('article#en')).toBeVisible();

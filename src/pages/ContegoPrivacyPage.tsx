@@ -30,7 +30,7 @@ export default function ContegoPrivacyPage() {
 
         <section className="contego-privacy__hosting" aria-labelledby="policy-hosting">
           <h2 id="policy-hosting">Public website hosting</h2>
-          <p>This policy page is hosted on Netlify.</p>
+          <p>This policy page is hosted on Vercel.</p>
         </section>
 
         <footer className="contego-privacy__footer">

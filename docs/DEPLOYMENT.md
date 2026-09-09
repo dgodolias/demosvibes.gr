@@ -1,0 +1,202 @@
+# Vercel and Neon deployment
+
+Status recorded on **9 September 2026**: the Vercel backend is deployed and verified
+against Neon; GitHub is linked, and both apex/www DNS were verified at **14:01 UTC**.
+The final legacy export contains **94 unique consenting addresses**. Local checks
+passed (34 tests, TypeScript and production build), followed by 8 focused API tests
+and a real emitted-Node-ESM check after the runtime import fix. Live saves, duplicates,
+concurrent retries, rejected requests and browser reload persistence were verified.
+Netlify builds are stopped; its hosting stays on while the old **900-second DNS TTL**
+expires. Final deployed-commit reconciliation and Netlify hosting shutdown remain
+pending. See [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md) for evidence and remaining steps.
+
+## Project identity
+
+| Item | Configured target |
+| --- | --- |
+| GitHub source | `dgodolias/demosvibes.gr` |
+| Public domain | `demosvibes.gr` |
+| Vercel scope | `dgodolias-projects`, the owner's personal Hobby scope (called “demos” by the owner) |
+| Vercel project | `demosvibes` |
+| Vercel function region | `fra1` |
+| Neon project | `square-fog-37598870` |
+| Neon location / plan | AWS Frankfurt / Free |
+| Runtime database role | Restricted role `demosvibes_api` |
+| Runtime secret | `DATABASE_URL`, configured for Vercel Production, server-only |
+
+The workstation's default Vercel CLI authentication belongs to the unrelated
+`imopsch` / `evs` account. **Every Vercel command must include both** the private
+global configuration and the intended scope. From this checkout:
+
+```powershell
+vercel whoami --global-config "C:\Users\demosgod\.codex\private\demosvibes-migration\vercel" --scope dgodolias-projects
+vercel link --project demosvibes --global-config "C:\Users\demosgod\.codex\private\demosvibes-migration\vercel" --scope dgodolias-projects
+vercel env ls production --global-config "C:\Users\demosgod\.codex\private\demosvibes-migration\vercel" --scope dgodolias-projects
+```
+
+Check the reported identity/project before making deployment or environment changes.
+The local `.vercel/` link is ignored by Git. Owner credentials and the CLI auth
+configuration stay outside the repository; connection strings and tokens must not
+appear in command arguments, committed files, screenshots or logs.
+
+## Request and data flow
+
+1. `npm run build` uses `vite-react-ssg` to produce static pages in `dist/` and generates
+   the sitemap. Vercel serves these pages and applies canonical trailing slashes.
+2. The optional email gate sends `POST /api/subscribe` as JSON:
+   `{ "email": "…", "consent": true, "honeypot": "", "sourcePath": "/…/" }`.
+3. `api/subscribe.ts` delegates to `server/subscribe.ts`. The handler validates method,
+   exact allowed origin, JSON content type, body size, email, consent and honeypot.
+   The page path is stored without query parameters or fragments.
+4. `server/subscribers.ts` writes through Neon using the server's restricted
+   `DATABASE_URL`. An email is trimmed/lowercased, inserted once, and verified before
+   success is returned. A duplicate returns the same success response after verifying
+   the existing consenting row; its original timestamp/source are retained.
+5. The client accepts only a successful JSON `{ "ok": true }` acknowledgement. A
+   failed request leaves the email available for retry and offers explicit continuation
+   without another submission. An empty email makes no API request.
+
+The database table is `public.subscribers`:
+
+| Column | Meaning |
+| --- | --- |
+| `email` | Normalized address; primary key prevents duplicates |
+| `consent` | Must be `true` |
+| `created_at` | Stored timestamp; legacy imports retain their recorded date |
+| `source` | Application writes `website`; legacy importer writes `netlify-import` |
+| `source_path` | Optional page pathname, excluding query parameters/fragments |
+
+The subscription application does not collect or store IP addresses or user-agent
+strings in this table. Error logging uses generic identifiers, excluding email values
+and database connection details. This does not describe providers' separate hosting logs.
+
+The browser stores only the accepted-entry preference `dv_gate_accepted_v1`, not the
+email. It is kept after confirmed saving, explicit skipping or empty-email entry.
+Returning visits in the same browser and domain keep this preference. A different
+browser/device or cleared site storage can show the gate again; database deduplication
+still applies. Changing hosting providers does not itself transfer a preference to a
+different hostname.
+
+This project stores subscriptions. It does not provision a newsletter-sending service.
+The public policy explains how to request access or deletion by contacting the owner.
+
+## Environment and database maintenance
+
+The production API already has a `DATABASE_URL` for the restricted `demosvibes_api`
+role. It must remain server-only: no `VITE_` prefix, browser bundle, public config file
+or client database connection. `.env.example` documents the variable name only.
+
+Schema: [`db/migrations/001_subscribers.sql`](../db/migrations/001_subscribers.sql).
+The initial table is already provisioned. Schema changes, imports, exports and deletion
+requests use authorized maintenance access; runtime API credentials are separate from
+owner credentials. Keep owner connection strings in the owner's private environment,
+outside the checkout. Review role privileges when changing the persistence queries.
+
+Development and Preview environments require their own deliberately configured
+database connection. A Production variable does not imply that previews have one.
+Use an isolated development database/branch when testing writes outside Production.
+
+For local API work, `SUBSCRIBE_LOCAL_ORIGINS` can list exact loopback origins, such as
+`http://localhost:3000`, in a non-production environment. Production permits the real
+site origins, the owned stable alias `https://demosvibes.vercel.app`, and the deployment
+hosts supplied by Vercel's environment variables.
+Arbitrary `vercel.app` origins and untrusted request Host headers are not allowed.
+
+## Legacy import
+
+The initial consenting export was imported as **97 input rows, 93 unique email
+addresses, 4 duplicate rows**. The final cutover export contained **99 input rows,
+94 unique addresses, 5 duplicate rows**; its delta import added **1 new unique
+address**. Preserve both exports privately. Subsequent website subscriptions can
+increase the database total beyond these import counts.
+
+[`scripts/import-subscribers.mjs`](../scripts/import-subscribers.mjs) is a maintenance
+tool. Its input is a JSON array on stdin, converted from the private export:
+
+```json
+[
+  { "email": "person@example.com", "consent": true, "created_at": "2026-09-09T10:00:00Z" }
+]
+```
+
+Provide the owner database connection through the process environment as
+`DATABASE_URL`; the script does not accept it on the command line. With that private
+environment already prepared, the invocation is:
+
+```powershell
+Get-Content -Raw -LiteralPath 'C:\path\outside-the-repository\subscribers.json' | node scripts/import-subscribers.mjs
+```
+
+The script validates rows, normalizes addresses, retains the earliest timestamp among
+duplicates in that input, and inserts with `ON CONFLICT DO NOTHING`. Existing database
+rows are preserved. It then verifies that all unique input addresses have consenting
+rows and prints aggregate counts only. Repeated runs are idempotent. Imports are
+separate from normal deployments; subscriber data never belongs in the build output.
+
+## Build, test and deploy
+
+Node.js **22** is specified in `package.json`. [`vercel.json`](../vercel.json) configures
+`npm ci`, `npm run build`, output `dist`, trailing slashes, Frankfurt functions and a
+15-second function duration limit.
+
+```powershell
+npm ci
+npm run typecheck
+npm run build
+npm run test:e2e
+```
+
+The Playwright suite includes API contract tests and browser flows for successful
+saving, retry, explicit skip, repeated email acknowledgement and browser persistence.
+Browser subscription requests are mocked; a passing local suite does not prove a live
+Vercel function can write to Neon. Vite dev/preview does not serve the API.
+
+**Node ESM imports:** relative imports in `api/` and `server/` must include the emitted
+`.js` extension, for example `../server/subscribe.js` inside `api/subscribe.ts`.
+Extensionless paths pass the frontend's bundler-resolution typecheck but fail at
+Vercel runtime with `ERR_MODULE_NOT_FOUND`. After changing backend imports, compile
+the API/server files as `NodeNext`, load the emitted API module in Node, and exercise
+its handler before deployment. The migration's emitted-module smoke check returned
+the expected GET 405 without database access.
+
+Tests start a dedicated preview server. Set `PREVIEW_PORT` if its default 4173 is busy.
+Use canonical nested paths (`/tools/`, `/about/`, `/privacy/`) for static hydration checks;
+Vite preview can return home HTML for extensionless paths without a trailing slash.
+
+After the intended project is linked, the production CLI invocation is:
+
+```powershell
+vercel deploy --prod --global-config "C:\Users\demosgod\.codex\private\demosvibes-migration\vercel" --scope dgodolias-projects
+```
+
+The Git integration is linked to `dgodolias/demosvibes.gr`. Confirm the intended
+production branch when changing project settings. Record the final deployed commit
+and deployment URL; migration CLI deployments preceded the final source commit.
+Build success alone is not DNS-cutover evidence.
+
+## Cutover status and remaining verification
+
+- [x] Ready Vercel backend writes using the restricted runtime role. Independent live
+  checks confirmed committed inserts, duplicate metadata preservation, six concurrent
+  retries producing one row, expected error responses and exact synthetic-row cleanup.
+- [x] Real browser submission and reload persistence were verified, with independent
+  database confirmation before deleting that exact synthetic row.
+- [x] Final legacy delta was imported: 99 export rows, 94 unique consenting addresses.
+- [x] Vercel verified apex/www DNS at 14:01 UTC: apex A records `216.198.79.1` and
+  `64.29.17.1`; www CNAME `fc0a6dc095e1bb26.vercel-dns-017.com`. www redirects to apex
+  with HTTP 308. Netlify builds are stopped.
+- [ ] Reconcile the final committed migration revision with a matching ready
+  production deployment; record both identifiers.
+- [ ] Record final anonymous HTTPS checks on the custom domain at `/`, `/tools/`,
+  `/about/`, an existing resource, `/privacy/` and `/tools/contego/privacy/`. Confirm
+  both policies are ungated and the subscription API works on the custom domain.
+- [ ] After the previous 900-second DNS TTL has expired and public routing is verified,
+  disable Netlify hosting and record its final state. Hosting currently remains on.
+- [ ] Complete the remaining evidence in [MIGRATION_AUDIT.md](MIGRATION_AUDIT.md)
+  before marking the migration complete.
+
+The historical [redesign audit](COMPLETION_AUDIT.md) and
+[design brief](FRONTEND_DESIGN_BRIEF.md) retain their original Netlify-era statements.
+For current hosting, storage and maintenance, use this document. The Contego canonical
+article in `src/data/contegoPrivacy.ts` stays byte-for-byte intact; only its separate
+hosting note identifies Vercel.

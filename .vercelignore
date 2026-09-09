@@ -1,0 +1,6 @@
+.env*
+.migration-private/
+graphify-out/
+test-results/
+playwright-report/
+.shots/
