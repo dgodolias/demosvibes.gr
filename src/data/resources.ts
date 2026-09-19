@@ -21,6 +21,167 @@ const officialThumb = {
 
 export const resources: Resource[] = [
   {
+    slug: 'personal-website',
+    pageKind: 'guide',
+    date: '2026-09-19',
+    card: {
+      title: 'Προσωπικό website αντί για άψυχο PDF: από το domain μέχρι το live site',
+      desc: 'Μέρα 2 της σειράς «Θέλω να ξεχωρίσω στην αγορά εργασίας». Domain από το papaki, VS Code + AI extension, GitHub Pages και σύνδεση με το δικό σου όνομα. Βήμα βήμα, χωρίς να ξέρεις κώδικα.',
+      metaLine: '19 Σεπ 2026 · Οδηγός',
+      cardTags: ['Προσωπικό site', 'Domain', 'VS Code + AI', 'GitHub Pages'],
+      searchTags: ['website', 'site', 'ιστοσελίδα', 'ιστοσελιδα', 'προσωπικό', 'προσωπικο', 'portfolio', 'domain', 'papaki', 'vscode', 'vs code', 'chatgpt', 'codex', 'claude', 'claude code', 'github', 'github pages', 'cv', 'βιογραφικό', 'βιογραφικο', 'αγορά εργασίας', 'αγορα εργασιας', 'ξεχωρίσω', 'ξεχωρισω', 'καριέρα', 'καριερα', 'δουλειά', 'δουλεια', 'φοιτητές', 'φοιτητες'],
+      filters: ['guide'],
+      status: 'active',
+    },
+    seoTitle: 'Προσωπικό website με το όνομά σου: domain, VS Code + AI, GitHub Pages (οδηγός)',
+    seoDescription: 'Πλήρης οδηγός για να φτιάξεις προσωπικό website που ξεχωρίζει στο CV σου: αγορά domain στο papaki, εγκατάσταση VS Code και ChatGPT ή Claude extension, δημιουργία σελίδας με AI, ανέβασμα σε GitHub Pages και σύνδεση με το domain.',
+    crumb: { label: 'videos', to: '/' },
+    heading: 'Φτιάξε προσωπικό website με το όνομά σου, χωρίς να ξέρεις κώδικα',
+    introHtml: 'Μέχρι πρόσφατα έδειχνα την εμπειρία μου με ένα άψυχο PDF. Ένα <strong>προσωπικό website</strong> με το όνομά σου λέει την ίδια ιστορία με τον δικό σου τρόπο, και μπαίνει <strong>πάνω πάνω στο CV</strong> ώστε όποιος το διαβάζει να σε μάθει πραγματικά. Αυτή είναι η <strong>Μέρα 2</strong> της σειράς «Θέλω να ξεχωρίσω στην αγορά εργασίας». Παρακάτω έχεις όλη τη διαδρομή: domain, VS Code, AI extension, GitHub και σύνδεση με το domain σου.',
+    blocks: [
+      {
+        kind: 'prose',
+        title: 'Τι θα χρειαστείς',
+        html: '<ul><li><strong>Ένα domain με το όνομά σου</strong>, π.χ. <code>onomaepitheto.gr</code>. Είναι το μόνο που κοστίζει: λίγα ευρώ τον χρόνο.</li><li><strong>Έναν υπολογιστή</strong> με Windows ή Mac για να εγκαταστήσεις το VS Code.</li><li><strong>Λογαριασμό ChatGPT ή Claude</strong>, ανάλογα με ποιο AI χρησιμοποιείς ήδη.</li><li><strong>Λογαριασμό GitHub</strong> (δωρεάν). Αν δεν έχεις, τον φτιάχνεις στο βήμα 5.</li><li>Περίπου <strong>1 με 2 ώρες</strong> την πρώτη φορά. Οι επόμενες αλλαγές παίρνουν λεπτά.</li></ul><p>Το papaki δεν είναι χορηγός. Είναι απλώς ο καταχωρητής που χρησιμοποιώ.</p>',
+      },
+      {
+        kind: 'steps',
+        title: 'Βήμα 1: Αγόρασε domain με το όνομά σου στο papaki',
+        items: [
+          'Άνοιξε το <a href="https://www.papaki.gr/" target="_blank" rel="noopener noreferrer">papaki.gr</a> και στο πεδίο αναζήτησης γράψε το όνομά σου χωρίς κενά και τόνους, π.χ. <code>giannispapadopoulos</code>. Δοκίμασε <strong>.gr</strong> πρώτα· αν είναι πιασμένο, δες <strong>.com</strong>, <strong>.eu</strong> ή έναν συνδυασμό όπως <code>giannis-papadopoulos.gr</code>.',
+          'Πρόσθεσε το domain στο καλάθι και <strong>μην προσθέσεις hosting, site builder ή email πακέτο</strong>. Το site θα φιλοξενηθεί δωρεάν στο GitHub. Χρειάζεσαι μόνο το domain. Σημείωση: τα .gr καταχωρούνται για <strong>τουλάχιστον 2 χρόνια</strong>, οπότε η τιμή που βλέπεις είναι διετής.',
+          'Φτιάξε λογαριασμό papaki με τα πραγματικά σου στοιχεία (ο κάτοχος του domain πρέπει να είσαι εσύ) και ολοκλήρωσε την πληρωμή. Το domain ενεργοποιείται σε λίγα λεπτά. Θα το χρειαστείς ξανά στο βήμα 7.',
+        ],
+      },
+      {
+        kind: 'steps',
+        title: 'Βήμα 2: Κατέβασε και εγκατέστησε το VS Code',
+        items: [
+          'Πήγαινε στο <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener noreferrer">code.visualstudio.com/download</a> και πάτησε το κουμπί για το σύστημά σου: <strong>Windows</strong> (User Installer, 64 bit) ή <strong>Mac</strong> (Apple Silicon για νέα Mac, Intel για παλιότερα).',
+          'Windows: τρέξε το αρχείο που κατέβηκε, δέξου την άδεια και άφησε τις προεπιλογές. Στην οθόνη «Select Additional Tasks» τσέκαρε <strong>Add to PATH</strong> και <strong>Add "Open with Code" action</strong>. Πάτησε Install και μετά Finish.',
+          'Mac: άνοιξε το .zip, σύρε το <strong>Visual Studio Code</strong> στον φάκελο <strong>Applications</strong> και άνοιξέ το από εκεί.',
+          'Άνοιξε το VS Code. Στην αριστερή στήλη θα δεις εικονίδια: Explorer (αρχεία), Search, Source Control (Git) και <strong>Extensions</strong> (τέσσερα τετραγωνάκια). Αυτό το τελευταίο το χρειάζεσαι αμέσως μετά.',
+        ],
+      },
+      {
+        kind: 'steps',
+        title: 'Βήμα 3: Εγκατέστησε το AI extension (ChatGPT ή Claude)',
+        items: [
+          'Πάτησε το εικονίδιο <strong>Extensions</strong> στην αριστερή στήλη ή <code>Ctrl+Shift+X</code> (Mac: <code>Cmd+Shift+X</code>).',
+          'Αν χρησιμοποιείς <strong>ChatGPT</strong>: γράψε <strong>Codex</strong> στην αναζήτηση και εγκατέστησε το <a href="https://marketplace.visualstudio.com/items?itemName=openai.chatgpt" target="_blank" rel="noopener noreferrer">Codex – OpenAI’s coding agent</a> από την OpenAI. Μετά την εγκατάσταση εμφανίζεται νέο εικονίδιο στην αριστερή στήλη· πάτησέ το και κάνε <strong>Sign in with ChatGPT</strong> με τον λογαριασμό σου.',
+          'Αν χρησιμοποιείς <strong>Claude</strong>: γράψε <strong>Claude Code</strong> και εγκατέστησε το <a href="https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code" target="_blank" rel="noopener noreferrer">Claude Code</a> από την Anthropic. Πάτησε το εικονίδιό του και συνδέσου με τον λογαριασμό Claude σου (χρειάζεται συνδρομή Pro ή Max, ή API credits).',
+          'Και στα δύο, ο διαθέσιμος όγκος χρήσης εξαρτάται από το πλάνο σου. Για ένα προσωπικό site μιας σελίδας φτάνει άνετα ακόμα και το μικρότερο πλάνο.',
+        ],
+      },
+      {
+        kind: 'steps',
+        title: 'Βήμα 4: Πες στο AI να φτιάξει τη σελίδα σου',
+        items: [
+          'Φτιάξε έναν κενό φάκελο στον υπολογιστή σου, π.χ. <code>my-website</code>. Στο VS Code πάτησε <strong>File → Open Folder</strong> και διάλεξέ τον. Αν ρωτήσει αν εμπιστεύεσαι τον φάκελο, πάτησε <strong>Yes, I trust the authors</strong>.',
+          'Άνοιξε το panel του AI (το εικονίδιο του Codex ή του Claude Code στην αριστερή στήλη). Βεβαιώσου ότι δουλεύει στον φάκελο που άνοιξες: θα το γράφει στο πάνω μέρος του panel.',
+          'Επικόλλησε το prompt που ακολουθεί, αφού συμπληρώσεις τα στοιχεία σου στις αγκύλες. Όσο πιο συγκεκριμένος είσαι στα «Ποιος είμαι» και «Στυλ», τόσο πιο δικό σου θα βγει το site.',
+          'Το AI θα δημιουργήσει τα αρχεία μέσα στον φάκελο. Αν ζητήσει άδεια για να γράψει αρχεία, δώσε την. Όταν τελειώσει, θα δεις στον Explorer ένα <code>index.html</code>.',
+          'Δες το αποτέλεσμα: κάνε δεξί κλικ στο <code>index.html</code> → <strong>Reveal in File Explorer</strong> (Mac: Reveal in Finder) και άνοιξέ το με διπλό κλικ στον browser. Εναλλακτικά, εγκατέστησε το extension <strong>Live Server</strong> και πάτησε <strong>Go Live</strong> κάτω δεξιά για να βλέπεις ζωντανά κάθε αλλαγή.',
+          'Διόρθωσε με απλές οδηγίες στο ίδιο chat: «κάνε το φόντο πιο σκούρο», «βάλε τα projects πριν από την εμπειρία», «μεγάλωσε τη φωτογραφία», «γράψε το κείμενο του About πιο σύντομο». Επανέλαβε μέχρι να σε εκφράζει. Ζήτησέ του επίσης να ελέγξει πώς φαίνεται σε κινητό.',
+          'Αν θέλεις φωτογραφία, βάλε ένα αρχείο <code>photo.jpg</code> μέσα στον φάκελο και πες στο AI «χρησιμοποίησε το photo.jpg στην ενότητα About». Το ίδιο για το PDF του CV σου: <code>cv.pdf</code> στον φάκελο και «βάλε κουμπί λήψης του cv.pdf».',
+        ],
+      },
+      {
+        kind: 'prompt',
+        label: 'Prompt για το AI extension (συμπλήρωσε τις αγκύλες)',
+        text: `Θέλω να φτιάξεις το προσωπικό μου website σε αυτόν τον φάκελο.
+
+ΠΟΙΟΣ ΕΙΜΑΙ
+- Όνομα: [Όνομα Επίθετο]
+- Τίτλος / ιδιότητα: [π.χ. Φοιτητής Πληροφορικής ΟΠΑ, 4ο έτος]
+- Μια πρόταση για μένα: [π.χ. Με ενδιαφέρει το data engineering και φτιάχνω μικρά εργαλεία που λύνουν πραγματικά προβλήματα]
+- Πόλη: [Αθήνα]
+
+ΤΙ ΘΕΛΩ ΝΑ ΔΕΙΧΝΕΙ (με αυτή τη σειρά)
+1. Hero: το όνομά μου, ο τίτλος μου, η πρόταση για μένα και δύο κουμπιά: "Δες τα projects" και "Κατέβασε το CV" (link σε cv.pdf).
+2. About: 3-4 προτάσεις για το ποιος είμαι και τι ψάχνω. [Γράψε εδώ μερικές πληροφορίες με δικά σου λόγια]
+3. Projects: [Project 1: τι είναι, τι έκανα εγώ, link] / [Project 2: ...] / [Project 3: ...]
+4. Εμπειρία και σπουδές: [Ρόλος, εταιρεία/σχολή, χρονολογίες, 1-2 γραμμές τι έκανα]
+5. Δεξιότητες: [π.χ. Python, SQL, Excel, Figma, αγγλικά C2]
+6. Επικοινωνία: email [email], LinkedIn [url], GitHub [url]
+
+ΣΤΥΛ
+- Ύφος: [π.χ. καθαρό και μινιμαλιστικό / ζεστό και φιλικό / σκούρο και τεχνολογικό]
+- Χρώματα: [π.χ. λευκό φόντο, ένα έντονο χρώμα για τα κουμπιά: βαθύ πράσινο]
+- Γλώσσα κειμένων: [Ελληνικά / Αγγλικά]
+
+ΤΕΧΝΙΚΑ (μην τα αλλάξεις)
+- Ένα μόνο αρχείο index.html με το CSS μέσα του και χωρίς JavaScript frameworks, χωρίς build tools, χωρίς npm. Πρέπει να ανοίγει με διπλό κλικ και να ανεβαίνει ως έχει στο GitHub Pages.
+- Πλήρως responsive: να φαίνεται σωστά σε κινητό και σε desktop.
+- Γραμματοσειρές από Google Fonts, καμία άλλη εξωτερική εξάρτηση.
+- Σωστά <title> και <meta name="description"> με το όνομά μου, ώστε να με βρίσκει η Google.
+- Αν βάλω αρχεία photo.jpg ή cv.pdf στον φάκελο, να τα χρησιμοποιείς με σχετικά links.
+- Μη βάλεις ψεύτικα στοιχεία ή placeholder κείμενα: όπου δεν σου έχω δώσει πληροφορία, ρώτησέ με πριν το γράψεις.
+
+Όταν τελειώσεις, πες μου με δύο προτάσεις τι έφτιαξες και πώς να το ανοίξω.`,
+      },
+      {
+        kind: 'steps',
+        title: 'Βήμα 5: Ανέβασε το site σε GitHub repo',
+        items: [
+          'Αν δεν έχεις λογαριασμό, φτιάξε στο <a href="https://github.com/signup" target="_blank" rel="noopener noreferrer">github.com/signup</a>. Διάλεξε <strong>username</strong> που θα σε εκπροσωπεί επαγγελματικά, π.χ. <code>gpapadopoulos</code>. Αν έχεις ήδη, τα βήματα δημιουργίας repo τα είδες αναλυτικά και στο <strong>προηγούμενο βίντεο της σειράς (Μέρα 1)</strong>.',
+          'Πάτησε το <strong>+</strong> πάνω δεξιά → <strong>New repository</strong>. Στο Repository name γράψε ακριβώς <code>USERNAME.github.io</code> (με το δικό σου username, π.χ. <code>gpapadopoulos.github.io</code>). Αυτό το συγκεκριμένο όνομα κάνει το GitHub να σερβίρει το site αυτόματα. Άφησέ το <strong>Public</strong>, μην τσεκάρεις τίποτα άλλο, πάτησε <strong>Create repository</strong>.',
+          'Ο ευκολότερος τρόπος για την πρώτη φορά: στη σελίδα του νέου repo πάτησε <strong>uploading an existing file</strong>, σύρε μέσα το <code>index.html</code> (και τα <code>photo.jpg</code>, <code>cv.pdf</code> αν τα έχεις), γράψε στο κάτω πεδίο «first version» και πάτησε <strong>Commit changes</strong>.',
+          'Ο πιο σωστός τρόπος, που θα χρησιμοποιείς και για κάθε επόμενη αλλαγή: στο VS Code πάτησε το εικονίδιο <strong>Source Control</strong> → <strong>Publish to GitHub</strong> → διάλεξε <strong>public repository</strong> και δώσε το όνομα <code>USERNAME.github.io</code>. Την πρώτη φορά θα σου ζητήσει να συνδεθείς με το GitHub μέσα από τον browser. Μετά, κάθε αλλαγή είναι: γράψε ένα μήνυμα → <strong>Commit</strong> → <strong>Sync Changes</strong>.',
+          'Επιβεβαίωσε ότι το <code>index.html</code> βρίσκεται <strong>στη ρίζα του repo</strong>, όχι μέσα σε υποφάκελο. Αν είναι μέσα σε φάκελο, το GitHub θα δείχνει κενή σελίδα ή το README.',
+        ],
+      },
+      {
+        kind: 'steps',
+        title: 'Βήμα 6: Ενεργοποίησε το GitHub Pages',
+        items: [
+          'Στο repo πάτησε <strong>Settings</strong> (πάνω δεξιά στις καρτέλες) και στο αριστερό μενού <strong>Pages</strong>.',
+          'Στο <strong>Build and deployment → Source</strong> διάλεξε <strong>Deploy from a branch</strong>. Στο <strong>Branch</strong> διάλεξε <code>main</code> και φάκελο <code>/ (root)</code>. Πάτησε <strong>Save</strong>.',
+          'Περίμενε 1 με 2 λεπτά και κάνε ανανέωση στη σελίδα Pages. Θα δεις «Your site is live at <code>https://USERNAME.github.io</code>». Άνοιξέ το: το site σου είναι ήδη online, σε προσωρινή διεύθυνση.',
+          'Από εδώ και πέρα, κάθε <strong>Sync Changes</strong> από το VS Code ενημερώνει το live site μέσα σε περίπου ένα λεπτό. Αν δεν βλέπεις την αλλαγή, πάτησε <code>Ctrl+F5</code> για να καθαρίσει η cache του browser.',
+        ],
+      },
+      {
+        kind: 'steps',
+        title: 'Βήμα 7: Σύνδεσε το domain σου με το site',
+        items: [
+          'Στο GitHub, στην ίδια σελίδα <strong>Settings → Pages</strong>, στο πεδίο <strong>Custom domain</strong> γράψε το domain σου, π.χ. <code>giannispapadopoulos.gr</code>, και πάτησε <strong>Save</strong>. Το GitHub θα προσθέσει αυτόματα ένα αρχείο <code>CNAME</code> στο repo· μην το σβήσεις. Θα δείχνει προσωρινά «DNS check in progress» ή σφάλμα, μέχρι να ολοκληρώσεις τα επόμενα βήματα.',
+          'Στο papaki, μπες στον λογαριασμό σου → <strong>Τα Domain μου</strong> → πάτησε το domain → <strong>Διαχείριση DNS</strong> (DNS Records). Αν δεν βλέπεις την επιλογή, βεβαιώσου ότι το domain χρησιμοποιεί τους nameservers του papaki (είναι η προεπιλογή).',
+          'Πρόσθεσε <strong>4 εγγραφές τύπου A</strong> για το γυμνό domain (Host: <code>@</code> ή κενό), μία για κάθε διεύθυνση του GitHub Pages: <code>185.199.108.153</code>, <code>185.199.109.153</code>, <code>185.199.110.153</code>, <code>185.199.111.153</code>. Αν υπάρχει ήδη εγγραφή A στο <code>@</code> που δείχνει σε parking page του papaki, διέγραψέ την.',
+          'Πρόσθεσε <strong>1 εγγραφή τύπου CNAME</strong> με Host <code>www</code> και τιμή <code>USERNAME.github.io</code> (με τελεία στο τέλος αν το πεδίο το ζητά). Έτσι δουλεύει και το <code>www.onomasou.gr</code>. Αποθήκευσε.',
+          'Περίμενε. Οι αλλαγές DNS συνήθως περνούν σε 10 με 60 λεπτά, σπάνια μέχρι 24 ώρες. Επέστρεψε στο GitHub → Settings → Pages και πάτησε <strong>Check again</strong> μέχρι να γίνει πράσινο το «DNS check successful».',
+          'Μόλις γίνει πράσινο, τσέκαρε το <strong>Enforce HTTPS</strong>. Το GitHub εκδίδει δωρεάν πιστοποιητικό μέσα σε λίγα λεπτά. Άνοιξε το <code>https://onomasou.gr</code> από κινητό και υπολογιστή: αυτό είναι το site που θα βάλεις στο CV σου.',
+          'Προαιρετικό αλλά συνιστάται: στο GitHub <strong>Settings → Pages</strong> του <em>προφίλ</em> σου (Your profile → Settings → Pages) πάτησε <strong>Add a domain</strong> και πρόσθεσε την εγγραφή TXT που σου δίνει στο DNS του papaki. Έτσι κανείς άλλος δεν μπορεί να «κλέψει» το domain σου σε δικό του GitHub Pages.',
+        ],
+      },
+      {
+        kind: 'steps',
+        title: 'Βήμα 8: Βάλ’ το στο CV και παντού',
+        items: [
+          'Στο CV σου, <strong>πάνω πάνω</strong> δίπλα στο email και το τηλέφωνο, γράψε καθαρά το domain: <code>giannispapadopoulos.gr</code>. Στο PDF κάνε το κλικαμπλ link. Το CV μένει ως έχει· το site είναι <strong>συμπληρωματικό</strong> και δείχνει ό,τι δεν χωράει σε μία σελίδα.',
+          'Πρόσθεσέ το στο LinkedIn (Contact info → Website), στο GitHub profile (Edit profile → Website), στο bio του Instagram/TikTok αν είναι επαγγελματικά, και στην υπογραφή του email σου.',
+          'Κράτα το ζωντανό: κάθε νέο project, σεμινάριο ή δουλειά μπαίνει στο site την ίδια μέρα, με ένα «Sync Changes». Ένα site που ενημερώνεται λέει περισσότερα από ένα PDF που ανανεώνεται μία φορά τον χρόνο.',
+        ],
+      },
+      {
+        kind: 'prose',
+        title: 'Τι να βάλεις για να ξεχωρίσεις πραγματικά',
+        html: '<ul><li><strong>Πραγματικά projects με λινκ</strong>, ακόμα και μικρά ή ακαδημαϊκά. Πες τι πρόβλημα έλυσες, τι έκανες εσύ, τι έμαθες. Ένα project με 3 προτάσεις και screenshot αξίζει περισσότερο από 10 buzzwords.</li><li><strong>Μια πρόταση για το τι ψάχνεις</strong>, π.χ. «Ψάχνω πρακτική σε data analytics για το καλοκαίρι του 2027». Ο recruiter δεν θέλει να μαντέψει.</li><li><strong>Δική σου φωνή.</strong> Το PDF έχει κανόνες· το site όχι. Γράψε όπως μιλάς. Αυτό είναι που σε κάνει άνθρωπο και όχι λίστα.</li><li><strong>Πραγματική φωτογραφία</strong>, καθαρή, με φως. Όχι AI avatar.</li><li><strong>Λίγο και καθαρό.</strong> Μία σελίδα που διαβάζεται σε 60 δευτερόλεπτα. Λεπτομέρειες κρατάς στο PDF που κατεβαίνει με ένα κλικ.</li></ul>',
+      },
+      {
+        kind: 'prose',
+        title: 'Συχνά προβλήματα',
+        html: '<ul><li><strong>Το site δείχνει 404 ή το README.</strong> Το <code>index.html</code> δεν είναι στη ρίζα του repo, ή το repo δεν λέγεται ακριβώς <code>USERNAME.github.io</code>. Διόρθωσε το ένα από τα δύο και περίμενε 1 λεπτό.</li><li><strong>«Domain does not resolve to the GitHub Pages server».</strong> Οι εγγραφές DNS δεν έχουν περάσει ακόμα ή έχουν λάθος. Έλεγξε ότι έβαλες και τις 4 A εγγραφές στο <code>@</code> και ότι δεν έμεινε παλιά εγγραφή A. Πάτησε Check again μετά από 15 λεπτά.</li><li><strong>Το Enforce HTTPS είναι γκρι.</strong> Θέλει πρώτα πράσινο DNS check. Μερικές φορές χρειάζεται να αφαιρέσεις και να ξαναβάλεις το Custom domain για να ξεκινήσει η έκδοση πιστοποιητικού.</li><li><strong>Δουλεύει το <code>onomasou.gr</code> αλλά όχι το <code>www</code>.</strong> Λείπει το CNAME <code>www → USERNAME.github.io</code> στο papaki.</li><li><strong>Έκανα αλλαγή στο VS Code αλλά το site δεν άλλαξε.</strong> Δεν έγινε Commit + Sync Changes, ή βλέπεις cache: <code>Ctrl+F5</code>.</li><li><strong>Το AI έγραψε ψεύτικα στοιχεία.</strong> Πες του «σβήσε ό,τι δεν σου έδωσα εγώ και ρώτα με». Ποτέ μη δημοσιεύσεις κείμενο που δεν έχεις διαβάσει.</li></ul>',
+      },
+      {
+        kind: 'prose',
+        title: 'Επίσημες πηγές',
+        html: '<p>Έλεγχος: <strong>19 Σεπτεμβρίου 2026</strong>. Οι διευθύνσεις IP του GitHub Pages και τα βήματα του custom domain προέρχονται από την επίσημη τεκμηρίωση.</p><ul><li><a href="https://code.visualstudio.com/download" target="_blank" rel="noopener noreferrer">VS Code: λήψη για Windows και Mac</a></li><li><a href="https://marketplace.visualstudio.com/items?itemName=openai.chatgpt" target="_blank" rel="noopener noreferrer">Codex extension για VS Code (OpenAI / ChatGPT)</a></li><li><a href="https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code" target="_blank" rel="noopener noreferrer">Claude Code extension για VS Code (Anthropic)</a></li><li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site" target="_blank" rel="noopener noreferrer">GitHub Docs: δημιουργία GitHub Pages site</a></li><li><a href="https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener noreferrer">GitHub Docs: custom domain, A records και CNAME</a></li><li><a href="https://www.papaki.gr/" target="_blank" rel="noopener noreferrer">papaki: αναζήτηση και αγορά domain</a> (δεν είναι χορηγός)</li></ul>',
+      },
+    ],
+    citation: 'https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site',
+  },
+  {
     slug: 'harvard-sql',
     pageKind: 'guide',
     date: '2026-09-05',

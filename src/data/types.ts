@@ -53,7 +53,8 @@ export interface ResourceCardData {
   cardTags: string[];
   searchTags: string[];
   filters: FilterTag[];
-  thumb: Thumb;
+  /** Omit for a text-only card (no thumbnail asset). */
+  thumb?: Thumb;
   status?: 'active' | 'inactive' | 'scheduled';
   visibleAfter?: string;
   featured?: boolean;

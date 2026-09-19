@@ -75,6 +75,7 @@ export function articleLd(r: Resource) {
 
 /** Per-page Open Graph image (falls back to the site default). */
 export function ogImageFor(r?: Resource): string {
-  if (r) return `${site.url}/og/${r.slug.replace(/\//g, '_')}.jpg`;
+  // Pages without a thumbnail asset have no generated OG card either.
+  if (r && r.card?.thumb) return `${site.url}/og/${r.slug.replace(/\//g, '_')}.jpg`;
   return site.ogImage;
 }
