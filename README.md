@@ -85,11 +85,13 @@ src/
   components/   shared navigation, resource cards, local/global search, previews
   pages/        Videos, Tools, About, resources and public privacy policies
   gate/         GateContext (localStorage), EmailGate, subscribe (JSON API client)
+  disclaimer/   ProtectedContent (scroll-to-accept dialog), unlock (JSON API client)
   lib/          ranked search, release rules, search state and SEO helpers
   routes.tsx    flat routes generated from resources
-api/            subscribe.ts (Vercel Node function)
-server/         subscription validation, allowed origins and Neon persistence
-db/migrations/  subscriber schema and metadata migrations
+api/            subscribe.ts, disclaimer.ts (Vercel Node functions)
+server/         subscription/disclaimer validation, allowed origins, Neon persistence,
+                protected/ (server-only article bodies)
+db/migrations/  subscriber schema, metadata and disclaimer-acceptance migrations
 public/         assets/, thumbs/, og/, robots.txt, llms.txt
 scripts/        SEO/images/screenshots, import-subscribers.mjs (private input on stdin)
 vercel.json     static build, canonical trailing slashes and API runtime configuration
@@ -126,6 +128,19 @@ The initial legacy import contained **97 rows / 93 unique emails / 4 duplicate r
 the final Netlify export contained **99 rows / 94 unique emails / 5 duplicate rows**.
 All 94 consenting addresses were verified in Neon. This migration provides subscription
 storage; newsletter delivery is a separate operation.
+
+## Protected guides (disclaimer gate)
+
+A resource block `{ kind: 'protected', disclaimer: '<id>' }` keeps an article body out
+of the prerendered HTML, the JS bundle and search. The visitor must scroll the
+disclaimer from [`src/data/disclaimers.ts`](src/data/disclaimers.ts) to its end and
+accept it; `POST /api/disclaimer` then stores the acceptance in Neon
+(`public.disclaimer_acceptances`: disclaimer, version, time, IP, user-agent, referrer)
+and only then returns the body from `server/protected/`. The browser keeps the returned
+acceptance id in `dv_disclaimers_v1`; later visits send it back, and the server confirms
+it before returning the body again. Acceptances are not linked to subscriber emails.
+Change a disclaimer's `version` whenever its text changes: older acceptances stop
+unlocking and readers accept the new text. The Kickbacks.ai guide is the first user.
 
 ## Deploy
 

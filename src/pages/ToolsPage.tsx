@@ -10,6 +10,7 @@ export default function ToolsPage() {
   const matching = new Set(results.map(result => result.document.id));
   const showQr = !query.trim() || matching.has('qrcode-style-gen');
   const showContego = !query.trim() || matching.has('contego') || matching.has('contego-privacy');
+  const showKickbacks = !query.trim() || matching.has('kickbacks-ai-tool');
   const count = Number(showQr) + Number(showContego);
   return (
     <>
@@ -34,7 +35,18 @@ export default function ToolsPage() {
               </div>
             </article>}
           </div>
-          {count === 0 && <div className="hub-empty"><h2>Δεν βρέθηκε κάποιο εργαλείο.</h2><p>Δοκίμασε «QR», «cookies» ή μια περιγραφή αυτού που χρειάζεσαι.</p><button type="button" onClick={() => setQuery('')}>Εμφάνιση όλων</button></div>}
+          {showKickbacks && <>
+            <div className="hub-tools-toolbar hub-tools-used"><h2>Εργαλεία που χρησιμοποιώ <span>1</span></h2><p>Δεν είναι δικά μου και δεν έχω σχέση με τις εταιρείες που τα φτιάχνουν.</p></div>
+            <div className="hub-used-grid">
+              <article id="kickbacks-ai" className="hub-tool-card hub-tool-thirdparty" aria-labelledby="kickbacks-title">
+                <div className="hub-tool-banner"><h2 id="kickbacks-title">Kickbacks.ai</h2><span className="hub-soon">Εργαλείο τρίτου</span></div>
+                <div className="hub-tool-body"><Link className="hub-tool-shot" to="/kickbacks-ai/" aria-label="Οδηγός για το Kickbacks.ai"><img src="/thumbs/kickbacks-ai_thumb.jpg" alt="" width={480} height={300} loading="lazy" /></Link>
+                  <div className="hub-tool-details"><div className="hub-tool-content"><p className="hub-tool-kicker">Χρήματα όσο «σκέφτεται» το AI</p><p>Extension για VS Code που δείχνει μια διαφήμιση μίας γραμμής όσο δουλεύει το Claude Code ή το Codex και σου πιστώνει μέρος των εσόδων. Το χρησιμοποιώ, αλλά δεν είναι δικό μου: διάβασε τη δήλωση αποποίησης ευθύνης και κάνε τη δική σου έρευνα.</p><div className="hub-tags"><span>VS Code extension</span><span>Claude Code</span><span>Codex</span></div></div><Link className="hub-external-row" to="/kickbacks-ai/">Δες τον οδηγό βήμα βήμα<HubIcon name="arrow" /></Link></div>
+                </div>
+              </article>
+            </div>
+          </>}
+          {count === 0 && !showKickbacks && <div className="hub-empty"><h2>Δεν βρέθηκε κάποιο εργαλείο.</h2><p>Δοκίμασε «QR», «cookies» ή μια περιγραφή αυτού που χρειάζεσαι.</p><button type="button" onClick={() => setQuery('')}>Εμφάνιση όλων</button></div>}
         </section>
       </main>
     </>

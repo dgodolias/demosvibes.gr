@@ -11,6 +11,7 @@
   ],
   "functions": {
     "api/subscribe.ts": { "maxDuration": 15 },
+    "api/disclaimer.ts": { "maxDuration": 15 },
     "api/legacy-subscribe.ts": { "maxDuration": 15 }
   }
 }

@@ -32,13 +32,20 @@ export interface CardLinkItem {
   to: string;
 }
 
-/** Ordered content blocks rendered by <BlockRenderer>. */
-export type Block =
+/** Content blocks that can be rendered directly, including server-delivered ones. */
+export type ContentBlock =
   | { kind: 'prompt'; label: string; text: string }
   | { kind: 'steps'; title: string; items: string[] }
   | { kind: 'prose'; title?: string; html: string }
   | { kind: 'cardLinks'; items: CardLinkItem[] }
   | { kind: 'html'; html: string };
+
+/**
+ * Ordered content blocks rendered by <BlockRenderer>. A `protected` block keeps
+ * its content out of the prerendered HTML and the JS bundle: /api/disclaimer
+ * returns it only after the visitor accepts the disclaimer (src/data/disclaimers.ts).
+ */
+export type Block = ContentBlock | { kind: 'protected'; disclaimer: string };
 
 export interface Crumb {
   label: string;

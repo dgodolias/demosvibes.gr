@@ -30,6 +30,8 @@ function blockText(block: Block): string {
     case 'prose': return `${block.title ?? ''} ${block.html}`;
     case 'cardLinks': return block.items.map(({ title, sub }) => `${title} ${sub}`).join(' ');
     case 'html': return block.html;
+    // Protected content is served only after acceptance; never index it.
+    case 'protected': return '';
   }
 }
 
@@ -94,6 +96,13 @@ const SITE_DOCUMENTS: SearchDocument[] = [
     href: '/tools/contego/privacy/',
     keywords: ['contego', 'privacy', 'policy', 'απόρρητο', 'πολιτική απορρήτου', 'δεδομένα', 'προσωπικά δεδομένα', 'chrome web store'],
     content: stripSearchMarkup(contegoPrivacyArticle),
+  },
+  {
+    id: 'kickbacks-ai-tool', title: 'Kickbacks.ai', scope: 'tools',
+    description: 'Εργαλείο τρίτου που χρησιμοποιώ: διαφημίσεις στο spinner του Claude Code και του Codex, με μέρος των εσόδων για σένα.',
+    href: '/tools#kickbacks-ai',
+    keywords: ['kickbacks', 'kickbacks.ai', 'extension', 'vs code', 'claude code', 'codex', 'χρήματα', 'λεφτά', 'έσοδα', 'διαφημίσεις', 'ads', 'stripe', 'εργαλείο τρίτου'],
+    content: 'Εργαλεία που χρησιμοποιώ. Kickbacks.ai: extension για VS Code που δείχνει μια διαφήμιση μίας γραμμής όσο σκέφτεται το Claude Code ή το Codex και σου πιστώνει μέρος των εσόδων. Δεν είναι δικό μου και δεν έχω σχέση με την εταιρεία. Οδηγός βήμα βήμα με δήλωση αποποίησης ευθύνης.',
   },
   {
     id: 'about', title: 'Γεια είμαι ο Δήμος', scope: 'about',

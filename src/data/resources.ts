@@ -21,6 +21,32 @@ const officialThumb = {
 
 export const resources: Resource[] = [
   {
+    slug: 'kickbacks-ai',
+    pageKind: 'guide',
+    date: '2026-09-25',
+    card: {
+      title: 'Kickbacks.ai: βγάλε χρήματα όσο «σκέφτεται» το Claude Code ή το Codex',
+      desc: 'Από την εγκατάσταση του VS Code και του Claude Code μέχρι την πρώτη πληρωμή μέσω Stripe. Αναλυτικά βήματα για αρχάριους, μαζί με τους κινδύνους. Δεν είναι χορηγία: κάνε τη δική σου έρευνα.',
+      metaLine: '25 Σεπ 2026 · Οδηγός',
+      cardTags: ['Kickbacks.ai', 'Claude Code', 'Codex', 'VS Code'],
+      searchTags: ['kickbacks', 'kickbacks.ai', 'kickbacks ai', 'kikbacks', 'extension', 'vs code', 'vscode', 'claude', 'claude code', 'codex', 'chatgpt', 'openai', 'χρήματα', 'χρηματα', 'λεφτά', 'λεφτα', 'έσοδα', 'εσοδα', 'κέρδος', 'κερδος', 'passive income', 'παθητικό εισόδημα', 'παθητικο εισοδημα', 'διαφημίσεις', 'διαφημισεις', 'ads', 'spinner', 'stripe', 'payout', 'πληρωμή', 'πληρωμη', 'get paid while you code'],
+      filters: ['guide'],
+      status: 'active',
+      thumb: {
+        type: 'solo',
+        src: '/thumbs/kickbacks-ai_thumb.jpg',
+        alt: 'Η οθόνη «You’re in!» του Kickbacks.ai μετά τη σύνδεση',
+      },
+    },
+    seoTitle: 'Kickbacks.ai: χρήματα από το Claude Code και το Codex στο VS Code (οδηγός)',
+    seoDescription: 'Οδηγός βήμα βήμα για το Kickbacks.ai: VS Code, Claude Code ή Codex, εγκατάσταση από VSIX, σύνδεση, Private Mode, πληρωμές μέσω Stripe και οι κίνδυνοι. Δεν είναι χορηγία: κάνε τη δική σου έρευνα.',
+    crumb: { label: 'videos', to: '/' },
+    heading: 'Kickbacks.ai: πώς βγάζω χρήματα όσο «σκέφτεται» το Claude Code ή το Codex',
+    introHtml: 'Όταν το Claude Code ή το Codex δουλεύει, βλέπεις ένα spinner με λέξεις όπως «Thinking…». Το <strong>Kickbacks.ai</strong> είναι ένα extension για το VS Code που βάζει εκεί μια μικρή διαφήμιση μίας γραμμής και σου δίνει μέρος από τα έσοδα. Ο οδηγός καλύπτει όλη τη διαδρομή, από την εγκατάσταση του VS Code μέχρι την πρώτη πληρωμή στην τράπεζα. <strong>Δεν έχω καμία σχέση με το Kickbacks.ai</strong>: είναι απλώς ένα εργαλείο που χρησιμοποιώ. Για να δεις τον οδηγό πρέπει πρώτα να διαβάσεις και να αποδεχτείς τη δήλωση αποποίησης ευθύνης.',
+    blocks: [{ kind: 'protected', disclaimer: 'kickbacks-ai' }],
+    citation: 'https://kickbacks.ai/terms',
+  },
+  {
     slug: 'personal-website',
     pageKind: 'guide',
     date: '2026-09-19',

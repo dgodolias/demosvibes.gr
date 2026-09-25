@@ -40,7 +40,7 @@ test('local scopes never leak other sections; irrelevant and stopword-only queri
   expect(searchDocuments(corpus, 'contego', 'about')).toEqual([]);
   expect(searchDocuments(corpus, 'zzzxqvvv')).toEqual([]);
   expect(searchDocuments(corpus, 'θέλω να')).toEqual([]);
-  expect(searchDocuments(corpus, '', 'tools').map(({ document }) => document.id)).toEqual(['qrcode-style-gen', 'contego', 'contego-privacy']);
+  expect(searchDocuments(corpus, '', 'tools').map(({ document }) => document.id)).toEqual(['qrcode-style-gen', 'contego', 'contego-privacy', 'kickbacks-ai-tool']);
   expect(searchDocuments(corpus, 'AI').some(({ document }) => document.id === 'which-ai')).toBe(true);
   expect(searchDocuments(corpus, 'AI').some(({ document }) => document.id === 'contego-privacy')).toBe(false);
 });

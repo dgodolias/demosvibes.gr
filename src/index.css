@@ -804,6 +804,8 @@ button {
   color: var(--muted);
 }
 
+.steps p + p { margin-top: 10px; }
+
 .steps a {
   color: var(--accent);
   font-weight: 700;
@@ -1301,6 +1303,78 @@ table.ptable .muted { color: var(--muted); }
     padding: 18px;
   }
 }
+
+/* ============================================================================
+   Article figures and the disclaimer gate (protected blocks, src/disclaimer/).
+   ========================================================================== */
+.article-figure {
+  margin: 22px 0 0;
+  text-align: center;
+}
+
+.article-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.article-figure figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12.5px;
+}
+
+.protected-locked {
+  border-color: rgba(217, 107, 53, 0.35);
+  background: #fff8f3;
+}
+
+.protected-locked p { max-width: 60ch; }
+
+.protected-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 14px;
+  padding: 8px 18px;
+  border: 0;
+  border-radius: var(--r-chip);
+  background: var(--ink);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.protected-action:hover { background: var(--ink-soft); }
+
+.disclaimer-body {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.disclaimer-body h3 {
+  margin: 18px 0 6px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.disclaimer-body p { margin: 0 0 10px; }
+
+.disclaimer-body ul {
+  margin: 0 0 10px;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.disclaimer-body li { margin: 4px 0; }
+.disclaimer-body strong { color: var(--ink); font-weight: 700; }
+.disclaimer-body a { color: var(--accent); font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) {
   * {

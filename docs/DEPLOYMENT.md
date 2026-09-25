@@ -135,6 +135,16 @@ requests use authorized maintenance access; runtime API credentials are separate
 owner credentials. Keep owner connection strings in the owner's private environment,
 outside the checkout. Review role privileges when changing the persistence queries.
 
+Migration [`004_disclaimer_acceptances.sql`](../db/migrations/004_disclaimer_acceptances.sql)
+is additive: it creates `public.disclaimer_acceptances` for `/api/disclaimer` and leaves
+`public.subscribers` untouched. Each row is one acceptance of a protected guide's
+disclaimer: `id` (uuid, returned to the browser), `disclaimer`, `version`, `accepted`
+(always `true`), `accepted_at`, and optional `ip`, `user_agent` and `referrer` captured
+with the subscriber-metadata rules. The migration grants `demosvibes_api` INSERT on the
+written columns and SELECT on `id`, `disclaimer` and `version` only (for `RETURNING id`
+and confirming a stored acceptance); runtime UPDATE, DELETE and metadata reads remain
+unavailable. Apply it with owner access before deploying code that calls the endpoint.
+
 Development and Preview environments require their own deliberately configured
 database connection. A Production variable does not imply that previews have one.
 Use an isolated development database/branch when testing writes outside Production.

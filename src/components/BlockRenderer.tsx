@@ -2,6 +2,7 @@ import type { Block } from '../data/types';
 import PromptCard from './PromptCard';
 import Steps from './Steps';
 import CardLinks from './CardLinks';
+import ProtectedContent from '../disclaimer/ProtectedContent';
 
 /** Renders an ordered list of content blocks for a resource page. */
 export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
@@ -24,6 +25,8 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
             return <CardLinks key={i} items={block.items} />;
           case 'html':
             return <div key={i} dangerouslySetInnerHTML={{ __html: block.html }} />;
+          case 'protected':
+            return <ProtectedContent key={i} disclaimerId={block.disclaimer} render={(content) => <BlockRenderer blocks={content} />} />;
           default:
             return null;
         }
