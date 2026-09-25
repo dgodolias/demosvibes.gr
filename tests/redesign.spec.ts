@@ -47,7 +47,7 @@ test('the three primary sections keep the approved copy and existing resource ac
 });
 
 for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
-  test(`tools remain full-width, separate floating cards at ${viewport.width}px`, async ({ page }) => {
+  test(`tools are compact, separate floating cards at ${viewport.width}px`, async ({ page }) => {
     await page.setViewportSize(viewport);
     await enterAsReturningVisitor(page);
     await page.goto('/tools/');
@@ -67,7 +67,7 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
           const rect = card.getBoundingClientRect();
           const style = window.getComputedStyle(card);
           return {
-            x: rect.x, y: rect.y, bottom: rect.bottom, width: rect.width,
+            x: rect.x, y: rect.y, bottom: rect.bottom, right: rect.right, width: rect.width, height: rect.height,
             borders: [style.borderTopWidth, style.borderRightWidth, style.borderBottomWidth, style.borderLeftWidth],
             shadow: style.boxShadow,
           };
@@ -76,12 +76,22 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
     });
     expect(geometry.pageOverflows).toBe(false);
     for (const card of geometry.cards) {
-      expect(Math.abs(card.x - geometry.grid.x)).toBeLessThanOrEqual(1);
-      expect(Math.abs(card.width - geometry.grid.width)).toBeLessThanOrEqual(1);
       expect(card.borders).toEqual(['0px', '0px', '0px', '0px']);
       expect(card.shadow).not.toBe('none');
     }
-    expect(geometry.cards[1].y - geometry.cards[0].bottom).toBeGreaterThanOrEqual(24);
+    const [first, second] = geometry.cards;
+    if (viewport.width >= 1000) {
+      // Three per row: two rows (six tools) fit in one desktop screen.
+      expect(Math.abs(first.width - geometry.grid.width / 3)).toBeLessThanOrEqual(14);
+      expect(Math.abs(second.y - first.y)).toBeLessThanOrEqual(1);
+      expect(second.x - first.right).toBeGreaterThanOrEqual(12);
+      expect(first.height * 2).toBeLessThan(viewport.height - 300);
+    } else {
+      // One compact row per tool on phones.
+      expect(Math.abs(first.width - geometry.grid.width)).toBeLessThanOrEqual(1);
+      expect(second.y - first.bottom).toBeGreaterThanOrEqual(8);
+      expect(first.height).toBeLessThanOrEqual(112);
+    }
     await expect(cards.nth(0).getByRole('link', { name: 'Προεπισκόπηση QRCodeStyleGen — άνοιγμα σε νέα καρτέλα' }))
       .toHaveAttribute('href', 'https://dgodolias.github.io/QRCodeStyleGen/');
     await expect(cards.nth(1).getByText('Έρχεται σύντομα', { exact: true })).toBeVisible();
