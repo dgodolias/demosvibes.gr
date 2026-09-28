@@ -173,7 +173,8 @@ test('Contego privacy is public on a first visit and ships the real policy in pr
   await expect(page.locator('link[rel="canonical"]'))
     .toHaveAttribute('href', 'https://demosvibes.gr/tools/contego/privacy/');
   await expect(page.locator('article#en')).toHaveAttribute('lang', 'en');
-  await expect(page.locator('article#en h2')).toHaveCount(7);
+  await expect(page.locator('article#en h2')).toHaveCount(8);
+  await expect(page.getByRole('link', { name: 'EasyList', exact: true })).toHaveAttribute('href', 'https://easylist.to/');
   await expect(page.getByRole('link', { name: 'dgodolias18@gmail.com', exact: true }))
     .toHaveAttribute('href', 'mailto:dgodolias18@gmail.com');
   await expect(page.getByText('This policy page is hosted on Vercel.', { exact: true })).toBeVisible();
