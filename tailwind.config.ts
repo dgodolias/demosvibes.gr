@@ -29,8 +29,9 @@ export default {
         'code-fg': '#e9edf4',
       },
       fontFamily: {
-        display: ['"Google Sans Display"', '"Google Sans Text"', 'system-ui', 'sans-serif'],
-        body: ['"Google Sans Text"', '"Google Sans Display"', 'system-ui', 'sans-serif'],
+        // System fonts only: no third-party font requests, no proprietary font names.
+        display: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'system-ui', 'sans-serif'],
+        body: ['-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'system-ui', 'sans-serif'],
         mono: ['ui-monospace', '"SF Mono"', 'Menlo', 'Consolas', 'monospace'],
       },
       borderRadius: {
