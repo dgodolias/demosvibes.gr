@@ -161,8 +161,10 @@ test('Contego privacy is public on a first visit and ships the real policy in pr
   const response = await page.goto('/tools/contego/privacy/');
   expect(response?.ok()).toBe(true);
   const html = await response!.text();
-  expect(html).toContain('Version 1.2.3');
-  expect(html).toContain('9 September 2026');
+  expect(html).toContain('Version 1.4.0');
+  expect(html).toContain('14 October 2026');
+  expect(html).toContain('Automatic choices can be wrong');
+  expect(html).toContain('Limitation of liability');
   expect(html).toContain('Dimosthenis Panagiotis Gkontolias');
   expect(html).toContain('We have no server copy to retrieve or delete.');
 
@@ -173,7 +175,7 @@ test('Contego privacy is public on a first visit and ships the real policy in pr
   await expect(page.locator('link[rel="canonical"]'))
     .toHaveAttribute('href', 'https://demosvibes.gr/tools/contego/privacy/');
   await expect(page.locator('article#en')).toHaveAttribute('lang', 'en');
-  await expect(page.locator('article#en h2')).toHaveCount(8);
+  await expect(page.locator('article#en h2')).toHaveCount(14);
   await expect(page.getByRole('link', { name: 'EasyList', exact: true })).toHaveAttribute('href', 'https://easylist.to/');
   await expect(page.getByRole('link', { name: 'dgodolias18@gmail.com', exact: true }))
     .toHaveAttribute('href', 'mailto:dgodolias18@gmail.com');
