@@ -1164,6 +1164,16 @@ table.ptable .muted { color: var(--muted); }
   font-size: 13.5px;
 }
 
+/* Contego: install button (/tools/contego/) */
+.store-cta-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin: 22px 0 6px; }
+.store-cta { display: inline-flex; align-items: center; gap: 14px; padding: 15px 24px 15px 18px; border-radius: 14px; background: var(--accent); color: #fff; font-size: 18px; font-weight: 750; line-height: 1.2; text-decoration: none; box-shadow: 0 10px 24px -12px rgba(11, 107, 93, .7); }
+.store-cta:hover { background: #084f44; }
+.store-cta:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.store-cta img { width: 36px; height: 36px; flex-shrink: 0; }
+.store-cta small { display: block; margin-top: 4px; font-size: 13px; font-weight: 600; opacity: .88; }
+.store-cta-meta { max-width: 340px; color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+@media (max-width: 560px) { .store-cta { width: 100%; font-size: 17px; } }
+
 /* availability bar (thea) */
 .avail { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 2px; }
 .avail a {

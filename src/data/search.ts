@@ -85,10 +85,10 @@ const SITE_DOCUMENTS: SearchDocument[] = [
   },
   {
     id: 'contego', title: 'Contego', scope: 'tools',
-    description: 'Chrome extension για cookie banners με τις προτιμήσεις σου και προαιρετικό ad blocking. Έρχεται σύντομα.',
-    href: '/tools#contego',
-    keywords: ['chrome', 'extension', 'επέκταση', 'cookies', 'cookie banners', 'consent', 'ads', 'adblock', 'διαφημίσεις', 'privacy', 'ιδιωτικότητα'],
-    content: 'Οι επιλογές σου στο browsing. Extension που χειρίζεται τα cookie banners με τις προτιμήσεις σου και προσφέρει προαιρετικό ad blocking. Η εγκατάσταση θα είναι διαθέσιμη σύντομα. Συμπληρωματικό υλικό: πολιτική απορρήτου.',
+    description: 'Δωρεάν Chrome extension που αρνείται για σένα τα cookie banners, με προαιρετικό ad blocking. Εγκατάσταση από το Chrome Web Store.',
+    href: '/tools/contego/',
+    keywords: ['chrome', 'extension', 'επέκταση', 'cookies', 'cookie banners', 'consent', 'ads', 'adblock', 'διαφημίσεις', 'privacy', 'ιδιωτικότητα', 'chrome web store', 'εγκατάσταση', 'install', 'οδηγός'],
+    content: 'Οι επιλογές σου στο browsing. Δωρεάν extension που αρνείται για σένα τα cookie banners, καθαρίζει γνωστά tracking cookies και προσφέρει προαιρετικό ad blocking και παύση ανά site. Εγκατάσταση από το Chrome Web Store, οδηγός βήμα βήμα, προφίλ Balanced, Strict και Relaxed. Συμπληρωματικό υλικό: πολιτική απορρήτου.',
   },
   {
     id: 'contego-privacy', title: 'Contego — Πολιτική απορρήτου', scope: 'tools',

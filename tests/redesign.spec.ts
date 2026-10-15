@@ -94,7 +94,9 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
     }
     await expect(cards.nth(0).getByRole('link', { name: 'Προεπισκόπηση QRCodeStyleGen — άνοιγμα σε νέα καρτέλα' }))
       .toHaveAttribute('href', 'https://dgodolias.github.io/QRCodeStyleGen/');
-    await expect(cards.nth(1).getByText('Έρχεται σύντομα', { exact: true })).toBeVisible();
+    await expect(cards.nth(1).getByText('Έρχεται σύντομα', { exact: true })).toHaveCount(0);
+    await expect(cards.nth(1).getByRole('link', { name: 'Εγκατάσταση', exact: true }))
+      .toHaveAttribute('href', 'https://chromewebstore.google.com/detail/contego/jccebdbhfadboffmkkampofmdlbnonhh');
   });
 }
 
@@ -106,8 +108,8 @@ test('local tools search filters cards, preserves the privacy supplement and res
   await expect(page.locator('.hub-tools-grid > article')).toHaveCount(1);
   await expect(page.getByRole('heading', { name: 'Contego', exact: true })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'QRCodeStyleGen', exact: true })).toHaveCount(0);
-  await expect(page.locator('#contego').getByRole('link', { name: 'Πολιτική απορρήτου', exact: true }))
-    .toHaveAttribute('href', '/tools/contego/privacy/');
+  await expect(page.locator('#contego').getByRole('link', { name: 'Οδηγός', exact: true }))
+    .toHaveAttribute('href', '/tools/contego/');
   await expect(page).toHaveURL(/\?q=cookie$/);
 
   await page.reload();

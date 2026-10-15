@@ -53,8 +53,8 @@ test('index includes actual body text and published nested pages without HTML at
   expect(harvard?.content).not.toContain('target="_blank"');
   const privacy = corpus.find(({ id }) => id === 'contego-privacy');
   expect(privacy?.description).not.toContain('στα ελληνικά');
-  expect(privacy?.content).toContain('Version 1.2.3');
-  expect(privacy?.content).toContain('9 September 2026');
+  expect(privacy?.content).toContain('Version 1.4.0');
+  expect(privacy?.content).toContain('14 October 2026');
   expect(searchDocuments(corpus, 'aggregate counter')[0]?.document.id).toBe('contego-privacy');
   expect(stripSearchMarkup('<style>.hidden{}</style><p>A &amp; B &#x3B1; &#945;</p><script>secret()</script>')).toBe('A & B α α');
 });

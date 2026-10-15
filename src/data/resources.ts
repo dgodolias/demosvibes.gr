@@ -1,4 +1,5 @@
 import type { Resource } from './types';
+import { CONTEGO_STORE_URL, CONTEGO_VERSION } from './contego';
 
 /**
  * SINGLE SOURCE OF TRUTH for every page on the site.
@@ -20,6 +21,77 @@ const officialThumb = {
 };
 
 export const resources: Resource[] = [
+  {
+    slug: 'tools/contego',
+    pageKind: 'guide',
+    date: '2026-10-15',
+    seoTitle: 'Contego: δωρεάν Chrome extension που αρνείται για σένα τα cookie banners (οδηγός)',
+    seoDescription: 'Εγκατάσταση και χρήση του Contego: αυτόματη άρνηση στα cookie banners, προαιρετικό ad blocking, παύση ανά site. Δωρεάν, χωρίς λογαριασμό, χωρίς αποστολή δεδομένων.',
+    crumb: { label: 'tools', to: '/tools' },
+    heading: 'Contego: πες «όχι» στα cookie banners χωρίς να το κάνεις εσύ κάθε φορά',
+    introHtml: 'Κάθε site σε ρωτάει για cookies και συνήθως το εύκολο κουμπί είναι το «Αποδοχή». Το <strong>Contego</strong> είναι ένα δωρεάν extension για τον Chrome που έφτιαξα εγώ: βρίσκει μόνο του το banner και πατάει την <strong>άρνηση</strong> για σένα. Αν θέλεις, μπλοκάρει και διαφημίσεις. Δεν χρειάζεται λογαριασμό και δεν στέλνει τίποτα πουθενά: όλα γίνονται μέσα στον browser σου.',
+    headerExtraHtml: `<div class="store-cta-wrap"><a class="store-cta" href="${CONTEGO_STORE_URL}" target="_blank" rel="noopener noreferrer"><img src="/assets/contego/icon96.png" alt="" width="36" height="36" /><span>Εγκατάσταση από το Chrome Web Store<small>Δωρεάν · Έκδοση ${CONTEGO_VERSION} · Χωρίς λογαριασμό</small></span></a><span class="store-cta-meta">Για Chrome, Edge, Brave και άλλους browsers που βασίζονται στο Chromium, σε υπολογιστή.</span></div>`,
+    blocks: [
+      {
+        kind: 'prose',
+        title: 'Τι κάνει',
+        html: '<ul><li><strong>Αρνείται τα cookies για σένα.</strong> Όταν ένα site δείχνει banner, το Contego ψάχνει το «Απόρριψη», το «Μόνο τα απαραίτητα» ή τις ρυθμίσεις, κλείνει τα προαιρετικά cookies και αποθηκεύει την επιλογή. Καταλαβαίνει ελληνικά, αγγλικά και πολλές ακόμη γλώσσες.</li><li><strong>Καθαρίζει γνωστά tracking cookies</strong>, όπως του Google Analytics και του Facebook, από τα sites που επισκέπτεσαι.</li><li><strong>Μπλοκάρει διαφημίσεις, αν το θέλεις.</strong> Το ad blocker είναι ξεχωριστός διακόπτης και ξεκινά κλειστό.</li><li><strong>Παύση ανά site.</strong> Αν ένα site δεν δουλεύει σωστά, σταματάς το Contego μόνο για εκείνο, με ένα κλικ.</li></ul>',
+      },
+      {
+        kind: 'steps',
+        title: 'Εγκατάσταση σε ένα λεπτό',
+        items: [
+          'Πάτα το κουμπί <strong>«Εγκατάσταση από το Chrome Web Store»</strong> πιο πάνω. Ανοίγει η σελίδα του Contego στο επίσημο κατάστημα της Google.',
+          'Πάτα <strong>«Προσθήκη στο Chrome»</strong> (Add to Chrome) και μετά <strong>«Προσθήκη επέκτασης»</strong> στο παράθυρο που εμφανίζεται.',
+          'Ανοίγει μόνη της μια καρτέλα του Contego. Διάβασε ποια δεδομένα χρησιμοποιεί και τους όρους χρήσης, και πάτα <strong>«Agree &amp; enable»</strong>. Μέχρι να το πατήσεις, η προστασία μένει κλειστή.',
+          'Διάλεξε τρόπο λειτουργίας (δες παρακάτω). Αν δεν είσαι σίγουρος, άφησε το <strong>Balanced</strong>, που είναι η προεπιλογή.',
+          'Καρφίτσωσε το εικονίδιο για να το έχεις πάντα μπροστά σου: πάτα το εικονίδιο με το <strong>παζλ</strong> πάνω δεξιά στον Chrome και μετά την <strong>πινέζα</strong> δίπλα στο Contego.',
+          'Στον <strong>Edge</strong>, την πρώτη φορά θα δεις μια μπάρα για extensions από άλλα καταστήματα: πάτα <strong>«Allow extensions from other stores»</strong> και συνέχισε όπως παραπάνω.',
+        ],
+      },
+      {
+        kind: 'prose',
+        title: 'Ποιο προφίλ να διαλέξω',
+        html: '<ul><li><strong>Balanced (προεπιλογή):</strong> αρνείται όπου γίνεται και δεν πατάει ποτέ «Αποδοχή». Αν ένα banner δεν έχει άρνηση, το κρύβει. Για τους περισσότερους αυτό είναι το σωστό.</li><li><strong>Strict:</strong> ό,τι και το Balanced, και επιπλέον μπλοκάρει γνωστούς trackers (Google Analytics, Hotjar, Facebook Pixel κ.ά.). Κάποια sites μπορεί να μη δουλεύουν σωστά· τότε κάνε παύση σε εκείνο το site.</li><li><strong>Relaxed:</strong> προσπαθεί πρώτα να αρνηθεί, αλλά αν δεν υπάρχει άρνηση μπορεί να πατήσει «Αποδοχή». Διάλεξέ το μόνο αν σε ενοχλεί περισσότερο το banner από το tracking.</li></ul><p>Το <strong>Ad blocker</strong> είναι ξεχωριστός διακόπτης στο ίδιο παράθυρο και δουλεύει με όλα τα προφίλ. Μετά από κάθε αλλαγή, κάνε ανανέωση στις σελίδες που έχεις ανοιχτές.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Τι σημαίνουν τα σημάδια στο εικονίδιο',
+        html: '<ul><li><strong>✓</strong>: το Contego χειρίστηκε το banner της σελίδας. Πάτα το εικονίδιο για να δεις τι έκανε: άρνηση, μόνο τα απαραίτητα, ρυθμίσεις ή απόκρυψη.</li><li><strong>!</strong>: η σελίδα σού ζητά να διαλέξεις ανάμεσα σε cookies και <strong>συνδρομή ή σύνδεση</strong>, π.χ. «Αποδέξου ή πλήρωσε για να δεις το site χωρίς διαφημίσεις». Αυτές τις επιλογές τις αφήνει σε σένα.</li><li><strong>off</strong>: η προστασία είναι κλειστή ή σε παύση για αυτό το site.</li></ul>',
+      },
+      {
+        kind: 'steps',
+        title: 'Αν ένα site δεν δουλεύει σωστά',
+        items: [
+          'Πάτα το εικονίδιο του Contego ενώ είσαι στο site.',
+          'Άναψε το <strong>«Pause here»</strong> και πάτα <strong>«Reload»</strong>. Η παύση ισχύει μόνο για αυτό το site και μένει μέχρι να τη σβήσεις.',
+          'Για να κλείσεις την προστασία παντού, χρησιμοποίησε τον μεγάλο διακόπτη πάνω δεξιά στο παράθυρο του Contego.',
+        ],
+      },
+      {
+        kind: 'prose',
+        title: 'Τι δεν κάνει',
+        html: '<ul><li><strong>Δεν παρακάμπτει paywalls.</strong> Στα sites που ζητούν «αποδοχή ή συνδρομή» (π.χ. The Guardian, Spiegel, El País) η επιλογή μένει σε σένα.</li><li><strong>Η απόκρυψη δεν είναι άρνηση.</strong> Όταν ένα banner δεν έχει κουμπί άρνησης, το Contego μπορεί να το κρύψει. Τότε το site δεν έχει καταγράψει άρνηση· απλώς δεν βλέπεις το banner.</li><li><strong>Μπορεί να κάνει λάθος.</strong> Αναγνωρίζει τα κουμπιά με κανόνες και με ένα μικρό μοντέλο που τρέχει στη συσκευή σου, και τα sites αλλάζουν συνεχώς. Σε επιλογές που μετράνε για σένα, έλεγξε το ίδιο το site. Δεν πατάει ποτέ πληρωμή, συνδρομή ή σύνδεση.</li><li><strong>Δεν δουλεύει σε κινητό.</strong> Ο Chrome για Android και iPhone δεν υποστηρίζει extensions. Για Firefox δεν υπάρχει ακόμη έκδοση.</li></ul>',
+      },
+      {
+        kind: 'prose',
+        title: 'Απόρρητο',
+        html: '<p>Το Contego δεν έχει server και δεν στέλνει δεδομένα σε μένα ή σε τρίτους. Δεν κρατά ιστορικό περιήγησης: στη συσκευή σου μένει μόνο ένας συνολικός αριθμός banners, που τον μηδενίζεις από τη σελίδα «Privacy &amp; data». Οι ρυθμίσεις σου και τα sites σε παύση μπορεί να συγχρονίζονται μέσω του λογαριασμού σου στον browser, όπως σε κάθε extension.</p><p>Αναλυτικά, στα αγγλικά: <a href="/tools/contego/privacy/">πολιτική απορρήτου και όροι χρήσης</a>.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Ενημερώσεις',
+        html: '<p>Ο Chrome ενημερώνει το Contego μόνος του. Με την ενημέρωση στην <strong>έκδοση 1.4.0</strong> θα σου ζητηθεί ξανά να πατήσεις «Agree &amp; enable», γιατί προστέθηκαν οι όροι χρήσης. Η 1.4.0 κάνει τις σελίδες να μην «κολλάνε» πια, βρίσκει το «Απόρριψη» σε πολύ περισσότερα ελληνικά sites και σταματά τις σελίδες που ξαναφόρτωναν συνέχεια.</p>',
+      },
+      {
+        kind: 'prose',
+        title: 'Συχνές ερωτήσεις',
+        html: '<p><strong>Κοστίζει κάτι;</strong> Όχι. Είναι δωρεάν και δεν θέλει λογαριασμό.</p><p><strong>Πώς το αφαιρώ;</strong> Δεξί κλικ στο εικονίδιο και «Κατάργηση από το Chrome» (Remove from Chrome).</p><p><strong>Βρήκα site που δεν το πιάνει.</strong> Γράψε μου ποιο είναι από τη <a href="/tools/contego/privacy/#support">σελίδα υποστήριξης</a> για να το διορθώσω.</p>',
+      },
+      { kind: 'html', html: `<div class="store-cta-wrap"><a class="store-cta" href="${CONTEGO_STORE_URL}" target="_blank" rel="noopener noreferrer"><img src="/assets/contego/icon96.png" alt="" width="36" height="36" /><span>Εγκατάσταση από το Chrome Web Store<small>Δωρεάν · Έκδοση ${CONTEGO_VERSION} · Χωρίς λογαριασμό</small></span></a><span class="store-cta-meta">Για Chrome, Edge, Brave και άλλους browsers που βασίζονται στο Chromium, σε υπολογιστή.</span></div>` },
+    ],
+    citation: CONTEGO_STORE_URL,
+  },
   {
     slug: 'kickbacks-ai',
     pageKind: 'guide',

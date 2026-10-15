@@ -9,7 +9,7 @@ export default function ContegoPrivacyPage() {
     <>
       <Seo
         title="Privacy · Contego · demosvibes"
-        description="How Contego handles consent banners, cookies and preferences in your browser. Privacy policy, version 1.2.3."
+        description="How Contego handles consent banners, cookies and preferences in your browser, and the terms of using it. Privacy policy and terms of use, version 1.4.0."
         path="/tools/contego/privacy/"
         ogType="website"
       />

@@ -6,6 +6,7 @@ import LocalSearch from '../components/LocalSearch';
 import Seo from '../components/Seo';
 import WebsitePreview from '../components/WebsitePreview';
 import { useCatalogSearch } from '../lib/useCatalogSearch';
+import { CONTEGO_STORE_URL } from '../data/contego';
 
 /** Compact tool card: small media, title, short description and its actions. */
 function ToolCard({ id, title, badge, media, description, className = '', children }: {
@@ -43,10 +44,11 @@ export default function ToolsPage() {
               description="Φτιάξε το δικό σου QR code με χρώματα, σχήματα και λογότυπο, μέσα στον browser σου.">
               <a href="https://dgodolias.github.io/QRCodeStyleGen/" target="_blank" rel="noopener noreferrer">Δοκίμασέ το<HubIcon name="arrow" /></a>
             </ToolCard>}
-            {showContego && <ToolCard id="contego" title="Contego" badge="Έρχεται σύντομα" className="hub-tool-contego"
-              media={<div className="hub-contego-art"><img src="/assets/contego/icon128.png" alt="" width={48} height={48} /><span>Your browsing. Your choices.</span></div>}
-              description="Chrome extension για τα cookie banners, με τις προτιμήσεις σου και προαιρετικό ad blocking. Η εγκατάσταση θα είναι διαθέσιμη σύντομα.">
-              <Link to="/tools/contego/privacy/"><HubIcon name="document" />Πολιτική απορρήτου</Link>
+            {showContego && <ToolCard id="contego" title="Contego" className="hub-tool-contego"
+              media={<a className="hub-contego-art" href={CONTEGO_STORE_URL} target="_blank" rel="noopener noreferrer" tabIndex={-1} aria-hidden="true"><img src="/assets/contego/icon128.png" alt="" width={48} height={48} /><span>Your browsing. Your choices.</span></a>}
+              description="Δωρεάν Chrome extension που αρνείται για σένα τα cookie banners, με προαιρετικό ad blocking και παύση ανά site.">
+              <a href={CONTEGO_STORE_URL} target="_blank" rel="noopener noreferrer">Εγκατάσταση<HubIcon name="arrow" /></a>
+              <Link to="/tools/contego/"><HubIcon name="document" />Οδηγός</Link>
             </ToolCard>}
           </div>
           {showKickbacks && <>

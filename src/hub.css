@@ -79,7 +79,7 @@ body::before { display: none; }
 .hub-tool-media .hub-frame { height: 100%; aspect-ratio: auto; }
 .hub-tool-media .hub-preview-loading { padding: 8px; font-size: 11px; text-align: center; }
 .hub-tool-media .hub-preview-action { right: 8px; bottom: 8px; padding: 5px 8px; font-size: 10px; }
-.hub-contego-art { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #f4f5f8; }
+.hub-contego-art { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #f4f5f8; text-decoration: none; }
 .hub-contego-art img { width: 48px; height: 48px; object-fit: contain; }
 .hub-contego-art span { color: var(--muted); font-size: 9px; letter-spacing: 1.2px; text-transform: uppercase; }
 .hub-tool-shot { display: block; }
